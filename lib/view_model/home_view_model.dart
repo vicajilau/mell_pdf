@@ -1,23 +1,23 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:mell_pdf/model/mergeable_files_list.dart';
 
 class HomeViewModel {
-  List<PlatformFile> _files = [];
+  final MergeableFilesList _mfl = MergeableFilesList();
 
   Future<void> loadFilesFromStorage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'pdf', 'png'],
+      allowedExtensions: ['jpg', 'jpeg', 'pdf', 'png'],
     );
-    _files += result?.files ?? [];
+    _mfl.addMultipleFiles(result?.files);
   }
 
-  List<PlatformFile> getFiles() => _files;
+  MergeableFilesList getMergeableFilesList() => _mfl;
 
-  bool thereAreFilesLoaded() => _files.isNotEmpty;
+  bool thereAreFilesLoaded() => _mfl.hasAnyFile();
 
-  PlatformFile removeFileFromList(int index) => _files.removeAt(index);
+  PlatformFile removeFileFromList(int index) => _mfl.removeFile(index);
 
-  void insertFileIntoList(int index, PlatformFile file) {
-    _files.insert(index, file);
-  }
+  void insertFileIntoList(int index, PlatformFile file) =>
+      _mfl.insertFile(index, file);
 }
