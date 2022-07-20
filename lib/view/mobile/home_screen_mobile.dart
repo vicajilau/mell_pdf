@@ -67,7 +67,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
                   final file =
                       viewModel.getMergeableFilesList().getFile(position);
                   return Dismissible(
-                    key: Key("${file.name}-${DateTime.now}"),
+                    key: Key("${file.hashCode}-${DateTime.now}"),
                     direction: DismissDirection.endToStart,
                     onDismissed: (direction) {
                       setState(() {
@@ -75,7 +75,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
                       });
                       // Then show a snackbar.
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Removed File: ${file.name}')));
+                          content: Text('Removed File: ${file.getName()}')));
                     },
                     background: Container(
                       color: Colors.red,
@@ -102,8 +102,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
                     if (newIndex > oldIndex) {
                       newIndex = newIndex - 1;
                     }
-                    final element = viewModel.removeFileFromList(oldIndex);
-                    viewModel.insertFileIntoList(newIndex, element);
+                    setState(() {
+                      final element = viewModel.removeFileFromList(oldIndex);
+                      viewModel.insertFileIntoList(newIndex, element);
+                    });
                   });
                 },
               )

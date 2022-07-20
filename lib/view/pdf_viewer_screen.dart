@@ -1,5 +1,5 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/model/file_read.dart';
 import 'package:pdfx/pdfx.dart';
 
 class PDFViewerScreen extends StatelessWidget {
@@ -7,14 +7,14 @@ class PDFViewerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final file = ModalRoute.of(context)!.settings.arguments as PlatformFile;
+    final file = ModalRoute.of(context)!.settings.arguments as FileRead;
     final pdfPinchController = PdfControllerPinch(
-      document: PdfDocument.openFile(file.path ?? ""),
+      document: PdfDocument.openFile(file.getFile().path),
     );
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(file.name),
+        title: Text(file.getName()),
       ),
       body: PdfViewPinch(
         controller: pdfPinchController,

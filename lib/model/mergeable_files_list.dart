@@ -1,27 +1,35 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
+import 'package:mell_pdf/model/file_read.dart';
 
 class MergeableFilesList {
-  List<PlatformFile> _files = [];
+  final List<FileRead> _files = [];
 
   bool hasAnyFile() => _files.isNotEmpty;
 
-  List<PlatformFile> getFiles() => _files;
+  List<FileRead> getFiles() => _files;
 
-  PlatformFile getFile(int index) => _files[index];
+  FileRead getFile(int index) => _files[index];
 
-  PlatformFile removeFile(int index) => _files.removeAt(index);
+  FileRead removeFile(int index) => _files.removeAt(index);
 
-  void insertFile(int index, PlatformFile file) => _files.insert(index, file);
+  void insertFile(int index, FileRead file) => _files.insert(index, file);
 
   int numberOfFiles() => _files.length;
 
-  List<PlatformFile> addMultipleFiles(List<PlatformFile>? files) =>
-      _files += files ?? [];
+  List<FileRead> addMultipleFiles(List<PlatformFile> files) {
+    for (PlatformFile file in files) {
+      _files.add(FileRead(
+          File(file.path!), file.size, file.name, file.extension ?? ""));
+    }
+    return _files;
+  }
 
   @override
   String toString() {
     String text = "-------LOADED FILES -------- \n";
-    for (PlatformFile file in _files) {
+    for (FileRead file in _files) {
       text += "$file \n";
     }
     return text;

@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:mell_pdf/model/file_read.dart';
 import 'package:mell_pdf/model/mergeable_files_list.dart';
 
 class HomeViewModel {
@@ -9,15 +10,15 @@ class HomeViewModel {
       type: FileType.custom,
       allowedExtensions: ['jpg', 'jpeg', 'pdf', 'png'],
     );
-    _mfl.addMultipleFiles(result?.files);
+    _mfl.addMultipleFiles(result?.files ?? []);
   }
 
   MergeableFilesList getMergeableFilesList() => _mfl;
 
   bool thereAreFilesLoaded() => _mfl.hasAnyFile();
 
-  PlatformFile removeFileFromList(int index) => _mfl.removeFile(index);
+  FileRead removeFileFromList(int index) => _mfl.removeFile(index);
 
-  void insertFileIntoList(int index, PlatformFile file) =>
+  void insertFileIntoList(int index, FileRead file) =>
       _mfl.insertFile(index, file);
 }
