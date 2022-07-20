@@ -14,4 +14,10 @@ class HomeViewModel {
   List<PlatformFile> getFiles() => _files;
 
   bool thereAreFilesLoaded() => _files.isNotEmpty;
+
+  PlatformFile removeFileFromList(int index) => _files.removeAt(index);
+
+  void insertFileIntoList(int index, PlatformFile file) {
+    _files.insert(index, file);
+  }
 }

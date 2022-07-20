@@ -58,14 +58,51 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
           ],
         ),
         body: viewModel.thereAreFilesLoaded()
-            ? ListView.builder(
+            ? ReorderableListView.builder(
                 itemCount: viewModel.getFiles().length,
                 itemBuilder: (context, position) {
                   final file = viewModel.getFiles()[position];
-                  return FileRow(
-                    file: file,
+                  return Dismissible(
+                    key: Key("${file.name}-${DateTime.now}"),
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (direction) {
+                      setState(() {
+                        viewModel.removeFileFromList(position);
+                      });
+                      // Then show a snackbar.
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('Removed File: ${file.name}')));
+                    },
+                    background: Container(
+                      color: Colors.red,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: const [
+                            Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    child: FileRow(
+                      file: file,
+                    ),
                   );
-                })
+                },
+                onReorder: (int oldIndex, int newIndex) {
+                  setState(() {
+                    if (newIndex > oldIndex) {
+                      newIndex = newIndex - 1;
+                    }
+                    final element = viewModel.removeFileFromList(oldIndex);
+                    viewModel.insertFileIntoList(newIndex, element);
+                  });
+                },
+              )
             : Center(
                 child: Image.asset('assets/images/files/file.png'),
               ),
