@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/view_model/home_view_model.dart';
 
 class HomeScreenMobile extends StatefulWidget {
   const HomeScreenMobile({Key? key}) : super(key: key);
@@ -8,14 +9,55 @@ class HomeScreenMobile extends StatefulWidget {
 }
 
 class _HomeScreenMobileState extends State<HomeScreenMobile> {
+  final HomeViewModel viewModel = HomeViewModel();
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          body: Container(
-        color: Colors.green,
-      )),
+        appBar: AppBar(
+          automaticallyImplyLeading: false, // Remove back button
+          title: const Text("Drag PDF"),
+          actions: [
+            IconButton(
+                onPressed: () => showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Choose an option'),
+                        content: const Text(
+                            'Do you want to load the file(s) from disk or from the document scanner?'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () async {
+                              await viewModel.loadFilesFromStorage();
+                              setState(() {
+                                Navigator.pop(context);
+                              });
+                            },
+                            child: const Text("Disk"),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Scan'),
+                            child: const Text('Scan'),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                icon: const Icon(Icons.add))
+          ],
+        ),
+        body: Center(
+          child: Image.asset('assets/images/files/file.png'),
+        ),
+      ),
     );
   }
 }
