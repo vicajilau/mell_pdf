@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/view/desktop/home_screen_desktop.dart';
+import 'package:mell_pdf/view/pdf_viewer_screen.dart';
 import 'package:platform_detail/platform_detail.dart';
 
 import '../view/desktop/splash_screen_desktop.dart';
@@ -22,6 +23,7 @@ class AppRouter {
     return {
       "/": (context) => const SplashScreenMobile(),
       "/home": (context) => const HomeScreenMobile(),
+      "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
     };
   }
 
@@ -30,6 +32,7 @@ class AppRouter {
     return {
       "/": (context) => const SplashScreenDesktop(),
       "/home": (context) => const HomeScreenDesktop(),
+      "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
     };
   }
 }

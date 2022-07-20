@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/components/file_row.dart';
 import 'package:mell_pdf/view_model/home_view_model.dart';
+
+import '../../helper/constants.dart';
 
 class HomeScreenMobile extends StatefulWidget {
   const HomeScreenMobile({Key? key}) : super(key: key);
@@ -45,7 +48,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
                             onPressed: () => Navigator.pop(context, 'Cancel'),
                             child: const Text(
                               'Cancel',
-                              style: TextStyle(color: Colors.red),
+                              style: TextStyle(color: Constants.kMainColor),
                             ),
                           )
                         ],
@@ -54,9 +57,18 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
                 icon: const Icon(Icons.add))
           ],
         ),
-        body: Center(
-          child: Image.asset('assets/images/files/file.png'),
-        ),
+        body: viewModel.thereAreFilesLoaded()
+            ? ListView.builder(
+                itemCount: viewModel.getFiles().length,
+                itemBuilder: (context, position) {
+                  final file = viewModel.getFiles()[position];
+                  return FileRow(
+                    file: file,
+                  );
+                })
+            : Center(
+                child: Image.asset('assets/images/files/file.png'),
+              ),
       ),
     );
   }

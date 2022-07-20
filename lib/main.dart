@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'helper/app_router.dart';
+import 'helper/constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       routes: AppRouter.init().routes,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          color: Color(0xFFD92500),
+          color: Constants.kMainColor,
         ),
       ),
     );
