@@ -106,6 +106,14 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
             : Center(
                 child: Image.asset('assets/images/files/file.png'),
               ),
+        floatingActionButton: Visibility(
+          visible: viewModel.thereAreFilesLoaded(),
+          child: FloatingActionButton(
+            onPressed: () {},
+            backgroundColor: Constants.kMainColor,
+            child: const Icon(Icons.arrow_forward),
+          ),
+        ),
       ),
     );
   }
