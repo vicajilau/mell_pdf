@@ -1,35 +1,51 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:mell_pdf/helper/app_session.dart';
+import 'package:mell_pdf/helper/file_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
 class MergeableFilesList {
-  final List<FileRead> _files = [];
+  final List<FileRead> _filesInMemory = [];
+  final FileHelper fileHelper = AppSession.singleton.fileHelper;
 
-  bool hasAnyFile() => _files.isNotEmpty;
+  bool hasAnyFile() => _filesInMemory.isNotEmpty;
 
-  List<FileRead> getFiles() => _files;
+  List<FileRead> getFiles() => _filesInMemory;
 
-  FileRead getFile(int index) => _files[index];
+  FileRead getFile(int index) => _filesInMemory[index];
 
-  FileRead removeFile(int index) => _files.removeAt(index);
-
-  void insertFile(int index, FileRead file) => _files.insert(index, file);
-
-  int numberOfFiles() => _files.length;
-
-  List<FileRead> addMultipleFiles(List<PlatformFile> files) {
-    for (PlatformFile file in files) {
-      _files.add(FileRead(
-          File(file.path!), file.size, file.name, file.extension ?? ""));
-    }
-    return _files;
+  Future<FileRead> removeFileFromDisk(int index) async {
+    await fileHelper.removeFile(_filesInMemory[index]);
+    return _filesInMemory.removeAt(index);
   }
+
+  FileRead removeFileFromList(int index) {
+    return _filesInMemory.removeAt(index);
+  }
+
+  void insertFile(int index, FileRead file) =>
+      _filesInMemory.insert(index, file);
+
+  int numberOfFiles() => _filesInMemory.length;
+
+  Future<List<FileRead>> addMultipleFiles(List<PlatformFile> files) async {
+    for (PlatformFile file in files) {
+      final fileRead = FileRead(
+          File(file.path!), file.size, file.name, file.extension ?? "");
+      final localFile = await fileHelper.saveFileInLocalPath(fileRead);
+      _filesInMemory.add(localFile);
+    }
+    return _filesInMemory;
+  }
+
+  Future<void> clearFilesFromLocalDirectory() async =>
+      await fileHelper.emptyLocalDocumentFolder();
 
   @override
   String toString() {
     String text = "-------LOADED FILES -------- \n";
-    for (FileRead file in _files) {
+    for (FileRead file in _filesInMemory) {
       text += "$file \n";
     }
     return text;

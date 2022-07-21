@@ -12,8 +12,41 @@ class HomeScreenMobile extends StatefulWidget {
   State<HomeScreenMobile> createState() => _HomeScreenMobileState();
 }
 
-class _HomeScreenMobileState extends State<HomeScreenMobile> {
+class _HomeScreenMobileState extends State<HomeScreenMobile>
+    with WidgetsBindingObserver {
   final HomeViewModel viewModel = HomeViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    super.didChangeAppLifecycleState(state);
+
+    switch (state) {
+      case AppLifecycleState.resumed:
+        Utils.printInDebug("The app did enter in foreground");
+        break;
+      case AppLifecycleState.inactive:
+        Utils.printInDebug("The app is minimize");
+        break;
+      case AppLifecycleState.paused:
+        Utils.printInDebug("The app just went into background");
+        break;
+      case AppLifecycleState.detached:
+        Utils.printInDebug("The app is going to close");
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +100,15 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
                   final file =
                       viewModel.getMergeableFilesList().getFile(position);
                   return Dismissible(
-                    key: Key("${file.hashCode}-${DateTime.now}"),
+                    key: Key("${file.hashCode}"),
                     direction: DismissDirection.endToStart,
-                    onDismissed: (direction) {
+                    onDismissed: (direction) async {
+                      await viewModel.removeFileFromDisk(position);
                       setState(() {
-                        viewModel.removeFileFromList(position);
+                        // Then show a snackbar.
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Removed File: ${file.getName()}')));
                       });
-                      // Then show a snackbar.
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Removed File: ${file.getName()}')));
                     },
                     background: Container(
                       color: Colors.red,
@@ -98,14 +131,12 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
                   );
                 },
                 onReorder: (int oldIndex, int newIndex) {
+                  if (newIndex > oldIndex) {
+                    newIndex = newIndex - 1;
+                  }
                   setState(() {
-                    if (newIndex > oldIndex) {
-                      newIndex = newIndex - 1;
-                    }
-                    setState(() {
-                      final element = viewModel.removeFileFromList(oldIndex);
-                      viewModel.insertFileIntoList(newIndex, element);
-                    });
+                    final element = viewModel.removeFileFromList(oldIndex);
+                    viewModel.insertFileIntoList(newIndex, element);
                   });
                 },
               )

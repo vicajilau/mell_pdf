@@ -39,6 +39,7 @@ dependencies:
   file_picker: ^4.6.1
   easy_image_viewer: ^1.0.4
   pdfx: ^2.2.0
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:

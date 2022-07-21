@@ -10,15 +10,21 @@ class HomeViewModel {
       type: FileType.custom,
       allowedExtensions: ['jpg', 'jpeg', 'pdf', 'png'],
     );
-    _mfl.addMultipleFiles(result?.files ?? []);
+    await _mfl.addMultipleFiles(result?.files ?? []);
   }
 
   MergeableFilesList getMergeableFilesList() => _mfl;
 
   bool thereAreFilesLoaded() => _mfl.hasAnyFile();
 
-  FileRead removeFileFromList(int index) => _mfl.removeFile(index);
+  Future<FileRead> removeFileFromDisk(int index) async =>
+      await _mfl.removeFileFromDisk(index);
+
+  FileRead removeFileFromList(int index) => _mfl.removeFileFromList(index);
 
   void insertFileIntoList(int index, FileRead file) =>
       _mfl.insertFile(index, file);
+
+  Future<void> clearFilesFromLocalDirectory() async =>
+      await _mfl.clearFilesFromLocalDirectory();
 }

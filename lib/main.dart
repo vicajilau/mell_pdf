@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/helper/app_session.dart';
 import 'helper/app_router.dart';
 import 'helper/constants.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppSession.singleton.fileHelper.emptyLocalDocumentFolder();
   runApp(const MyApp());
 }
 

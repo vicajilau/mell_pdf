@@ -7,7 +7,7 @@ import 'enums.dart';
 class FileRead {
   final File _file;
   final int _size;
-  final String _name;
+  String _name;
   final SupportedFileType _sft;
   final String _extension;
   FileRead(this._file, this._size, this._name, this._extension)
@@ -18,6 +18,8 @@ class FileRead {
   int getSize() => _size;
 
   String getName() => _name;
+
+  void setName(String name) => _name = name;
 
   String getExtensionName() => _extension;
 
