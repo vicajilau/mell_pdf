@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mell_pdf/components/file_row.dart';
 import 'package:mell_pdf/view_model/home_view_model.dart';
 
@@ -96,6 +97,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         body: viewModel.thereAreFilesLoaded()
             ? ReorderableListView.builder(
                 itemCount: viewModel.getMergeableFilesList().numberOfFiles(),
+                onReorderStart: (int value) => HapticFeedback.mediumImpact(),
                 itemBuilder: (context, position) {
                   final file =
                       viewModel.getMergeableFilesList().getFile(position);
@@ -106,8 +108,11 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                       await viewModel.removeFileFromDisk(position);
                       setState(() {
                         // Then show a snackbar.
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('Removed File: ${file.getName()}')));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Removed File: ${file.getName()}'),
+                          ),
+                        );
                       });
                     },
                     background: Container(
@@ -127,6 +132,11 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                     ),
                     child: FileRow(
                       file: file,
+                      removeButtonPressed: () {
+                        setState(() {
+                          viewModel.removeFileFromDiskByFile(file);
+                        });
+                      },
                     ),
                   );
                 },

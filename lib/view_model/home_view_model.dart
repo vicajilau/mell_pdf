@@ -20,6 +20,9 @@ class HomeViewModel {
   Future<FileRead> removeFileFromDisk(int index) async =>
       await _mfl.removeFileFromDisk(index);
 
+  Future<void> removeFileFromDiskByFile(FileRead file) async =>
+      await _mfl.removeFileFromDiskByFile(file);
+
   FileRead removeFileFromList(int index) => _mfl.removeFileFromList(index);
 
   void insertFileIntoList(int index, FileRead file) =>

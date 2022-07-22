@@ -42,7 +42,7 @@ class FileHelper {
     if (directory.existsSync()) {
       try {
         directory.deleteSync(recursive: true);
-        Utils.printInDebug("Document Folder Empty");
+        Utils.printInDebug("Document Folder Emptied");
       } catch (error) {
         Utils.printInDebug("ERROR CLEANING LOCAL FOLDER: $error");
       }

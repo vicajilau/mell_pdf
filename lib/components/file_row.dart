@@ -6,7 +6,10 @@ import '../helper/utils.dart';
 
 class FileRow extends StatelessWidget {
   final FileRead file;
-  const FileRow({Key? key, required this.file}) : super(key: key);
+  final Function removeButtonPressed;
+  const FileRow(
+      {Key? key, required this.file, required this.removeButtonPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +17,71 @@ class FileRow extends StatelessWidget {
       child: ListTile(
         leading: FileTypeIcon(file: file),
         title: Text(file.getName()),
+        onTap: () => Utils.openFileProperly(context, file),
         subtitle: Text("${Utils.printableSizeOfFile(file.getSize())} in size"),
         trailing: IconButton(
-          icon: const Icon(Icons.more_vert),
-          onPressed: () {},
-        ),
+            icon: const Icon(Icons.more_vert),
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
+                ),
+                builder: (context) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: getMenu(context),
+                ),
+              );
+            }),
       ),
     );
+  }
+
+  List<Widget> getMenu(BuildContext context) {
+    List<Widget> list = [
+      ListTile(
+        onTap: () {
+          Navigator.pop(context);
+          Utils.openFileProperly(context, file);
+        },
+        title: const Text('Open File'),
+        leading: const Icon(Icons.file_open),
+      )
+    ];
+    if (Utils.isImage(file)) {
+      list.add(ListTile(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        title: const Text('Resize Image'),
+        leading: const Icon(Icons.edit),
+      ));
+    }
+    list.add(const SizedBox(
+      child: Divider(
+        height: 2,
+      ),
+    ));
+    list.add(ListTile(
+      onTap: () {
+        removeButtonPressed.call();
+        Navigator.pop(context);
+      },
+      title: const Text(
+        'Remove',
+        style: TextStyle(color: Colors.red),
+      ),
+      leading: const Icon(
+        Icons.delete,
+        color: Colors.red,
+      ),
+    ));
+    list.add(const SizedBox(
+      height: 15,
+    ));
+    return list;
   }
 }

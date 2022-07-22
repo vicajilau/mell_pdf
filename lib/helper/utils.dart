@@ -1,4 +1,9 @@
+import 'package:easy_image_viewer/easy_image_viewer.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:mell_pdf/model/file_read.dart';
+
+import '../model/enums.dart';
 
 class Utils {
   static void printInDebug(Object? object) {
@@ -22,5 +27,34 @@ class Utils {
       return "${result.toStringAsFixed(2)} KB";
     }
     return 0.toString();
+  }
+
+  static bool isImage(FileRead file) {
+    switch (file.getExtensionType()) {
+      case SupportedFileType.pdf:
+        return false;
+      case SupportedFileType.png:
+        return true;
+      case SupportedFileType.jpg:
+        return true;
+      case SupportedFileType.jpeg:
+        return true;
+      case SupportedFileType.unknown:
+        return false;
+    }
+  }
+
+  static void openFileProperly(BuildContext context, FileRead file) {
+    if (file.getExtensionType() == SupportedFileType.jpg ||
+        file.getExtensionType() == SupportedFileType.png ||
+        file.getExtensionType() == SupportedFileType.jpeg) {
+      final imageProvider = Image.file(file.getFile()).image;
+      showImageViewer(context, imageProvider, onViewerDismissed: () {
+        Utils.printInDebug("Dismissed Image: ${file.getFile().path}");
+      });
+    } else if (file.getExtensionType() == SupportedFileType.pdf) {
+      Utils.printInDebug("Opened PDF file: ${file.getFile().path}");
+      Navigator.pushNamed(context, "/pdf_viewer_screen", arguments: file);
+    }
   }
 }

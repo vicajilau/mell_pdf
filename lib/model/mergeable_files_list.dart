@@ -20,6 +20,11 @@ class MergeableFilesList {
     return _filesInMemory.removeAt(index);
   }
 
+  Future<void> removeFileFromDiskByFile(FileRead file) async {
+    await fileHelper.removeFile(file);
+    _filesInMemory.remove(file);
+  }
+
   FileRead removeFileFromList(int index) {
     return _filesInMemory.removeAt(index);
   }
