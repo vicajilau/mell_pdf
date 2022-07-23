@@ -7,8 +7,14 @@ import '../helper/utils.dart';
 class FileRow extends StatelessWidget {
   final FileRead file;
   final Function removeButtonPressed;
+  final Function rotateButtonPressed;
+  final Function(int, int) resizeButtonPressed;
   const FileRow(
-      {Key? key, required this.file, required this.removeButtonPressed})
+      {Key? key,
+      required this.file,
+      required this.removeButtonPressed,
+      required this.rotateButtonPressed,
+      required this.resizeButtonPressed})
       : super(key: key);
 
   @override
@@ -52,36 +58,54 @@ class FileRow extends StatelessWidget {
       )
     ];
     if (Utils.isImage(file)) {
-      list.add(ListTile(
+      list.add(
+        ListTile(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          title: const Text('Resize Image'),
+          leading: const Icon(Icons.edit),
+        ),
+      );
+      list.add(
+        ListTile(
+          onTap: () {
+            rotateButtonPressed.call();
+            Navigator.pop(context);
+          },
+          title: const Text('Rotate Image'),
+          leading: const Icon(Icons.rotate_right),
+        ),
+      );
+    }
+    list.add(
+      const SizedBox(
+        child: Divider(
+          height: 2,
+        ),
+      ),
+    );
+    list.add(
+      ListTile(
         onTap: () {
+          removeButtonPressed.call();
           Navigator.pop(context);
         },
-        title: const Text('Resize Image'),
-        leading: const Icon(Icons.edit),
-      ));
-    }
-    list.add(const SizedBox(
-      child: Divider(
-        height: 2,
+        title: const Text(
+          'Remove',
+          style: TextStyle(color: Colors.red),
+        ),
+        leading: const Icon(
+          Icons.delete,
+          color: Colors.red,
+        ),
       ),
-    ));
-    list.add(ListTile(
-      onTap: () {
-        removeButtonPressed.call();
-        Navigator.pop(context);
-      },
-      title: const Text(
-        'Remove',
-        style: TextStyle(color: Colors.red),
+    );
+    list.add(
+      const SizedBox(
+        height: 15,
       ),
-      leading: const Icon(
-        Icons.delete,
-        color: Colors.red,
-      ),
-    ));
-    list.add(const SizedBox(
-      height: 15,
-    ));
+    );
     return list;
   }
 }

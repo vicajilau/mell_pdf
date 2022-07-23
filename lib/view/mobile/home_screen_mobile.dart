@@ -137,6 +137,17 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                           viewModel.removeFileFromDiskByFile(file);
                         });
                       },
+                      rotateButtonPressed: () {
+                        setState(() {
+                          viewModel.rotateImageInMemoryAndFile(file);
+                        });
+                      },
+                      resizeButtonPressed: (int weight, int height) {
+                        setState(() {
+                          viewModel.resizeImageInMemoryAndFile(
+                              file, weight, height);
+                        });
+                      },
                     ),
                   );
                 },

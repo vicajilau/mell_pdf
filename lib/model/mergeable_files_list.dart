@@ -44,6 +44,17 @@ class MergeableFilesList {
     return _filesInMemory;
   }
 
+  void rotateImageInMemoryAndFile(FileRead file) {
+    fileHelper.rotateImageInFile(file);
+    int index = _filesInMemory.indexOf(file);
+    removeFileFromList(index);
+    insertFile(index, file);
+  }
+
+  void resizeImageInMemoryAndFile(FileRead file, int width, int height) {
+    fileHelper.resizeImageInFile(file, width, height);
+  }
+
   Future<void> clearFilesFromLocalDirectory() async =>
       await fileHelper.emptyLocalDocumentFolder();
 

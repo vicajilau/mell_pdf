@@ -30,4 +30,12 @@ class HomeViewModel {
 
   Future<void> clearFilesFromLocalDirectory() async =>
       await _mfl.clearFilesFromLocalDirectory();
+
+  void rotateImageInMemoryAndFile(FileRead file) {
+    _mfl.rotateImageInMemoryAndFile(file);
+  }
+
+  void resizeImageInMemoryAndFile(FileRead file, int weight, int height) {
+    _mfl.resizeImageInMemoryAndFile(file, weight, height);
+  }
 }

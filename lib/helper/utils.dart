@@ -48,7 +48,9 @@ class Utils {
     if (file.getExtensionType() == SupportedFileType.jpg ||
         file.getExtensionType() == SupportedFileType.png ||
         file.getExtensionType() == SupportedFileType.jpeg) {
-      final imageProvider = Image.file(file.getFile()).image;
+      final imageProvider = Image.file(
+        file.getFile(),
+      ).image;
       showImageViewer(context, imageProvider, onViewerDismissed: () {
         Utils.printInDebug("Dismissed Image: ${file.getFile().path}");
       });
