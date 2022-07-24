@@ -6,16 +6,15 @@ import 'enums.dart';
 
 class FileRead {
   final File _file;
-  final int _size;
   String _name;
   final SupportedFileType _sft;
   final String _extension;
-  FileRead(this._file, this._size, this._name, this._extension)
+  FileRead(this._file, this._name, this._extension)
       : _sft = EnumHelper.generateSupportedFileTypeFromString(_extension);
 
   File getFile() => _file;
 
-  int getSize() => _size;
+  int getSize() => _file.lengthSync();
 
   String getName() => _name;
 
@@ -27,6 +26,6 @@ class FileRead {
 
   @override
   String toString() {
-    return "File: $_file, size: $_size, name: $_name, extension: ${getExtensionType().name}";
+    return "File: $_file, size: ${getSize()}, name: $_name, extension: ${getExtensionType().name}";
   }
 }

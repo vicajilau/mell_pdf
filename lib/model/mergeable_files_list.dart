@@ -36,8 +36,8 @@ class MergeableFilesList {
 
   Future<List<FileRead>> addMultipleFiles(List<PlatformFile> files) async {
     for (PlatformFile file in files) {
-      final fileRead = FileRead(
-          File(file.path!), file.size, file.name, file.extension ?? "");
+      final fileRead =
+          FileRead(File(file.path!), file.name, file.extension ?? "");
       final localFile = await fileHelper.saveFileInLocalPath(fileRead);
       _filesInMemory.add(localFile);
     }
@@ -46,9 +46,6 @@ class MergeableFilesList {
 
   void rotateImageInMemoryAndFile(FileRead file) {
     fileHelper.rotateImageInFile(file);
-    int index = _filesInMemory.indexOf(file);
-    removeFileFromList(index);
-    insertFile(index, file);
   }
 
   void resizeImageInMemoryAndFile(FileRead file, int width, int height) {

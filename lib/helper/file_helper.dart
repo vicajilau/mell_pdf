@@ -31,8 +31,7 @@ class FileHelper {
       copy++;
     }
     newFile.writeAsBytes(file.getFile().readAsBytesSync());
-    return FileRead(
-        newFile, file.getSize(), file.getName(), file.getExtensionName());
+    return FileRead(newFile, file.getName(), file.getExtensionName());
   }
 
   Future<void> removeFile(FileRead file) async {
@@ -72,9 +71,9 @@ class FileHelper {
       throw Exception('Cannot rotate the image in the file: $file');
     }
     // Rotate 90 grades the image
-    Image resizedImage = copyRotate(image, 90);
+    Image rotatedImage = copyRotate(image, 90);
     // Save the image
-    List<int> encoded = encodeBySupportedFormat(file, resizedImage);
+    List<int> encoded = encodeBySupportedFormat(file, rotatedImage);
     file.getFile().writeAsBytesSync(encoded);
     ImageHelper.updateCache(file);
   }
@@ -90,6 +89,10 @@ class FileHelper {
       default:
         return [];
     }
+  }
+
+  Image? getImageOfImageFile(FileRead file) {
+    return decodeBySupportedFormat(file);
   }
 
   Image? decodeBySupportedFormat(FileRead file) {

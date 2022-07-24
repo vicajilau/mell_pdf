@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/components/file_type_icon.dart';
+import 'package:mell_pdf/helper/resize_image_dialog.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
 import '../helper/utils.dart';
@@ -62,6 +63,7 @@ class FileRow extends StatelessWidget {
         ListTile(
           onTap: () {
             Navigator.pop(context);
+            _showFileSizePickerDialog(context, resizeButtonPressed);
           },
           title: const Text('Resize Image'),
           leading: const Icon(Icons.edit),
@@ -107,5 +109,16 @@ class FileRow extends StatelessWidget {
       ),
     );
     return list;
+  }
+
+  void _showFileSizePickerDialog(
+      BuildContext context, Function(int, int) resizeButtonPressed) async {
+    showDialog(
+      context: context,
+      builder: (context) => ResizeImageDialog(
+        file: file,
+        resizeButtonPressed: resizeButtonPressed,
+      ),
+    );
   }
 }

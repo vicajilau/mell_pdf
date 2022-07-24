@@ -35,7 +35,7 @@ class HomeViewModel {
     _mfl.rotateImageInMemoryAndFile(file);
   }
 
-  void resizeImageInMemoryAndFile(FileRead file, int weight, int height) {
-    _mfl.resizeImageInMemoryAndFile(file, weight, height);
+  void resizeImageInMemoryAndFile(FileRead file, int width, int height) {
+    _mfl.resizeImageInMemoryAndFile(file, width, height);
   }
 }

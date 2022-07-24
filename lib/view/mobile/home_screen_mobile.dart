@@ -142,10 +142,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                           viewModel.rotateImageInMemoryAndFile(file);
                         });
                       },
-                      resizeButtonPressed: (int weight, int height) {
+                      resizeButtonPressed: (int width, int height) {
                         setState(() {
                           viewModel.resizeImageInMemoryAndFile(
-                              file, weight, height);
+                              file, width, height);
                         });
                       },
                     ),
