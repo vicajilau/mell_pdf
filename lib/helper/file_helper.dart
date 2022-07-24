@@ -63,6 +63,7 @@ class FileHelper {
     file
         .getFile()
         .writeAsBytesSync(encodeBySupportedFormat(file, resizedImage));
+    ImageHelper.updateCache(file);
   }
 
   void rotateImageInFile(FileRead file) {
