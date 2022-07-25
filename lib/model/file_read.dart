@@ -8,13 +8,20 @@ class FileRead {
   final File _file;
   String _name;
   final SupportedFileType _sft;
+  final int _size;
   final String _extension;
-  FileRead(this._file, this._name, this._extension)
+  FileRead(this._file, this._name, this._size, this._extension)
       : _sft = EnumHelper.generateSupportedFileTypeFromString(_extension);
 
   File getFile() => _file;
 
-  int getSize() => _file.lengthSync();
+  int getSize() {
+    try {
+      return _file.lengthSync();
+    } catch (error) {
+      return _size;
+    }
+  }
 
   String getName() => _name;
 

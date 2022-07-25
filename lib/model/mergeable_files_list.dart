@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:mell_pdf/helper/app_session.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
 class MergeableFilesList {
   final List<FileRead> _filesInMemory = [];
-  final FileHelper fileHelper = AppSession.singleton.fileHelper;
+  final FileHelper fileHelper;
+
+  MergeableFilesList(this.fileHelper);
 
   bool hasAnyFile() => _filesInMemory.isNotEmpty;
 
@@ -36,8 +37,8 @@ class MergeableFilesList {
 
   Future<List<FileRead>> addMultipleFiles(List<PlatformFile> files) async {
     for (PlatformFile file in files) {
-      final fileRead =
-          FileRead(File(file.path!), file.name, file.extension ?? "");
+      final fileRead = FileRead(
+          File(file.path!), file.name, file.size, file.extension ?? "");
       final localFile = await fileHelper.saveFileInLocalPath(fileRead);
       _filesInMemory.add(localFile);
     }

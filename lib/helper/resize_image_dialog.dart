@@ -20,6 +20,7 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
   final widthController = TextEditingController();
   late final int _maxHeight;
   late final int _maxWidth;
+  bool scaleEnable = true;
 
   @override
   void initState() {
@@ -41,9 +42,25 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
       title: const Text('Modify File Size'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextField(
             controller: heightController,
+            onChanged: (text) {
+              if (text.isNotEmpty && scaleEnable) {
+                final numberInput = int.parse(text);
+                if (_maxWidth == _maxHeight) {
+                  widthController.text = numberInput.toString();
+                } else {
+                  final scale = _maxHeight / _maxWidth;
+                  final double quotient = _maxHeight / numberInput;
+                  final int value = (_maxWidth / quotient - scale).round() + 1;
+                  if (value > 0) {
+                    widthController.text = value.toString();
+                  }
+                }
+              }
+            },
             maxLength: _maxHeight.toString().length,
             maxLengthEnforcement: MaxLengthEnforcement.enforced,
             inputFormatters: [
@@ -62,6 +79,21 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
           ),
           TextField(
             controller: widthController,
+            onChanged: (text) {
+              if (text.isNotEmpty && scaleEnable) {
+                final numberInput = int.parse(text);
+                if (_maxWidth == _maxHeight) {
+                  widthController.text = numberInput.toString();
+                } else {
+                  final scale = _maxHeight / _maxWidth;
+                  final double quotient = _maxWidth / numberInput;
+                  final int value = (_maxHeight / quotient - scale).round() + 1;
+                  if (value > 0) {
+                    heightController.text = value.toString();
+                  }
+                }
+              }
+            },
             maxLength: _maxWidth.toString().length,
             maxLengthEnforcement: MaxLengthEnforcement.enforced,
             inputFormatters: [
@@ -74,6 +106,18 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
             ),
             keyboardType: const TextInputType.numberWithOptions(
                 signed: false, decimal: false),
+          ),
+          Row(
+            children: [
+              Checkbox(
+                  value: scaleEnable,
+                  onChanged: (value) {
+                    setState(() {
+                      scaleEnable = value ?? false;
+                    });
+                  }),
+              Text(scaleEnable ? 'Keep Scale' : 'Scale Disabled')
+            ],
           ),
         ],
       ),

@@ -1,9 +1,10 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:mell_pdf/helper/app_session.dart';
 import 'package:mell_pdf/model/file_read.dart';
 import 'package:mell_pdf/model/mergeable_files_list.dart';
 
 class HomeViewModel {
-  final MergeableFilesList _mfl = MergeableFilesList();
+  final MergeableFilesList _mfl = AppSession.singleton.mfl;
 
   Future<void> loadFilesFromStorage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(

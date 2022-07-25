@@ -4,6 +4,8 @@ import 'package:mell_pdf/components/file_row.dart';
 import 'package:mell_pdf/view_model/home_view_model.dart';
 
 import '../../helper/constants.dart';
+import '../../helper/isolate_helper.dart';
+import '../../helper/loading.dart';
 import '../../helper/utils.dart';
 
 class HomeScreenMobile extends StatefulWidget {
@@ -137,15 +139,19 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                           viewModel.removeFileFromDiskByFile(file);
                         });
                       },
-                      rotateButtonPressed: () {
+                      rotateButtonPressed: () async {
+                        Loading.show(context);
+                        await IsolateHelper.createRotateIsolate(file);
                         setState(() {
-                          viewModel.rotateImageInMemoryAndFile(file);
+                          Loading.hide(context);
                         });
                       },
-                      resizeButtonPressed: (int width, int height) {
+                      resizeButtonPressed: (int width, int height) async {
+                        Loading.show(context);
+                        await IsolateHelper.createResizeIsolate(
+                            file, width, height);
                         setState(() {
-                          viewModel.resizeImageInMemoryAndFile(
-                              file, width, height);
+                          Loading.hide(context);
                         });
                       },
                     ),
@@ -167,7 +173,9 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         floatingActionButton: Visibility(
           visible: viewModel.thereAreFilesLoaded(),
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              Loading.show(context);
+            },
             backgroundColor: Constants.kMainColor,
             child: const Icon(Icons.arrow_forward),
           ),

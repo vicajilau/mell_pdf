@@ -72,8 +72,8 @@ class FileRow extends StatelessWidget {
       list.add(
         ListTile(
           onTap: () {
-            rotateButtonPressed.call();
             Navigator.pop(context);
+            rotateButtonPressed.call();
           },
           title: const Text('Rotate Image'),
           leading: const Icon(Icons.rotate_right),

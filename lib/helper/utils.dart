@@ -56,9 +56,7 @@ class Utils {
   }
 
   static void openFileProperly(BuildContext context, FileRead file) {
-    if (file.getExtensionType() == SupportedFileType.jpg ||
-        file.getExtensionType() == SupportedFileType.png ||
-        file.getExtensionType() == SupportedFileType.jpeg) {
+    if (Utils.isImage(file)) {
       final imageProvider = Image.file(
         file.getFile(),
       ).image;

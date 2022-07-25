@@ -9,6 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import '../model/enums.dart';
 
 class FileHelper {
+  static final FileHelper singleton = FileHelper();
+
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
     final dirPath = '${directory.path}/files/';
@@ -31,7 +33,8 @@ class FileHelper {
       copy++;
     }
     newFile.writeAsBytes(file.getFile().readAsBytesSync());
-    return FileRead(newFile, file.getName(), file.getExtensionName());
+    return FileRead(
+        newFile, file.getName(), file.getSize(), file.getExtensionName());
   }
 
   Future<void> removeFile(FileRead file) async {

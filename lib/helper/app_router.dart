@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/helper/loading.dart';
 import 'package:mell_pdf/view/desktop/home_screen_desktop.dart';
 import 'package:mell_pdf/view/pdf_viewer_screen.dart';
 import 'package:platform_detail/platform_detail.dart';
@@ -24,6 +25,7 @@ class AppRouter {
       "/": (context) => const SplashScreenMobile(),
       "/home": (context) => const HomeScreenMobile(),
       "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
+      "/loading": (context) => const LoadingScreen(),
     };
   }
 
