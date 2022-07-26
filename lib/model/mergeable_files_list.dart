@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:heic_to_jpg/heic_to_jpg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
@@ -39,6 +41,24 @@ class MergeableFilesList {
     for (PlatformFile file in files) {
       final fileRead = FileRead(
           File(file.path!), file.name, file.size, file.extension ?? "");
+      final localFile = await fileHelper.saveFileInLocalPath(fileRead);
+      _filesInMemory.add(localFile);
+    }
+    return _filesInMemory;
+  }
+
+  Future<List<FileRead>> addMultipleImages(List<XFile> files) async {
+    for (XFile file in files) {
+      final FileRead fileRead;
+      if (file.name.contains(".heic")) {
+        String? jpegPath = await HeicToJpg.convert(file.path);
+        final jpegFile = File(jpegPath!);
+        fileRead = FileRead(jpegFile, file.name, jpegFile.lengthSync(), "jpeg");
+      } else {
+        final size = await file.length();
+        fileRead = FileRead(File(file.path), file.name, size, "jpeg");
+      }
+
       final localFile = await fileHelper.saveFileInLocalPath(fileRead);
       _filesInMemory.add(localFile);
     }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mell_pdf/components/file_row.dart';
+import 'package:mell_pdf/helper/dialogs/file_dialog.dart';
 import 'package:mell_pdf/view_model/home_view_model.dart';
 
 import '../../helper/constants.dart';
@@ -69,23 +70,35 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                       'Do you want to load the file(s) from disk or from the document scanner?'),
                   actions: <Widget>[
                     TextButton(
-                      onPressed: () async {
-                        await viewModel.loadFilesFromStorage();
-                        setState(() {
-                          Utils.printInDebug(viewModel.getMergeableFilesList());
-                          Navigator.pop(context);
-                        });
+                      onPressed: () {
+                        Navigator.pop(context);
+                        FileDialog.add(
+                            context: context,
+                            loadImageFromGallery: () async {
+                              await viewModel.loadImagesFromStorage();
+                              setState(() {
+                                Utils.printInDebug(
+                                    viewModel.getMergeableFilesList());
+                              });
+                            },
+                            loadFileFromFileSystem: () async {
+                              await viewModel.loadFilesFromStorage();
+                              setState(() {
+                                Utils.printInDebug(
+                                    viewModel.getMergeableFilesList());
+                              });
+                            });
                       },
-                      child: const Text("Disk"),
+                      child: const Text("LOAD"),
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Scan'),
-                      child: const Text('Scan'),
+                      child: const Text('SCAN'),
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Cancel'),
                       child: const Text(
-                        'Cancel',
+                        'CANCEL',
                         style: TextStyle(color: Constants.kMainColor),
                       ),
                     )

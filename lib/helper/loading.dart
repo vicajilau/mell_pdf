@@ -7,7 +7,6 @@ class Loading {
   }
 
   static void hide(BuildContext context) {
-    print("Hiding");
     Navigator.pop(context);
   }
 }

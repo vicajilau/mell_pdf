@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/app_session.dart';
 import 'package:mell_pdf/model/file_read.dart';
 import 'package:mell_pdf/model/mergeable_files_list.dart';
@@ -8,10 +9,20 @@ class HomeViewModel {
 
   Future<void> loadFilesFromStorage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
+      allowMultiple: true,
       type: FileType.custom,
       allowedExtensions: ['jpg', 'jpeg', 'pdf', 'png'],
     );
     await _mfl.addMultipleFiles(result?.files ?? []);
+  }
+
+  Future<void> loadImagesFromStorage() async {
+    final ImagePicker picker = ImagePicker();
+    // Pick an image
+    final List<XFile>? images = await picker.pickMultiImage();
+    if (images != null) {
+      await _mfl.addMultipleImages(images);
+    }
   }
 
   MergeableFilesList getMergeableFilesList() => _mfl;
