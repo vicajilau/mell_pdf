@@ -43,6 +43,7 @@ dependencies:
   image: ^3.2.0
   image_picker: ^0.8.5+3
   heic_to_jpg: ^0.2.0
+  flutter_launcher_icons: ^0.9.3
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="es.victorcarreras.mell_pdf">
    <application
-        android:label="mell_pdf"
+        android:label="Drag PDF"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
