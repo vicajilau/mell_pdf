@@ -22,16 +22,7 @@ class FileHelper {
 
   Future<FileRead> saveFileInLocalPath(FileRead file) async {
     final localPath = await _localPath;
-    String fullPath = '$localPath${file.getName()}';
-    File newFile = File(fullPath);
-    int copy = 1;
-    while (newFile.existsSync()) {
-      final newName = '$copy-${file.getName()}';
-      fullPath = '$localPath$newName';
-      newFile = File(fullPath);
-      file.setName(newName);
-      copy++;
-    }
+    File newFile = File('$localPath${file.getName()}');
     newFile.writeAsBytes(file.getFile().readAsBytesSync());
     return FileRead(
         newFile, file.getName(), file.getSize(), file.getExtensionName());

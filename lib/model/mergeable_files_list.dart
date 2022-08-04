@@ -39,8 +39,8 @@ class MergeableFilesList {
 
   Future<List<FileRead>> addMultipleFiles(List<PlatformFile> files) async {
     for (PlatformFile file in files) {
-      final fileRead = FileRead(
-          File(file.path!), file.name, file.size, file.extension ?? "");
+      final fileRead = FileRead(File(file.path!),
+          "file-${_filesInMemory.length + 1}", file.size, file.extension ?? "");
       final localFile = await fileHelper.saveFileInLocalPath(fileRead);
       _filesInMemory.add(localFile);
     }
@@ -50,13 +50,14 @@ class MergeableFilesList {
   Future<List<FileRead>> addMultipleImages(List<XFile> files) async {
     for (XFile file in files) {
       final FileRead fileRead;
+      final name = "file-${_filesInMemory.length + 1}";
       if (file.name.contains(".heic")) {
         String? jpegPath = await HeicToJpg.convert(file.path);
         final jpegFile = File(jpegPath!);
-        fileRead = FileRead(jpegFile, file.name, jpegFile.lengthSync(), "jpeg");
+        fileRead = FileRead(jpegFile, name, jpegFile.lengthSync(), "jpeg");
       } else {
         final size = await file.length();
-        fileRead = FileRead(File(file.path), file.name, size, "jpeg");
+        fileRead = FileRead(File(file.path), name, size, "jpeg");
       }
 
       final localFile = await fileHelper.saveFileInLocalPath(fileRead);
