@@ -21,20 +21,23 @@ class _SplashScreenMobileState extends State<SplashScreenMobile>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Lottie.asset(
-            'assets/animations/splash.json',
-            controller: _controller,
-            onLoaded: (composition) {
-              // Configure the AnimationController with the duration of the
-              // Lottie file and start the animation.
-              _controller
-                ..duration = composition.duration
-                ..forward();
+      body: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Center(
+          child: Container(
+            child: Lottie.asset(
+              'assets/animations/splash.json',
+              controller: _controller,
+              onLoaded: (composition) {
+                // Configure the AnimationController with the duration of the
+                // Lottie file and start the animation.
+                _controller
+                  ..duration = composition.duration
+                  ..forward();
 
-              setTimer();
-            },
+                setTimer();
+              },
+            ),
           ),
         ),
       ),
