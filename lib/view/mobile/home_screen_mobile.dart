@@ -167,6 +167,12 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                           Loading.hide(context);
                         });
                       },
+                      renameButtonPressed: (String name) async {
+                        await viewModel.renameFile(file, name);
+                        setState(() {
+                          Utils.printInDebug("Renamed File: $file");
+                        });
+                      },
                     ),
                   );
                 },

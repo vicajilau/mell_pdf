@@ -5,7 +5,7 @@ import 'package:mell_pdf/helper/enum_helper.dart';
 import 'enums.dart';
 
 class FileRead {
-  final File _file;
+  File _file;
   String _name;
   final SupportedFileType _sft;
   final int _size;
@@ -14,6 +14,8 @@ class FileRead {
       : _sft = EnumHelper.generateSupportedFileTypeFromString(_extension);
 
   File getFile() => _file;
+
+  void setFile(File newFile) => _file = newFile;
 
   int getSize() {
     try {

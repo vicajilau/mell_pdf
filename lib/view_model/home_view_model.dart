@@ -50,4 +50,8 @@ class HomeViewModel {
   void resizeImageInMemoryAndFile(FileRead file, int width, int height) {
     _mfl.resizeImageInMemoryAndFile(file, width, height);
   }
+
+  Future<void> renameFile(FileRead file, String newName) async {
+    await _mfl.renameFile(file, newName);
+  }
 }

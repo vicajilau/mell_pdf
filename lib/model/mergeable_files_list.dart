@@ -32,6 +32,18 @@ class MergeableFilesList {
     return _filesInMemory.removeAt(index);
   }
 
+  bool isNameUsedInOtherLoadedFile(String name) =>
+      _filesInMemory.indexWhere((element) => element.getName() == name) != -1;
+
+  Future<void> renameFile(FileRead file, String newFileName) async {
+    var path = file.getFile().path;
+    var lastSeparator = path.lastIndexOf(Platform.pathSeparator);
+    var newPath = path.substring(0, lastSeparator + 1) + newFileName;
+    final newFile = await file.getFile().rename(newPath);
+    file.setFile(newFile);
+    file.setName(newFileName);
+  }
+
   void insertFile(int index, FileRead file) =>
       _filesInMemory.insert(index, file);
 
