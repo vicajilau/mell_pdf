@@ -44,6 +44,8 @@ dependencies:
   image_picker: ^0.8.5+3
   heic_to_jpg: ^0.2.0
   flutter_launcher_icons: ^0.9.3
+  pdf: ^3.8.2
+  cunning_document_scanner: ^1.0.2
 
 dev_dependencies:
   flutter_test:

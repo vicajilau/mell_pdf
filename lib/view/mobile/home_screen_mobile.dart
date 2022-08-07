@@ -92,7 +92,15 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                       child: const Text("LOAD"),
                     ),
                     TextButton(
-                      onPressed: () => Navigator.pop(context, 'Scan'),
+                      onPressed: () async {
+                        Navigator.pop(context, 'Scan');
+                        final file = await viewModel.scanDocument(context);
+                        if (file != null) {
+                          setState(() {
+                            Utils.printInDebug("Document Scanned: $file");
+                          });
+                        }
+                      },
                       child: const Text('SCAN'),
                     ),
                     TextButton(

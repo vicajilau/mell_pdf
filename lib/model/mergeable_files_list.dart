@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:cunning_document_scanner/cunning_document_scanner.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:heic_to_jpg/heic_to_jpg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
@@ -53,8 +56,7 @@ class MergeableFilesList {
     for (PlatformFile file in files) {
       final fileRead = FileRead(
           File(file.path!), _nameOfNextFile(), file.size, file.extension ?? "");
-      final localFile = await fileHelper.saveFileInLocalPath(fileRead);
-      _filesInMemory.add(localFile);
+      await _addSingleFile(fileRead);
     }
     return _filesInMemory;
   }
@@ -71,11 +73,14 @@ class MergeableFilesList {
         final size = await file.length();
         fileRead = FileRead(File(file.path), _nameOfNextFile(), size, "jpeg");
       }
-
-      final localFile = await fileHelper.saveFileInLocalPath(fileRead);
-      _filesInMemory.add(localFile);
+      await _addSingleFile(fileRead);
     }
     return _filesInMemory;
+  }
+
+  Future<void> _addSingleFile(FileRead file) async {
+    final localFile = await fileHelper.saveFileInLocalPath(file);
+    _filesInMemory.add(localFile);
   }
 
   void rotateImageInMemoryAndFile(FileRead file) {
@@ -90,6 +95,35 @@ class MergeableFilesList {
       await fileHelper.emptyLocalDocumentFolder();
 
   String _nameOfNextFile() => "File-${_filesInMemory.length + 1}";
+
+  Future<FileRead?> scanDocument(BuildContext context) async {
+    FileRead? fileRead;
+    List<String>? paths = await CunningDocumentScanner.getPictures();
+    if (paths != null) {
+      final pdf = pw.Document();
+      File file;
+      for (String path in paths) {
+        final image = pw.MemoryImage(
+          File(path).readAsBytesSync(),
+        );
+
+        pdf.addPage(pw.Page(build: (pw.Context context) {
+          return pw.Center(
+            child: pw.Image(image),
+          );
+        }));
+      }
+      final lp = await fileHelper.localPath;
+      file = File('$lp${_nameOfNextFile()}');
+      await file.writeAsBytes(await pdf.save());
+
+      final size = await file.length();
+      fileRead = FileRead(file, _nameOfNextFile(), size, "pdf");
+      await _addSingleFile(fileRead);
+    }
+    return fileRead;
+  }
+
   @override
   String toString() {
     String text = "-------LOADED FILES -------- \n";

@@ -11,7 +11,7 @@ import '../model/enums.dart';
 class FileHelper {
   static final FileHelper singleton = FileHelper();
 
-  Future<String> get _localPath async {
+  Future<String> get localPath async {
     final directory = await getApplicationDocumentsDirectory();
     final dirPath = '${directory.path}/files/';
     if (!Directory(dirPath).existsSync()) {
@@ -21,8 +21,8 @@ class FileHelper {
   }
 
   Future<FileRead> saveFileInLocalPath(FileRead file) async {
-    final localPath = await _localPath;
-    File newFile = File('$localPath${file.getName()}');
+    final lp = await localPath;
+    File newFile = File('$lp${file.getName()}');
     newFile.writeAsBytes(file.getFile().readAsBytesSync());
     return FileRead(
         newFile, file.getName(), file.getSize(), file.getExtensionName());

@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/app_session.dart';
 import 'package:mell_pdf/model/file_read.dart';
@@ -53,5 +54,9 @@ class HomeViewModel {
 
   Future<void> renameFile(FileRead file, String newName) async {
     await _mfl.renameFile(file, newName);
+  }
+
+  Future<FileRead?> scanDocument(BuildContext context) async {
+    return await _mfl.scanDocument(context);
   }
 }
