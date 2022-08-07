@@ -38,11 +38,9 @@ class _RenameFileDialogState extends State<RenameFileDialog> {
                 setState(() {
                   isAcceptButtonVisible = false;
                 });
-                print("EL NOMBRE EXISTEEEE");
               } else {
                 setState(() {
                   isAcceptButtonVisible = true;
-                  print("EL NOMBRE NO EXISTEEEE");
                 });
               }
             },
