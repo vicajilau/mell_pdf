@@ -48,7 +48,7 @@ dependencies:
   cunning_document_scanner:
     git:
       url: https://github.com/bdlindsay/cunning_document_scanner.git
-      ref: master # branch name
+      ref: master
 
 dev_dependencies:
   flutter_test:
