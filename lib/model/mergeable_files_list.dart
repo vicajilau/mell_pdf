@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
 import 'package:heic_to_jpg/heic_to_jpg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
@@ -96,7 +95,7 @@ class MergeableFilesList {
 
   String _nameOfNextFile() => "File-${_filesInMemory.length + 1}";
 
-  Future<FileRead?> scanDocument(BuildContext context) async {
+  Future<FileRead?> scanDocument() async {
     FileRead? fileRead;
     List<String>? paths = await CunningDocumentScanner.getPictures();
     if (paths != null) {

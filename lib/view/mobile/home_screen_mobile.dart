@@ -94,7 +94,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                     TextButton(
                       onPressed: () async {
                         Navigator.pop(context, 'Scan');
-                        final file = await viewModel.scanDocument(context);
+                        final file = await viewModel.scanDocument();
                         if (file != null) {
                           setState(() {
                             Utils.printInDebug("Document Scanned: $file");
