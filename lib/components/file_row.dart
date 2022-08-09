@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/components/file_type_icon.dart';
 import 'package:mell_pdf/helper/dialogs/rename_dialog.dart';
 import 'package:mell_pdf/helper/dialogs/resize_image_dialog.dart';
@@ -57,7 +58,7 @@ class FileRow extends StatelessWidget {
           Navigator.pop(context);
           Utils.openFileProperly(context, file);
         },
-        title: const Text('Open File'),
+        title: Text(Localization.of(context).string('open_file')),
         leading: const Icon(Icons.file_open),
       ),
       ListTile(
@@ -65,7 +66,7 @@ class FileRow extends StatelessWidget {
           Navigator.pop(context);
           _showRenameFileDialog(context, file.getName(), renameButtonPressed);
         },
-        title: const Text('Rename'),
+        title: Text(Localization.of(context).string('rename')),
         leading: const Icon(Icons.edit),
       ),
     ];
@@ -76,7 +77,7 @@ class FileRow extends StatelessWidget {
             Navigator.pop(context);
             _showFileSizePickerDialog(context, resizeButtonPressed);
           },
-          title: const Text('Resize Image'),
+          title: Text(Localization.of(context).string('resize_image')),
           leading: const Icon(Icons.aspect_ratio_rounded),
         ),
       );
@@ -86,7 +87,7 @@ class FileRow extends StatelessWidget {
             Navigator.pop(context);
             rotateButtonPressed.call();
           },
-          title: const Text('Rotate Image'),
+          title: Text(Localization.of(context).string('rotate_image')),
           leading: const Icon(Icons.rotate_right),
         ),
       );
@@ -104,9 +105,9 @@ class FileRow extends StatelessWidget {
           removeButtonPressed.call();
           Navigator.pop(context);
         },
-        title: const Text(
-          'Remove',
-          style: TextStyle(color: Colors.red),
+        title: Text(
+          Localization.of(context).string('remove'),
+          style: const TextStyle(color: Colors.red),
         ),
         leading: const Icon(
           Icons.delete,

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mell_pdf/components/file_row.dart';
-import 'package:mell_pdf/helper/dialogs/file_dialog.dart';
-import 'package:mell_pdf/view_model/home_view_model.dart';
-
-import '../../helper/constants.dart';
-import '../../helper/isolate_helper.dart';
-import '../../helper/loading.dart';
-import '../../helper/utils.dart';
+import 'package:mell_pdf/common/localization/localization.dart';
+import 'package:mell_pdf/components/components.dart';
+import 'package:mell_pdf/view_model/view_models.dart';
+import '../../helper/helpers.dart';
 
 class HomeScreenMobile extends StatefulWidget {
   const HomeScreenMobile({Key? key}) : super(key: key);
@@ -38,16 +34,16 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
 
     switch (state) {
       case AppLifecycleState.resumed:
-        Utils.printInDebug("The app did enter in foreground");
+        Utils.printInDebug(Localization.of(context).string('the_app_did_enter_in_foreground')); // The app did enter in foreground
         break;
       case AppLifecycleState.inactive:
-        Utils.printInDebug("The app is minimize");
+        Utils.printInDebug(Localization.of(context).string('the_app_is_minimize')); // The app is minimize
         break;
       case AppLifecycleState.paused:
-        Utils.printInDebug("The app just went into background");
+        Utils.printInDebug(Localization.of(context).string('the_app_just_went_into_background')); // The app just went into background
         break;
       case AppLifecycleState.detached:
-        Utils.printInDebug("The app is going to close");
+        Utils.printInDebug(Localization.of(context).string('the_app_is_going_to_close')); // The app is going to close
         break;
     }
   }
@@ -59,15 +55,15 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false, // Remove back button
-          title: const Text("Drag PDF"),
+          title:  Text(Localization.of(context).string('drag_pdf')), // DRAG PDF
           actions: [
             IconButton(
               onPressed: () => showDialog<String>(
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
-                  title: const Text('Choose an option'),
-                  content: const Text(
-                      'Do you want to load the file(s) from disk or from the document scanner?'),
+                  title: Text(Localization.of(context).string('choose_an_option')), // Choose an option
+                  content: Text(
+                      Localization.of(context).string('content_home_screen_dialog')), // 'Do you want to load the file(s) from disk or from the document scanner?'
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
@@ -89,7 +85,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                               });
                             });
                       },
-                      child: const Text("LOAD"),
+                      child: Text(Localization.of(context).string('load')), // LOAD
                     ),
                     TextButton(
                       onPressed: () async {
@@ -101,13 +97,13 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                           });
                         }
                       },
-                      child: const Text('SCAN'),
+                      child: Text(Localization.of(context).string('scan')), // SCAN
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Cancel'),
-                      child: const Text(
-                        'CANCEL',
-                        style: TextStyle(color: Constants.kMainColor),
+                      child: Text(
+                        Localization.of(context).string('cancel'), // Cancel
+                        style: const TextStyle(color: Constants.kMainColor),
                       ),
                     )
                   ],

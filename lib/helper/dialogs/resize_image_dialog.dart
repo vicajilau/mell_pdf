@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mell_pdf/helper/numerical_ranger_formatter.dart';
-import 'package:mell_pdf/helper/utils.dart';
-import 'package:mell_pdf/model/file_read.dart';
+import 'package:mell_pdf/common/localization/localization.dart';
+import 'package:mell_pdf/helper/helpers.dart';
+import 'package:mell_pdf/model/models.dart';
 
 class ResizeImageDialog extends StatefulWidget {
   final FileRead file;
@@ -39,7 +39,7 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Modify File Size'),
+      title: Text(Localization.of(context).string('modify_file_size')), // Modify File Size
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +69,7 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
             decoration: InputDecoration(
               hintText: "1 - ${_maxHeight.toString()} pixels",
               border: const OutlineInputBorder(),
-              labelText: 'Height Pixels',
+              labelText: Localization.of(context).string('height_pixels'), // Height Pixels
             ),
             keyboardType: const TextInputType.numberWithOptions(
                 signed: false, decimal: false),
@@ -102,7 +102,7 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
             decoration: InputDecoration(
               hintText: "1 - ${_maxWidth.toString()} pixels",
               border: const OutlineInputBorder(),
-              labelText: 'Width Pixels',
+              labelText: Localization.of(context).string('width_pixels'), // Width Pixels
             ),
             keyboardType: const TextInputType.numberWithOptions(
                 signed: false, decimal: false),
@@ -116,7 +116,7 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
                       scaleEnable = value ?? false;
                     });
                   }),
-              Text(scaleEnable ? 'Keep Scale' : 'Scale Disabled')
+              Text(scaleEnable ? Localization.of(context).string('keep_scale') : Localization.of(context).string('scale_disabled')) // Keep Scale : Scale Disabled
             ],
           ),
         ],
@@ -127,17 +127,17 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
             Navigator.pop(context);
             widget.resizeButtonPressed(getFinalWidth(), getFinalHeight());
           },
-          child: const Text(
-            'ACCEPT',
+          child: Text(
+            Localization.of(context).string('accept'), // ACCEPT
           ),
         ),
         TextButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text(
-            'CANCEL',
-            style: TextStyle(color: Colors.red),
+          child: Text(
+            Localization.of(context).string('cancel'), // CANCEL
+            style: const TextStyle(color: Colors.red),
           ),
         )
       ],

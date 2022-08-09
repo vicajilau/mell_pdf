@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mell_pdf/helper/app_session.dart';
+import 'package:mell_pdf/common/localization/localization.dart';
+import 'package:mell_pdf/helper/helpers.dart';
 
 class RenameFileDialog extends StatefulWidget {
   final String nameFile;
@@ -21,7 +22,7 @@ class _RenameFileDialogState extends State<RenameFileDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Rename File'),
+      title: Text(Localization.of(context).string('rename_file')),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +50,7 @@ class _RenameFileDialogState extends State<RenameFileDialog> {
             decoration: InputDecoration(
               hintText: widget.nameFile,
               border: const OutlineInputBorder(),
-              labelText: 'File Name',
+              labelText: Localization.of(context).string('file_name'),
             ),
           ),
         ],
@@ -62,8 +63,8 @@ class _RenameFileDialogState extends State<RenameFileDialog> {
               Navigator.pop(context);
               widget.acceptButtonWasPressed(nameController.text);
             },
-            child: const Text(
-              'ACCEPT',
+            child: Text(
+              Localization.of(context).string('accept'),
             ),
           ),
         ),
@@ -71,9 +72,9 @@ class _RenameFileDialogState extends State<RenameFileDialog> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text(
-            'CANCEL',
-            style: TextStyle(color: Colors.red),
+          child: Text(
+            Localization.of(context).string('cancel'),
+            style: const TextStyle(color: Colors.red),
           ),
         )
       ],

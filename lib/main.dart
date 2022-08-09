@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/helper/app_session.dart';
-import 'helper/app_router.dart';
-import 'helper/constants.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mell_pdf/common/localization/localization.dart';
+import 'helper/helpers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +22,16 @@ class MyApp extends StatelessWidget {
           color: Constants.kMainColor,
         ),
       ),
+      localizationsDelegates: const [
+        Localization.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        ],
+    supportedLocales: const [
+      Locale('en'),
+      Locale('es'),
+    ],
     );
   }
 }

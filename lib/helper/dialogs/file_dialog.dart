@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/common/localization/localization.dart';
 
-import '../constants.dart';
+import '../helpers.dart';
 
 class FileDialog {
   static void add(
@@ -10,29 +11,30 @@ class FileDialog {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Choose an option'),
-        content: const Text(
-            'Do you want to load the image(s) from your Gallery or file(s) from your File System?'),
+        title: Text(Localization.of(context).string('choose_an_option')), // Choose an option
+        content: Text(
+            Localization.of(context).string('content_file_dialog')),
+        // Do you want to load the image from your Gallery or file from File System?
         actions: <Widget>[
           TextButton(
             onPressed: () async {
               Navigator.pop(context);
               loadImageFromGallery.call();
             },
-            child: const Text("IMAGE"),
+            child: Text(Localization.of(context).string('image')), // IMAGE
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
               loadFileFromFileSystem.call();
             },
-            child: const Text('FILE'),
+            child: Text(Localization.of(context).string('file')), // FILE
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, 'Cancel'),
-            child: const Text(
-              'CANCEL',
-              style: TextStyle(color: Constants.kMainColor),
+            child: Text(
+              Localization.of(context).string('cancel'), // CANCEL
+              style: const TextStyle(color: Constants.kMainColor),
             ),
           )
         ],

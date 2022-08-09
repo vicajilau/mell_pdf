@@ -1,4 +1,4 @@
-import 'package:mell_pdf/model/enums.dart';
+import 'package:mell_pdf/model/models.dart';
 
 class EnumHelper {
   static SupportedFileType generateSupportedFileTypeFromString(String? string) {

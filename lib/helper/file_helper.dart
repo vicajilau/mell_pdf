@@ -1,12 +1,10 @@
 import 'dart:io';
 
 import 'package:image/image.dart';
-import 'package:mell_pdf/helper/image_helper.dart';
-import 'package:mell_pdf/helper/utils.dart';
-import 'package:mell_pdf/model/file_read.dart';
+import 'package:mell_pdf/helper/helpers.dart';
+import 'package:mell_pdf/model/models.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../model/enums.dart';
 
 class FileHelper {
   static final FileHelper singleton = FileHelper();
@@ -46,7 +44,7 @@ class FileHelper {
     if (directory.existsSync()) {
       try {
         directory.deleteSync(recursive: true);
-        Utils.printInDebug("Document Folder Emptied");
+        Utils.printInDebug("Document Folder Emptied"); // Document Folder Emptied
       } catch (error) {
         Utils.printInDebug("ERROR CLEANING LOCAL FOLDER: $error");
       }

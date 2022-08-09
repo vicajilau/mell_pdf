@@ -1,10 +1,9 @@
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:mell_pdf/helper/app_session.dart';
-import 'package:mell_pdf/model/file_read.dart';
+import 'package:mell_pdf/helper/helpers.dart';
 
-import '../model/enums.dart';
+import '../model/models.dart';
 
 class Utils {
   static void printInDebug(Object? object) {

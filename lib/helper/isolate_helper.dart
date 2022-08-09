@@ -1,7 +1,7 @@
 import 'dart:isolate';
 
-import '../model/file_read.dart';
-import 'app_session.dart';
+import '../model/models.dart';
+import 'helpers.dart';
 
 class IsolateHelper {
   static Future createRotateIsolate(FileRead file) async {
@@ -44,7 +44,7 @@ class IsolateHelper {
         final SendPort mikeResponseSendPort = message[1];
 
         /// Send Mike's response via mikeResponseSendPort
-        mikeResponseSendPort.send("DONE");
+        mikeResponseSendPort.send("DONE"); // DONE
       }
     }
   }
@@ -93,7 +93,7 @@ class IsolateHelper {
         final SendPort mikeResponseSendPort = message[3];
 
         /// Send Mike's response via mikeResponseSendPort
-        mikeResponseSendPort.send("DONE");
+        mikeResponseSendPort.send("DONE"); // DONE
       }
     }
   }
