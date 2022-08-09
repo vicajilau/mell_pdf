@@ -1,4 +1,7 @@
+<a href="https://www.buymeacoffee.com/vicajilau" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 # Mell-PDF
+
 Mell PDF is Multi-platform software to combine and generate PDF documents developed in Flutter
 
 ![alt text](https://github.com/vicajilau/Drag-PDF/blob/master/Drag%20PDF/src/images/example-image.png?raw=true)
