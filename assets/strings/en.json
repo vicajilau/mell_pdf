@@ -27,5 +27,7 @@
   "content_home_screen_dialog": "Do you want to load the file(s) from disk or from the document scanner?",
   "load": "LOAD",
   "scan": "SCAN",
-  "document_generated_with_drag_pdf": "Document Generated With Drag PDF"
+  "document_generated_with_drag_pdf": "Document Generated With Drag PDF",
+  "size_subtitle": "in size",
+  "removed_toast": "Removed file:"
 }

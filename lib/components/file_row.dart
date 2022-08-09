@@ -29,7 +29,8 @@ class FileRow extends StatelessWidget {
         leading: FileTypeIcon(file: file),
         title: Text(file.getName()),
         onTap: () => Utils.openFileProperly(context, file),
-        subtitle: Text("${Utils.printableSizeOfFile(file.getSize())} in size"),
+        subtitle: Text(
+            "${Utils.printableSizeOfFile(file.getSize())} ${Localization.of(context).string('size_subtitle')}"),
         trailing: IconButton(
             icon: const Icon(Icons.more_vert),
             onPressed: () {
