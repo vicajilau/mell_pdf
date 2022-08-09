@@ -32,6 +32,13 @@ class FileHelper {
     await file.getFile().delete();
   }
 
+  void removeIfExist(String pathFile) {
+    final file = File(pathFile);
+    if (file.existsSync()) {
+      file.deleteSync();
+    }
+  }
+
   Future<void> emptyLocalDocumentFolder() async {
     final localDocumentsDirectory = await getApplicationDocumentsDirectory();
     final dirPath = '${localDocumentsDirectory.path}/files/';

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
+import 'package:mell_pdf/helper/pdf_helper.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:file_picker/file_picker.dart';
 import 'package:heic_to_jpg/heic_to_jpg.dart';
@@ -8,11 +9,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
-class MergeableFilesList {
+import '../helper/utils.dart';
+
+class FileManager {
   final List<FileRead> _filesInMemory = [];
   final FileHelper fileHelper;
 
-  MergeableFilesList(this.fileHelper);
+  FileManager(this.fileHelper);
 
   bool hasAnyFile() => _filesInMemory.isNotEmpty;
 
@@ -78,9 +81,12 @@ class MergeableFilesList {
   }
 
   Future<void> _addSingleFile(FileRead file) async {
-    final localFile = await fileHelper.saveFileInLocalPath(file);
+    final localFile = await saveFile(file);
     _filesInMemory.add(localFile);
   }
+
+  Future<FileRead> saveFile(FileRead file) async =>
+      await fileHelper.saveFileInLocalPath(file);
 
   void rotateImageInMemoryAndFile(FileRead file) {
     fileHelper.rotateImageInFile(file);
@@ -120,6 +126,25 @@ class MergeableFilesList {
       fileRead = FileRead(file, _nameOfNextFile(), size, "pdf");
       await _addSingleFile(fileRead);
     }
+    return fileRead;
+  }
+
+  Future<FileRead> generatePreviewPdfDocument(
+      String outputPath, String nameOutputFile) async {
+    List<String> intermediateFiles = [];
+    for (FileRead file in _filesInMemory) {
+      if (Utils.isImage(file)) {
+        final intermediate = await PDFHelper.createPdfFromImage(
+            file, '${file.getFile().path}.pdf', '${file.getName()}.pdf');
+        intermediateFiles.add(intermediate!.getFile().path);
+      } else if (Utils.isPdf(file)) {
+        final intermediate = await PDFHelper.createPdfFromOtherPdf(
+            file, '${file.getFile().path}.pdf', '${file.getName()}.pdf');
+        intermediateFiles.add(intermediate!.getFile().path);
+      }
+    }
+    FileRead fileRead = await PDFHelper.mergePdfDocuments(
+        intermediateFiles, outputPath, nameOutputFile);
     return fileRead;
   }
 

@@ -44,6 +44,8 @@ PODS:
     - Flutter
   - path_provider_ios (0.0.1):
     - Flutter
+  - pdf_merger (0.0.1):
+    - Flutter
   - pdfx (1.0.0):
     - Flutter
   - permission_handler_apple (9.0.4):
@@ -61,6 +63,7 @@ DEPENDENCIES:
   - heic_to_jpg (from `.symlinks/plugins/heic_to_jpg/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - pdf_merger (from `.symlinks/plugins/pdf_merger/ios`)
   - pdfx (from `.symlinks/plugins/pdfx/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
 
@@ -86,6 +89,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
+  pdf_merger:
+    :path: ".symlinks/plugins/pdf_merger/ios"
   pdfx:
     :path: ".symlinks/plugins/pdfx/ios"
   permission_handler_apple:
@@ -101,6 +106,7 @@ SPEC CHECKSUMS:
   heic_to_jpg: cce9d6463ab11852a7393daa61be23f98a951c64
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  pdf_merger: 488fa9454fa422922ee8df77c4b6b8dc21639989
   pdfx: 7b876b09de8b7a0bf444a4f82b439ffcff4ee1ec
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   SDWebImage: fb26a455eeda4c7a55e4dcb6172dbb258af7a4ca

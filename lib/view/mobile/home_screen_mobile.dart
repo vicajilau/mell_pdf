@@ -200,8 +200,11 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         floatingActionButton: Visibility(
           visible: viewModel.thereAreFilesLoaded(),
           child: FloatingActionButton(
-            onPressed: () {
-              Loading.show(context);
+            onPressed: () async {
+              final file = await viewModel.generatePreviewPdfDocument();
+              setState(() {
+                Utils.openFileProperly(context, file);
+              });
             },
             backgroundColor: Constants.kMainColor,
             child: const Icon(Icons.arrow_forward),

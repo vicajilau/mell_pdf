@@ -214,6 +214,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get:
+    dependency: transitive
+    description:
+      name: get
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.6.5"
   heic_to_jpg:
     dependency: "direct main"
     description:
@@ -389,6 +396,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.8.2"
+  pdf_merger:
+    dependency: "direct main"
+    description:
+      name: pdf_merger
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.6"
   pdfx:
     dependency: "direct main"
     description:

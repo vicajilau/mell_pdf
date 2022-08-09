@@ -45,6 +45,9 @@ class Utils {
     }
   }
 
+  static bool isPdf(FileRead file) =>
+      file.getExtensionType() == SupportedFileType.pdf;
+
   static int getHeightOfImageFile(FileRead fileRead) {
     final image = AppSession.singleton.fileHelper.getImageOfImageFile(fileRead);
     return image?.height ?? 0;
