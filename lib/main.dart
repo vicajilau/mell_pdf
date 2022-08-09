@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: AppRouter.init().routes,
-      theme: ThemeData(
+      darkTheme: ThemeData.dark(),
+      theme: ThemeData.light().copyWith(
         appBarTheme: const AppBarTheme(
           color: Constants.kMainColor,
         ),
@@ -27,11 +28,11 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
-        ],
-    supportedLocales: const [
-      Locale('en'),
-      Locale('es'),
-    ],
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('es'),
+      ],
     );
   }
 }
