@@ -45,6 +45,7 @@ dependencies:
   flutter_launcher_icons: ^0.9.3
   pdf: ^3.8.2
   pdf_merger: ^0.0.6
+  share_plus: ^4.0.10
   cunning_document_scanner:
     git:
       url: https://github.com/bdlindsay/cunning_document_scanner.git

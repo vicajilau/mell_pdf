@@ -53,7 +53,11 @@ PODS:
   - SDWebImage (5.13.1):
     - SDWebImage/Core (= 5.13.1)
   - SDWebImage/Core (5.13.1)
+  - share_plus (0.0.1):
+    - Flutter
   - SwiftyGif (5.4.3)
+  - url_launcher_ios (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - cunning_document_scanner (from `.symlinks/plugins/cunning_document_scanner/ios`)
@@ -66,6 +70,8 @@ DEPENDENCIES:
   - pdf_merger (from `.symlinks/plugins/pdf_merger/ios`)
   - pdfx (from `.symlinks/plugins/pdfx/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
@@ -95,6 +101,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/pdfx/ios"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   cunning_document_scanner: 7cb9bd173f7cc7b11696dde98d01492187fc3a67
@@ -110,7 +120,9 @@ SPEC CHECKSUMS:
   pdfx: 7b876b09de8b7a0bf444a4f82b439ffcff4ee1ec
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   SDWebImage: fb26a455eeda4c7a55e4dcb6172dbb258af7a4ca
+  share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 

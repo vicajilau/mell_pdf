@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/model/file_read.dart';
 import 'package:pdfx/pdfx.dart';
-//import 'package:share_plus/share_plus.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PDFViewerScreen extends StatelessWidget {
   const PDFViewerScreen({Key? key}) : super(key: key);
@@ -19,7 +19,8 @@ class PDFViewerScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                //Share.shareFiles([file.getFile().path], text: 'Document Generated With Drag PDF');
+                Share.shareFiles([file.getFile().path],
+                    text: 'Document Generated With Drag PDF');
               },
               icon: const Icon(Icons.share))
         ],
