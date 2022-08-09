@@ -5,7 +5,6 @@ import 'package:pdfx/pdfx.dart';
 import 'package:share_plus/share_plus.dart';
 
 class PDFViewerScreen extends StatelessWidget {
-
   const PDFViewerScreen({Key? key}) : super(key: key);
 
   @override
