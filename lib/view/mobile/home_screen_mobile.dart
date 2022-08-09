@@ -166,15 +166,21 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                       },
                       rotateButtonPressed: () async {
                         Loading.show(context);
-                        await IsolateHelper.createRotateIsolate(file);
+                        await Future.wait([
+                          IsolateHelper.createRotateIsolate(file),
+                          ImageHelper.updateCache(file)
+                        ]);
                         setState(() {
                           Loading.hide(context);
                         });
                       },
                       resizeButtonPressed: (int width, int height) async {
                         Loading.show(context);
-                        await IsolateHelper.createResizeIsolate(
-                            file, width, height);
+                        await Future.wait([
+                          IsolateHelper.createResizeIsolate(
+                              file, width, height),
+                          ImageHelper.updateCache(file)
+                        ]);
                         setState(() {
                           Loading.hide(context);
                         });

@@ -5,7 +5,6 @@ import 'package:mell_pdf/helper/helpers.dart';
 import 'package:mell_pdf/model/models.dart';
 import 'package:path_provider/path_provider.dart';
 
-
 class FileHelper {
   static final FileHelper singleton = FileHelper();
 
@@ -44,7 +43,8 @@ class FileHelper {
     if (directory.existsSync()) {
       try {
         directory.deleteSync(recursive: true);
-        Utils.printInDebug("Document Folder Emptied"); // Document Folder Emptied
+        Utils.printInDebug(
+            "Document Folder Emptied"); // Document Folder Emptied
       } catch (error) {
         Utils.printInDebug("ERROR CLEANING LOCAL FOLDER: $error");
       }
@@ -62,7 +62,6 @@ class FileHelper {
     file
         .getFile()
         .writeAsBytesSync(encodeBySupportedFormat(file, resizedImage));
-    ImageHelper.updateCache(file);
   }
 
   void rotateImageInFile(FileRead file) {
@@ -75,7 +74,6 @@ class FileHelper {
     // Save the image
     List<int> encoded = encodeBySupportedFormat(file, rotatedImage);
     file.getFile().writeAsBytesSync(encoded);
-    ImageHelper.updateCache(file);
   }
 
   List<int> encodeBySupportedFormat(FileRead file, Image image) {
