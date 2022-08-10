@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/common/colors/colors.dart';
+import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 
 import '../helpers.dart';
