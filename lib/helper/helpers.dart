@@ -1,6 +1,5 @@
 export 'package:mell_pdf/helper/app_router.dart';
 export 'package:mell_pdf/helper/app_session.dart';
-export 'package:mell_pdf/helper/constants.dart';
 export 'package:mell_pdf/helper/dialogs/file_dialog.dart';
 export 'package:mell_pdf/helper/dialogs/rename_dialog.dart';
 export 'package:mell_pdf/helper/dialogs/resize_image_dialog.dart';

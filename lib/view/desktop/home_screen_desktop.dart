@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/common/colors/colors.dart';
 
 class HomeScreenDesktop extends StatefulWidget {
   const HomeScreenDesktop({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      color: Colors.green,
+      color: ColorsApp.green,
     ));
   }
 }

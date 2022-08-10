@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mell_pdf/common/colors/colors.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 import 'helper/helpers.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       theme: ThemeData.light().copyWith(
         appBarTheme: const AppBarTheme(
-          color: Constants.kMainColor,
+          color: ColorsApp.kMainColor,
         ),
       ),
       localizationsDelegates: const [

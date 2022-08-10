@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mell_pdf/common/colors/colors.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/components/components.dart';
 import 'package:mell_pdf/view_model/view_models.dart';
@@ -143,7 +144,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                       });
                     },
                     background: Container(
-                      color: Colors.red,
+                      color: ColorsApp.red,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 30),
                         child: Row(
@@ -151,7 +152,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                           children: const [
                             Icon(
                               Icons.delete,
-                              color: Colors.white,
+                              color: ColorsApp.white,
                             ),
                           ],
                         ),

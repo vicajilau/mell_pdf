@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/common/colors/colors.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 
 import '../helpers.dart';
@@ -34,7 +35,7 @@ class FileDialog {
             onPressed: () => Navigator.pop(context, 'Cancel'),
             child: Text(
               Localization.of(context).string('cancel'), // CANCEL
-              style: const TextStyle(color: Constants.kMainColor),
+              style: const TextStyle(color: ColorsApp.kMainColor),
             ),
           )
         ],
