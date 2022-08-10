@@ -111,7 +111,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                       onPressed: () => Navigator.pop(context, 'Cancel'),
                       child: Text(
                         Localization.of(context).string('cancel'), // Cancel
-                        style: const TextStyle(color: Constants.kMainColor),
+                        style: const TextStyle(color: ColorsApp.kMainColor),
                       ),
                     )
                   ],
@@ -217,7 +217,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                 Utils.openFileProperly(context, file);
               });
             },
-            backgroundColor: Constants.kMainColor,
+            backgroundColor: ColorsApp.kMainColor,
             child: const Icon(Icons.arrow_forward),
           ),
         ),
