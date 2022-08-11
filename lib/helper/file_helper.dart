@@ -100,15 +100,7 @@ class FileHelper {
   }
 
   Image? decodeBySupportedFormat(FileRead file) {
-    switch (file.getExtensionType()) {
-      case SupportedFileType.png:
-        return decodePng(file.getFile().readAsBytesSync());
-      case SupportedFileType.jpg:
-        return decodeJpg(file.getFile().readAsBytesSync());
-      case SupportedFileType.jpeg:
-        return decodeJpg(file.getFile().readAsBytesSync());
-      default:
-        return null;
-    }
+    return decodeNamedImage(
+        file.getFile().readAsBytesSync(), file.getFile().path);
   }
 }
