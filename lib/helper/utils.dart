@@ -6,6 +6,8 @@ import 'package:mell_pdf/helper/helpers.dart';
 import '../model/models.dart';
 
 class Utils {
+  static const nameOfFinalFile = 'Preview Document.pdf';
+
   static void printInDebug(Object? object) {
     if (kDebugMode) {
       print(object);

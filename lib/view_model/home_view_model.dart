@@ -64,10 +64,10 @@ class HomeViewModel {
   }
 
   Future<FileRead> generatePreviewPdfDocument() async {
-    const fileName = 'Preview Document.pdf';
     final lp = AppSession.singleton.fileHelper.localPath;
-    final pathFinal = '$lp$fileName';
+    final pathFinal = '$lp${Utils.nameOfFinalFile}';
     AppSession.singleton.fileHelper.removeIfExist(pathFinal);
-    return await _mfl.generatePreviewPdfDocument(pathFinal, fileName);
+    return await _mfl.generatePreviewPdfDocument(
+        pathFinal, Utils.nameOfFinalFile);
   }
 }

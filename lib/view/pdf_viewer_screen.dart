@@ -4,6 +4,8 @@ import 'package:mell_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../helper/utils.dart';
+
 class PDFViewerScreen extends StatelessWidget {
   const PDFViewerScreen({Key? key}) : super(key: key);
 
@@ -17,18 +19,23 @@ class PDFViewerScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(file.getName()),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Share.shareFiles([file.getFile().path],
-                    text: Localization.of(context).string('document_generated_with_drag_pdf')); // Document Generated With Drag PDF
-              },
-              icon: const Icon(Icons.share))
-        ],
+        actions: isFinalFile(file)
+            ? [
+                IconButton(
+                    onPressed: () {
+                      Share.shareFiles([file.getFile().path],
+                          text: Localization.of(context).string(
+                              'document_generated_with_drag_pdf')); // Document Generated With Drag PDF
+                    },
+                    icon: const Icon(Icons.share))
+              ]
+            : null,
       ),
       body: PdfViewPinch(
         controller: pdfPinchController,
       ),
     );
   }
+
+  bool isFinalFile(FileRead file) => file.getName() == Utils.nameOfFinalFile;
 }
