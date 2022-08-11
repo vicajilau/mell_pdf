@@ -41,15 +41,17 @@ class HomeViewModel {
   void insertFileIntoList(int index, FileRead file) =>
       _mfl.insertFile(index, file);
 
-  void rotateImageInMemoryAndFile(FileRead file) {
-    _mfl.rotateImageInMemoryAndFile(file);
+  Future<void> rotateImageInMemoryAndFile(FileRead file) async {
+    final rotateImage = await IsolateHelper.createRotateIsolate(file);
+    file.setImage(rotateImage.getImage());
+    await ImageHelper.updateCache(file);
   }
 
   Future<void> resizeImageInMemoryAndFile(
       FileRead file, int width, int height) async {
     final resizedFile =
         await IsolateHelper.createResizeIsolate(file, width, height);
-    file.setImage(resizedFile.getImage()!);
+    file.setImage(resizedFile.getImage());
     await ImageHelper.updateCache(file);
   }
 

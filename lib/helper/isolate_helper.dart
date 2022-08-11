@@ -6,7 +6,7 @@ import '../model/models.dart';
 import 'helpers.dart';
 
 class IsolateHelper {
-  static Future createRotateIsolate(FileRead file) async {
+  static Future<FileRead> createRotateIsolate(FileRead file) async {
     /// Where I listen to the message from Mike's port
     ReceivePort myReceivePort = ReceivePort();
 
@@ -26,7 +26,7 @@ class IsolateHelper {
     mikeSendPort.send([file, mikeResponseReceivePort.sendPort]);
 
     /// I get Mike's response by listening to mikeResponseReceivePort
-    await mikeResponseReceivePort.first;
+    return await mikeResponseReceivePort.first as FileRead;
   }
 
   static void rotateImageWasPressed(SendPort mySendPort) async {
@@ -46,7 +46,7 @@ class IsolateHelper {
         final SendPort mikeResponseSendPort = message[1];
 
         /// Send Mike's response via mikeResponseSendPort
-        mikeResponseSendPort.send("DONE"); // DONE
+        Isolate.exit(mikeResponseSendPort, file); // DONE
       }
     }
   }

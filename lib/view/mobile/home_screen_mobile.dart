@@ -184,10 +184,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                               setState(() {
                                 Loading.show();
                               });
-                              await Future.wait([
-                                IsolateHelper.createRotateIsolate(file),
-                                ImageHelper.updateCache(file)
-                              ]);
+                              await viewModel.rotateImageInMemoryAndFile(file);
                               setState(() {
                                 Loading.hide();
                               });
