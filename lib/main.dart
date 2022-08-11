@@ -6,7 +6,8 @@ import 'helper/helpers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AppSession.singleton.fileHelper.emptyLocalDocumentFolder();
+  await AppSession.singleton.fileHelper.loadLocalPath();
+  AppSession.singleton.fileHelper.emptyLocalDocumentFolder();
   runApp(const MyApp());
 }
 

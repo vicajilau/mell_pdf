@@ -8,25 +8,27 @@ import 'package:path_provider/path_provider.dart';
 class FileHelper {
   static final FileHelper singleton = FileHelper();
 
-  Future<String> get localPath async {
+  late String localPath;
+
+  Future<void> loadLocalPath() async {
     final directory = await getApplicationDocumentsDirectory();
-    final dirPath = '${directory.path}/files/';
-    if (!Directory(dirPath).existsSync()) {
-      Directory(dirPath).createSync(recursive: true);
+    localPath = '${directory.path}/files/';
+    Utils.printInDebug('LocalPath is: $localPath');
+  }
+
+  FileRead saveFileInLocalPath(FileRead file, String localPath) {
+    File newFile = File('$localPath${file.getName()}');
+    newFile.writeAsBytesSync(file.getFile().readAsBytesSync());
+    Image? image;
+    if (Utils.isImage(file)) {
+      image = getImageOfImageFile(file);
     }
-    return dirPath;
+    return FileRead(newFile, file.getName(), image, file.getSize(),
+        file.getExtensionName());
   }
 
-  Future<FileRead> saveFileInLocalPath(FileRead file) async {
-    final lp = await localPath;
-    File newFile = File('$lp${file.getName()}');
-    newFile.writeAsBytes(file.getFile().readAsBytesSync());
-    return FileRead(
-        newFile, file.getName(), file.getSize(), file.getExtensionName());
-  }
-
-  Future<void> removeFile(FileRead file) async {
-    await file.getFile().delete();
+  void removeFile(FileRead file) async {
+    file.getFile().deleteSync();
   }
 
   void removeIfExist(String pathFile) {
@@ -36,28 +38,31 @@ class FileHelper {
     }
   }
 
-  Future<void> emptyLocalDocumentFolder() async {
-    final localDocumentsDirectory = await getApplicationDocumentsDirectory();
-    final dirPath = '${localDocumentsDirectory.path}/files/';
-    final Directory directory = Directory(dirPath);
+  void emptyLocalDocumentFolder() {
+    final Directory directory = Directory(localPath);
     if (directory.existsSync()) {
       try {
         directory.deleteSync(recursive: true);
         Utils.printInDebug(
-            "Document Folder Emptied"); // Document Folder Emptied
+            "DOCUMENT FOLDER EMPTIED"); // Document Folder Emptied
       } catch (error) {
         Utils.printInDebug("ERROR CLEANING LOCAL FOLDER: $error");
       }
     }
+    if (!Directory(localPath).existsSync()) {
+      Directory(localPath).createSync(recursive: true);
+      Utils.printInDebug("LOCAL FOLDER CREATED");
+    }
   }
 
   void resizeImageInFile(FileRead file, int width, int height) {
-    Image? image = decodeBySupportedFormat(file);
+    Image? image = file.getImage();
     if (image == null) {
       throw Exception('Cannot resize the image in the file: $file');
     }
     // Resize the image
     Image resizedImage = copyResize(image, width: width, height: height);
+    file.setImage(resizedImage);
     // Save the image
     file
         .getFile()
@@ -65,12 +70,13 @@ class FileHelper {
   }
 
   void rotateImageInFile(FileRead file) {
-    Image? image = decodeBySupportedFormat(file);
+    Image? image = file.getImage();
     if (image == null) {
       throw Exception('Cannot rotate the image in the file: $file');
     }
     // Rotate 90 grades the image
     Image rotatedImage = copyRotate(image, 90);
+    file.setImage(rotatedImage);
     // Save the image
     List<int> encoded = encodeBySupportedFormat(file, rotatedImage);
     file.getFile().writeAsBytesSync(encoded);

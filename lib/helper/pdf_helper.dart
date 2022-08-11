@@ -20,14 +20,14 @@ class PDFHelper {
 
     final intermediateFile = File(outputPath);
     await intermediateFile.writeAsBytes(await pdf.save());
-    return FileRead(
-        intermediateFile, nameOutputFile, intermediateFile.lengthSync(), 'pdf');
+    return FileRead(intermediateFile, nameOutputFile, null,
+        intermediateFile.lengthSync(), 'pdf');
   }
 
   static Future<FileRead?> createPdfFromOtherPdf(
       FileRead pdfFile, String outputPath, String nameOutputFile) async {
     final file = pdfFile.getFile().copySync(outputPath);
-    return FileRead(file, nameOutputFile, file.lengthSync(), 'pdf');
+    return FileRead(file, nameOutputFile, null, file.lengthSync(), 'pdf');
   }
 
   static Future<FileRead> mergePdfDocuments(
@@ -37,7 +37,7 @@ class PDFHelper {
     if (response.status == "success") {
       File intermediateFile = File(response.response!);
       final size = await intermediateFile.length();
-      return FileRead(intermediateFile, nameOutputFile, size, "pdf");
+      return FileRead(intermediateFile, nameOutputFile, null, size, "pdf");
     }
     throw Exception('Cannot be generated PDF Document');
   }

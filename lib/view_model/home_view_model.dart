@@ -1,6 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mell_pdf/helper/app_session.dart';
+import 'package:mell_pdf/helper/helpers.dart';
 import 'package:mell_pdf/model/file_read.dart';
 import 'package:mell_pdf/model/file_manager.dart';
 
@@ -13,7 +13,7 @@ class HomeViewModel {
       type: FileType.custom,
       allowedExtensions: ['jpg', 'jpeg', 'pdf', 'png'],
     );
-    await _mfl.addMultipleFiles(result?.files ?? []);
+    _mfl.addMultipleFiles(result?.files ?? [], _mfl.fileHelper.localPath);
   }
 
   Future<void> loadImagesFromStorage() async {
@@ -21,7 +21,9 @@ class HomeViewModel {
     // Pick an image
     final List<XFile>? images = await picker.pickMultiImage();
     if (images != null) {
-      await _mfl.addMultipleImages(images);
+      List<FileRead> files =
+          await IsolateHelper.createAddMultiplesImagesIsolate(images);
+      _mfl.addFilesInMemory(files);
     }
   }
 
@@ -29,26 +31,26 @@ class HomeViewModel {
 
   bool thereAreFilesLoaded() => _mfl.hasAnyFile();
 
-  Future<FileRead> removeFileFromDisk(int index) async =>
-      await _mfl.removeFileFromDisk(index);
+  FileRead removeFileFromDisk(int index) => _mfl.removeFileFromDisk(index);
 
-  Future<void> removeFileFromDiskByFile(FileRead file) async =>
-      await _mfl.removeFileFromDiskByFile(file);
+  void removeFileFromDiskByFile(FileRead file) =>
+      _mfl.removeFileFromDiskByFile(file);
 
   FileRead removeFileFromList(int index) => _mfl.removeFileFromList(index);
 
   void insertFileIntoList(int index, FileRead file) =>
       _mfl.insertFile(index, file);
 
-  Future<void> clearFilesFromLocalDirectory() async =>
-      await _mfl.clearFilesFromLocalDirectory();
-
   void rotateImageInMemoryAndFile(FileRead file) {
     _mfl.rotateImageInMemoryAndFile(file);
   }
 
-  void resizeImageInMemoryAndFile(FileRead file, int width, int height) {
-    _mfl.resizeImageInMemoryAndFile(file, width, height);
+  Future<void> resizeImageInMemoryAndFile(
+      FileRead file, int width, int height) async {
+    final resizedFile =
+        await IsolateHelper.createResizeIsolate(file, width, height);
+    file.setImage(resizedFile.getImage()!);
+    await ImageHelper.updateCache(file);
   }
 
   Future<void> renameFile(FileRead file, String newName) async {
@@ -61,7 +63,7 @@ class HomeViewModel {
 
   Future<FileRead> generatePreviewPdfDocument() async {
     const fileName = 'Preview Document.pdf';
-    final lp = await AppSession.singleton.fileHelper.localPath;
+    final lp = AppSession.singleton.fileHelper.localPath;
     final pathFinal = '$lp$fileName';
     AppSession.singleton.fileHelper.removeIfExist(pathFinal);
     return await _mfl.generatePreviewPdfDocument(pathFinal, fileName);

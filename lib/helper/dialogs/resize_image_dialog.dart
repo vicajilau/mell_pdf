@@ -25,8 +25,8 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
   @override
   void initState() {
     super.initState();
-    _maxHeight = Utils.getHeightOfImageFile(widget.file);
-    _maxWidth = Utils.getWidthOfImageFile(widget.file);
+    _maxHeight = widget.file.getImage()!.height;
+    _maxWidth = widget.file.getImage()!.width;
   }
 
   @override
@@ -39,7 +39,8 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(Localization.of(context).string('modify_file_size')), // Modify File Size
+      title: Text(Localization.of(context)
+          .string('modify_file_size')), // Modify File Size
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +70,8 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
             decoration: InputDecoration(
               hintText: "1 - ${_maxHeight.toString()} pixels",
               border: const OutlineInputBorder(),
-              labelText: Localization.of(context).string('height_pixels'), // Height Pixels
+              labelText: Localization.of(context)
+                  .string('height_pixels'), // Height Pixels
             ),
             keyboardType: const TextInputType.numberWithOptions(
                 signed: false, decimal: false),
@@ -102,7 +104,8 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
             decoration: InputDecoration(
               hintText: "1 - ${_maxWidth.toString()} pixels",
               border: const OutlineInputBorder(),
-              labelText: Localization.of(context).string('width_pixels'), // Width Pixels
+              labelText: Localization.of(context)
+                  .string('width_pixels'), // Width Pixels
             ),
             keyboardType: const TextInputType.numberWithOptions(
                 signed: false, decimal: false),
@@ -116,7 +119,10 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
                       scaleEnable = value ?? false;
                     });
                   }),
-              Text(scaleEnable ? Localization.of(context).string('keep_scale') : Localization.of(context).string('scale_disabled')) // Keep Scale : Scale Disabled
+              Text(scaleEnable
+                  ? Localization.of(context).string('keep_scale')
+                  : Localization.of(context)
+                      .string('scale_disabled')) // Keep Scale : Scale Disabled
             ],
           ),
         ],

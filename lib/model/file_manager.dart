@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
+import 'package:image/image.dart';
 import 'package:mell_pdf/helper/pdf_helper.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:file_picker/file_picker.dart';
@@ -23,13 +24,13 @@ class FileManager {
 
   FileRead getFile(int index) => _filesInMemory[index];
 
-  Future<FileRead> removeFileFromDisk(int index) async {
-    await fileHelper.removeFile(_filesInMemory[index]);
+  FileRead removeFileFromDisk(int index) {
+    fileHelper.removeFile(_filesInMemory[index]);
     return _filesInMemory.removeAt(index);
   }
 
-  Future<void> removeFileFromDiskByFile(FileRead file) async {
-    await fileHelper.removeFile(file);
+  void removeFileFromDiskByFile(FileRead file) {
+    fileHelper.removeFile(file);
     _filesInMemory.remove(file);
   }
 
@@ -54,39 +55,51 @@ class FileManager {
 
   int numberOfFiles() => _filesInMemory.length;
 
-  Future<List<FileRead>> addMultipleFiles(List<PlatformFile> files) async {
+  List<FileRead> addMultipleFiles(List<PlatformFile> files, String localPath) {
     for (PlatformFile file in files) {
-      final fileRead = FileRead(
-          File(file.path!), _nameOfNextFile(), file.size, file.extension ?? "");
-      await _addSingleFile(fileRead);
+      final fileRead = FileRead(File(file.path!), _nameOfNextFile(), null,
+          file.size, file.extension ?? "");
+      _addSingleFile(fileRead, localPath);
     }
     return _filesInMemory;
   }
 
-  Future<List<FileRead>> addMultipleImages(List<XFile> files) async {
-    for (XFile file in files) {
+  Future<List<FileRead>> addMultipleImagesOnDisk(
+      List<XFile> files, String localPath, List<String> names) async {
+    List<FileRead> finalFiles = [];
+    for (int i = 0; i < files.length; i++) {
+      final file = files[i];
       final FileRead fileRead;
+      final bytes = await file.readAsBytes();
+      Image? image = decodeJpg(bytes);
       if (file.name.contains(".heic")) {
         String? jpegPath = await HeicToJpg.convert(file.path);
         final jpegFile = File(jpegPath!);
-        fileRead = FileRead(
-            jpegFile, _nameOfNextFile(), jpegFile.lengthSync(), "jpeg");
+        fileRead =
+            FileRead(jpegFile, names[i], image, jpegFile.lengthSync(), "jpeg");
       } else {
         final size = await file.length();
-        fileRead = FileRead(File(file.path), _nameOfNextFile(), size, "jpeg");
+        fileRead = FileRead(File(file.path), names[i], image, size, "jpeg");
       }
-      await _addSingleFile(fileRead);
+      final fileSaved = saveFileOnDisk(fileRead, localPath);
+      finalFiles.add(fileSaved);
     }
-    return _filesInMemory;
+    return finalFiles;
   }
 
-  Future<void> _addSingleFile(FileRead file) async {
-    final localFile = await saveFile(file);
+  void _addSingleFile(FileRead file, String localPath) {
+    final localFile = saveFileOnDisk(file, localPath);
     _filesInMemory.add(localFile);
   }
 
-  Future<FileRead> saveFile(FileRead file) async =>
-      await fileHelper.saveFileInLocalPath(file);
+  void addFilesInMemory(List<FileRead> files) {
+    for (FileRead file in files) {
+      _filesInMemory.add(file);
+    }
+  }
+
+  FileRead saveFileOnDisk(FileRead file, String localPath) =>
+      fileHelper.saveFileInLocalPath(file, localPath);
 
   void rotateImageInMemoryAndFile(FileRead file) {
     fileHelper.rotateImageInFile(file);
@@ -96,10 +109,16 @@ class FileManager {
     fileHelper.resizeImageInFile(file, width, height);
   }
 
-  Future<void> clearFilesFromLocalDirectory() async =>
-      await fileHelper.emptyLocalDocumentFolder();
+  String _nameOfNextFile({int value = 1}) =>
+      "File-${_filesInMemory.length + value}";
 
-  String _nameOfNextFile() => "File-${_filesInMemory.length + 1}";
+  List<String> nextNames(int numberOfFiles) {
+    List<String> names = [];
+    for (int i = 1; i <= numberOfFiles; i++) {
+      names.add(_nameOfNextFile(value: i));
+    }
+    return names;
+  }
 
   Future<FileRead?> scanDocument() async {
     FileRead? fileRead;
@@ -118,13 +137,12 @@ class FileManager {
           );
         }));
       }
-      final lp = await fileHelper.localPath;
-      file = File('$lp${_nameOfNextFile()}');
+      file = File('${fileHelper.localPath}${_nameOfNextFile()}');
       await file.writeAsBytes(await pdf.save());
 
       final size = await file.length();
-      fileRead = FileRead(file, _nameOfNextFile(), size, "pdf");
-      await _addSingleFile(fileRead);
+      fileRead = FileRead(file, _nameOfNextFile(), null, size, "pdf");
+      _addSingleFile(fileRead, fileHelper.localPath);
     }
     return fileRead;
   }

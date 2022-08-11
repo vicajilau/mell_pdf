@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class Loading {
-  static void show(BuildContext context) {
-    Navigator.pushNamed(context, '/loading');
+  static bool isPresented = false;
+
+  static void show() {
+    isPresented = true;
   }
 
-  static void hide(BuildContext context) {
-    Navigator.pop(context);
+  static void hide() {
+    isPresented = false;
   }
 }
 

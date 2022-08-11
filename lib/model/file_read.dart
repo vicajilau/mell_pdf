@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:image/image.dart';
 import 'package:mell_pdf/helper/helpers.dart';
 
 import 'enums.dart';
@@ -7,11 +8,16 @@ import 'enums.dart';
 class FileRead {
   File _file;
   String _name;
+  Image? _image;
   final SupportedFileType _sft;
   final int _size;
   final String _extension;
-  FileRead(this._file, this._name, this._size, this._extension)
+  FileRead(this._file, this._name, this._image, this._size, this._extension)
       : _sft = EnumHelper.generateSupportedFileTypeFromString(_extension);
+
+  Image? getImage() => _image;
+
+  void setImage(Image? image) => _image = image;
 
   File getFile() => _file;
 
@@ -35,6 +41,6 @@ class FileRead {
 
   @override
   String toString() {
-    return "File: $_file, size: ${getSize()}, name: $_name, extension: ${getExtensionType().name}";
+    return "File: $_file, size: ${getSize()}, name: $_name, extension: ${getExtensionType().name}, image-width: ${getImage()?.width}, image-height: ${getImage()?.height}";
   }
 }
