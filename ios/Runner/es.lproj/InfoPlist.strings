@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Victor Carreras on 19/8/22.
+  
+*/
+NSCameraUsageDescription = "Necesario para poder escanear documentos desde la cámara.";
+NSPhotoLibraryUsageDescription = "Necessary to be able to load files from the image gallery.";

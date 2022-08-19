@@ -53,6 +53,12 @@ dependencies:
       url: https://github.com/bdlindsay/cunning_document_scanner.git
       ref: master
 
+flutter_icons:
+  image_path_android: "assets/icons/android-icon.png"
+  image_path_ios: "assets/icons/ios-icon.png"
+  android: true
+  ios: true
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,3 +87,4 @@ flutter:
     - assets/strings/
     - assets/images/
     - assets/images/files/
+    - assets/icons/

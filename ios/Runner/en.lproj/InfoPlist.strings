@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Victor Carreras on 19/8/22.
+  
+*/
+NSCameraUsageDescription = "Required to be able to scan documents from the camera.";
+NSPhotoLibraryUsageDescription = "Localized Text";
