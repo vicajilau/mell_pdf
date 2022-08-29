@@ -33,7 +33,7 @@ class _SplashScreenMobileState extends State<SplashScreenMobile>
                 // Lottie file and start the animation.
                 _controller
                   ..duration = composition.duration
-                  ..forward();
+                  ..repeat();
 
                 setTimer();
               },
@@ -45,7 +45,7 @@ class _SplashScreenMobileState extends State<SplashScreenMobile>
   }
 
   void setTimer() {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 4), () {
       _controller.stop();
       Navigator.pushNamed(context, "/home");
     });
