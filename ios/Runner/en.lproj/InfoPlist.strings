@@ -6,4 +6,4 @@
   
 */
 NSCameraUsageDescription = "Required to be able to scan documents from the camera.";
-NSPhotoLibraryUsageDescription = "Localized Text";
+NSPhotoLibraryUsageDescription = "Necessary to be able to load files from the image gallery.";

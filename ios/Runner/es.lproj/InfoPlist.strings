@@ -6,4 +6,4 @@
   
 */
 NSCameraUsageDescription = "Necesario para poder escanear documentos desde la cámara.";
-NSPhotoLibraryUsageDescription = "Necessary to be able to load files from the image gallery.";
+NSPhotoLibraryUsageDescription = "Necesario para poder cargar ficheros de la galería de imágenes.";
