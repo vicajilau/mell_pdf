@@ -4,13 +4,14 @@
 
 Drag PDF is Multi-platform software to combine and generate PDF documents developed in Flutter
 
-![alt text](https://github.com/vicajilau/Drag-PDF/blob/master/Drag%20PDF/src/images/example-image.png?raw=true)
+![alt text](https://github.com/vicajilau/Drag-PDF/blob/master/Drag%20PDF/screenshots/ios-iphone.jpeg?raw=true)
 
 
 
 ## Start using DragPDF
 To start using DragPDF in your own project, the first thing you should do is:
-* Download the DragPDF app file available in the [Executables directory](https://github.com/vicajilau/Drag-PDF/tree/master/Executables) of this repository.
+* Download the DragPDF app file available in: [App Store](https://apps.apple.com/es/app/drag-pdf/id1640647538), [Play Store](https://play.google.com/store/apps/details?id=es.victorcarreras.drag_pdf)
+
 
 ### Privacy Policy
 
