@@ -4,7 +4,7 @@
 
 Drag PDF is Multi-platform software to combine and generate PDF documents developed in Flutter
 
-![alt text](https://github.com/vicajilau/Drag-PDF/screenshots/ios-iphone.jpeg?raw=true)
+![screenshot](https://github.com/vicajilau/Drag-PDF/tree/master/screenshots/ios-iphone.jpeg?raw=true)
 
 
 
