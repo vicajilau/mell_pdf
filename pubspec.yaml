@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 2.0.2+2
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
@@ -29,13 +29,42 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   lottie: ^1.3.0
   platform_detail: ^2.0.0
+  file_picker: ^5.0.1
+  easy_image_viewer: ^1.0.4
+  pdfx: ^2.2.0
+  path_provider: ^2.0.11
+  image: ^3.2.0
+  image_picker: ^0.8.5+3
+  heic_to_jpg: ^0.2.0
+  flutter_launcher_icons: ^0.10.0
+  pdf: ^3.8.2
+  pdf_merger: ^0.0.6
+  share_plus: ^4.0.10
+  cunning_document_scanner:
+    git:
+      url: https://github.com/bdlindsay/cunning_document_scanner.git
+      ref: master
+
+flutter_icons:
+  image_path_android: "assets/icons/android-icon.png"
+  image_path_ios: "assets/icons/ios-icon.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "assets/icons/ios-icon.png"
+  windows:
+    generate: true
+    image_path: "assets/icons/ios-icon.png"
 
 dev_dependencies:
   flutter_test:
@@ -62,32 +91,7 @@ flutter:
   assets:
     - assets/
     - assets/animations/
-    - assets/fonts/
+    - assets/strings/
     - assets/images/
     - assets/images/files/
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+    - assets/icons/

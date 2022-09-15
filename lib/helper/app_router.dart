@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/view/desktop/home_screen_desktop.dart';
+import 'package:mell_pdf/helper/helpers.dart';
 import 'package:platform_detail/platform_detail.dart';
 
-import '../view/desktop/splash_screen_desktop.dart';
-import '../view/mobile/home_screen_mobile.dart';
-import '../view/mobile/splash_screen_mobile.dart';
+import '../view/views.dart';
+
 
 class AppRouter {
   late final Map<String, WidgetBuilder> routes;
@@ -22,6 +21,8 @@ class AppRouter {
     return {
       "/": (context) => const SplashScreenMobile(),
       "/home": (context) => const HomeScreenMobile(),
+      "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
+      "/loading": (context) => const LoadingScreen(),
     };
   }
 
@@ -30,6 +31,7 @@ class AppRouter {
     return {
       "/": (context) => const SplashScreenDesktop(),
       "/home": (context) => const HomeScreenDesktop(),
+      "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
     };
   }
 }
