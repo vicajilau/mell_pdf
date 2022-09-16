@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
 import '../helper/utils.dart';
+import '../model/enums.dart';
 
 class FileTypeIcon extends StatelessWidget {
   final FileRead file;
@@ -13,8 +14,7 @@ class FileTypeIcon extends StatelessWidget {
       onPressed: () {
         Utils.openFileProperly(context, file);
       },
-      child: Image.asset(
-          "assets/images/files/${file.getExtensionName().toLowerCase()}-file.png"),
+      child: Image.asset(file.getExtensionType().getIconPath()),
     );
   }
 }
