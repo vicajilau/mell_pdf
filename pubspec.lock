@@ -88,12 +88,10 @@ packages:
   cunning_document_scanner:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "5485da8763e829becc0db1d28e40b596c9e38953"
-      url: "https://github.com/bdlindsay/cunning_document_scanner.git"
-    source: git
-    version: "1.0.3"
+      name: cunning_document_scanner
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   cupertino_icons:
     dependency: "direct main"
     description:
