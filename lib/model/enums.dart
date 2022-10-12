@@ -1,4 +1,4 @@
-enum SupportedFileType { pdf, png, jpg, jpeg, unknown }
+enum SupportedFileType { pdf, png, jpg, unknown }
 
 extension SupportedFileTypeExtension on SupportedFileType {
   String getIconPath() {
@@ -10,10 +10,11 @@ extension SupportedFileTypeExtension on SupportedFileType {
         return "${path}png_file.png";
       case SupportedFileType.jpg:
         return "${path}jpg_file.png";
-      case SupportedFileType.jpeg:
-        return "${path}jpg_file.png";
       case SupportedFileType.unknown:
         return "${path}doc_file.png";
     }
   }
+
+  static SupportedFileType fromString(String text) =>
+      SupportedFileType.values.firstWhere((element) => element.name == text);
 }

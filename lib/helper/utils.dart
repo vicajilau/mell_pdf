@@ -39,8 +39,6 @@ class Utils {
         return true;
       case SupportedFileType.jpg:
         return true;
-      case SupportedFileType.jpeg:
-        return true;
       case SupportedFileType.unknown:
         return false;
     }
@@ -60,16 +58,28 @@ class Utils {
   }
 
   static void openFileProperly(BuildContext context, FileRead file) {
-    if (Utils.isImage(file)) {
-      final imageProvider = Image.file(
-        file.getFile(),
-      ).image;
-      showImageViewer(context, imageProvider, onViewerDismissed: () {
-        Utils.printInDebug("Dismissed Image: ${file.getFile().path}");
-      });
-    } else if (file.getExtensionType() == SupportedFileType.pdf) {
-      Utils.printInDebug("Opened PDF file: ${file.getFile().path}");
-      Navigator.pushNamed(context, "/pdf_viewer_screen", arguments: file);
+    switch (file.getExtensionType()) {
+      case SupportedFileType.pdf:
+        Utils.printInDebug("Opened PDF file: ${file.getFile().path}");
+        Navigator.pushNamed(context, "/pdf_viewer_screen", arguments: file);
+        break;
+      case SupportedFileType.png:
+        _openImage(context, file);
+        break;
+      case SupportedFileType.jpg:
+        _openImage(context, file);
+        break;
+      case SupportedFileType.unknown:
+        throw Exception('An unknown file cannot be opened');
     }
+  }
+
+  static void _openImage(BuildContext context, FileRead file) {
+    final imageProvider = Image.file(
+      file.getFile(),
+    ).image;
+    showImageViewer(context, imageProvider, onViewerDismissed: () {
+      Utils.printInDebug("Dismissed Image: ${file.getFile().path}");
+    });
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/components/file_type_icon.dart';
+import 'package:mell_pdf/helper/dialogs/custom_dialog.dart';
 import 'package:mell_pdf/helper/dialogs/rename_dialog.dart';
 import 'package:mell_pdf/helper/dialogs/resize_image_dialog.dart';
 import 'package:mell_pdf/model/file_read.dart';
@@ -28,7 +29,18 @@ class FileRow extends StatelessWidget {
       child: ListTile(
         leading: FileTypeIcon(file: file),
         title: Text(file.getName()),
-        onTap: () => Utils.openFileProperly(context, file),
+        onTap: () {
+          try {
+            Utils.openFileProperly(context, file);
+          } catch (error) {
+            CustomDialog.showError(
+                context: context,
+                error: error,
+                titleLocalized: '',
+                subtitleLocalized: '',
+                buttonTextLocalized: 'accept');
+          }
+        },
         subtitle: Text(
             "${Utils.printableSizeOfFile(file.getSize())} ${Localization.of(context).string('size_subtitle')}"),
         trailing: IconButton(

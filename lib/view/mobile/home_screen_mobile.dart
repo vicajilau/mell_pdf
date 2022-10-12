@@ -4,6 +4,7 @@ import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/components/components.dart';
 import 'package:mell_pdf/view_model/view_models.dart';
+import '../../helper/dialogs/custom_dialog.dart';
 import '../../helper/helpers.dart';
 
 class HomeScreenMobile extends StatefulWidget {
@@ -83,12 +84,24 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                                     setState(() {
                                       Loading.show();
                                     });
-                                    await viewModel.loadImagesFromStorage();
-                                    setState(() {
-                                      Loading.hide();
-                                      Utils.printInDebug(
-                                          viewModel.getMergeableFilesList());
-                                    });
+                                    try {
+                                      await viewModel.loadImagesFromStorage();
+                                    } catch (error) {
+                                      CustomDialog.showError(
+                                          context: context,
+                                          error: error,
+                                          titleLocalized:
+                                              'read_file_error_title',
+                                          subtitleLocalized:
+                                              'read_file_error_subtitle',
+                                          buttonTextLocalized: 'accept');
+                                    } finally {
+                                      setState(() {
+                                        Loading.hide();
+                                        Utils.printInDebug(
+                                            viewModel.getMergeableFilesList());
+                                      });
+                                    }
                                   },
                                   loadFileFromFileSystem: () async {
                                     setState(() {
@@ -226,10 +239,20 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                 visible: viewModel.thereAreFilesLoaded(),
                 child: FloatingActionButton(
                   onPressed: () async {
-                    final file = await viewModel.generatePreviewPdfDocument();
-                    setState(() {
-                      Utils.openFileProperly(context, file);
-                    });
+                    try {
+                      final file = await viewModel.generatePreviewPdfDocument();
+                      setState(() {
+                        Utils.openFileProperly(context, file);
+                      });
+                    } catch (error) {
+                      CustomDialog.showError(
+                        context: context,
+                        error: error,
+                        titleLocalized: 'generate_file_error_title',
+                        subtitleLocalized: 'generate_file_error_subtitle',
+                        buttonTextLocalized: 'accept',
+                      );
+                    }
                   },
                   backgroundColor: ColorsApp.kMainColor,
                   child: const Icon(Icons.arrow_forward),

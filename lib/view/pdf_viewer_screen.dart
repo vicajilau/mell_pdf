@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
@@ -22,8 +23,9 @@ class PDFViewerScreen extends StatelessWidget {
         actions: isFinalFile(file)
             ? [
                 IconButton(
-                    onPressed: () {
-                      Share.shareFiles([file.getFile().path],
+                    onPressed: () async {
+                      final xFile = XFile(file.getFile().path);
+                      await Share.shareXFiles([xFile],
                           text: Localization.of(context).string(
                               'document_generated_with_drag_pdf')); // Document Generated With Drag PDF
                     },

@@ -88,8 +88,6 @@ class FileHelper {
         return encodePng(image);
       case SupportedFileType.jpg:
         return encodeJpg(image);
-      case SupportedFileType.jpeg:
-        return encodeJpg(image);
       default:
         return [];
     }

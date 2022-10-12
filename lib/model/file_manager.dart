@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
-import '../helper/utils.dart';
+import 'enums.dart';
 
 class FileManager {
   final List<FileRead> _filesInMemory = [];
@@ -76,10 +76,10 @@ class FileManager {
         String? jpegPath = await HeicToJpg.convert(file.path);
         final jpegFile = File(jpegPath!);
         fileRead =
-            FileRead(jpegFile, names[i], image, jpegFile.lengthSync(), "jpeg");
+            FileRead(jpegFile, names[i], image, jpegFile.lengthSync(), "jpg");
       } else {
         final size = await file.length();
-        fileRead = FileRead(File(file.path), names[i], image, size, "jpeg");
+        fileRead = FileRead(File(file.path), names[i], image, size, "jpg");
       }
       final fileSaved = saveFileOnDisk(fileRead, localPath);
       finalFiles.add(fileSaved);
@@ -151,14 +151,25 @@ class FileManager {
       String outputPath, String nameOutputFile) async {
     List<String> intermediateFiles = [];
     for (FileRead file in _filesInMemory) {
-      if (Utils.isImage(file)) {
-        final intermediate = await PDFHelper.createPdfFromImage(
-            file, '${file.getFile().path}.pdf', '${file.getName()}.pdf');
-        intermediateFiles.add(intermediate!.getFile().path);
-      } else if (Utils.isPdf(file)) {
-        final intermediate = await PDFHelper.createPdfFromOtherPdf(
-            file, '${file.getFile().path}.pdf', '${file.getName()}.pdf');
-        intermediateFiles.add(intermediate!.getFile().path);
+      final FileRead? intermediate;
+      switch (file.getExtensionType()) {
+        case SupportedFileType.pdf:
+          intermediate = await PDFHelper.createPdfFromOtherPdf(
+              file, '${file.getFile().path}.pdf', '${file.getName()}.pdf');
+          intermediateFiles.add(intermediate!.getFile().path);
+          break;
+        case SupportedFileType.png:
+          intermediate = await PDFHelper.createPdfFromImage(
+              file, '${file.getFile().path}.pdf', '${file.getName()}.pdf');
+          intermediateFiles.add(intermediate!.getFile().path);
+          break;
+        case SupportedFileType.jpg:
+          intermediate = await PDFHelper.createPdfFromImage(
+              file, '${file.getFile().path}.pdf', '${file.getName()}.pdf');
+          intermediateFiles.add(intermediate!.getFile().path);
+          break;
+        case SupportedFileType.unknown:
+          throw Exception('Unknown file type in file: ${file.getName()}');
       }
     }
     FileRead fileRead = await PDFHelper.mergePdfDocuments(

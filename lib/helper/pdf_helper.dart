@@ -30,6 +30,12 @@ class PDFHelper {
     return FileRead(file, nameOutputFile, null, file.lengthSync(), 'pdf');
   }
 
+  static Future<FileRead?> createPdfFromWord(
+      FileRead wordFile, String outputPath, String nameOutputFile) async {
+    final file = wordFile.getFile().copySync(outputPath);
+    return FileRead(file, nameOutputFile, null, file.lengthSync(), 'pdf');
+  }
+
   static Future<FileRead> mergePdfDocuments(
       List<String> paths, String outputPath, String nameOutputFile) async {
     MergeMultiplePDFResponse response = await PdfMerger.mergeMultiplePDF(

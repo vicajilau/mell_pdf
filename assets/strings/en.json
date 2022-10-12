@@ -29,5 +29,14 @@
   "scan": "SCAN",
   "document_generated_with_drag_pdf": "Document Generated With Drag PDF",
   "size_subtitle": "in size",
-  "removed_toast": "Removed file:"
+  "removed_toast": "Removed file:",
+  "generate_file_error_title": "ERROR",
+  "generate_file_error_subtitle": "An unexpected error occurred while generating the PDF document.",
+  "read_file_error_title": "ERROR",
+  "read_file_error_subtitle": "An unexpected error occurred while uploading the files, possibly you have denied the application permissions to load images or files.",
+  "open_file_error_title": "ERROR",
+  "open_file_error_subtitle": "An unexpected error occurred while opening the file.",
+  "report_error_subtitle": " Do you want to report the error?",
+  "report_error_button_accept": "YES",
+  "report_error_button_cancel": "CANCEL"
 }

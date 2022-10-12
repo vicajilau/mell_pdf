@@ -11,20 +11,17 @@ class HomeViewModel {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: true,
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'jpeg', 'pdf', 'png'],
+      allowedExtensions: ['jpg', 'jpeg', 'pdf', 'png', 'docx', 'doc'],
     );
     _mfl.addMultipleFiles(result?.files ?? [], _mfl.fileHelper.localPath);
   }
 
   Future<void> loadImagesFromStorage() async {
     final ImagePicker picker = ImagePicker();
-    // Pick an image
-    final List<XFile>? images = await picker.pickMultiImage();
-    if (images != null) {
-      List<FileRead> files =
-          await IsolateHelper.createAddMultiplesImagesIsolate(images);
-      _mfl.addFilesInMemory(files);
-    }
+    final List<XFile> images = await picker.pickMultiImage();
+    List<FileRead> files =
+        await IsolateHelper.createAddMultiplesImagesIsolate(images);
+    _mfl.addFilesInMemory(files);
   }
 
   FileManager getMergeableFilesList() => _mfl;

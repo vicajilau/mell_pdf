@@ -29,5 +29,14 @@
     "scan": "ESCANEAR",
     "document_generated_with_drag_pdf": "Documento Generado con DragPDF",
     "size_subtitle": "de tamaño",
-    "removed_toast": "Fichero borrado:"
+    "removed_toast": "Fichero borrado:",
+    "generate_file_error_title": "ERROR",
+    "generate_file_error_subtitle": "Ha ocurrido un error inesperado al generar el documento PDF.",
+    "read_file_error_title": "ERROR",
+    "read_file_error_subtitle": "Ha ocurrido un error inesperado al cargar los ficheros, posiblemente ha denegado los permisos a la aplicación para cargar imágenes o ficheros.",
+    "open_file_error_title": "ERROR",
+    "open_file_error_subtitle": "Ha ocurrido un error inesperado al abrir el fichero.",
+    "report_error_subtitle": " ¿Deseas reportar el error?",
+    "report_error_button_accept": "SI",
+    "report_error_button_cancel": "CANCELAR"
 }
