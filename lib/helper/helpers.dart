@@ -3,7 +3,6 @@ export 'package:mell_pdf/helper/app_session.dart';
 export 'package:mell_pdf/helper/dialogs/file_dialog.dart';
 export 'package:mell_pdf/helper/dialogs/rename_dialog.dart';
 export 'package:mell_pdf/helper/dialogs/resize_image_dialog.dart';
-export 'package:mell_pdf/helper/enum_helper.dart';
 export 'package:mell_pdf/helper/file_helper.dart';
 export 'package:mell_pdf/helper/image_helper.dart';
 export 'package:mell_pdf/helper/isolate_helper.dart';
