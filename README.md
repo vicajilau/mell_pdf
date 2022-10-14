@@ -4,8 +4,11 @@
 
 Drag PDF is a cross-platform PDF merging and generating app built on Flutter. Thanks to Drag PDF you can create PDF documents completely free and privately. Adjust the size of the final PDF document by lowering the resolution of the images, change the order of the files, preview the content, rename the files, add part of the document with the camera thanks to the integrated scanner... All this and much more thanks to an open source initiative fully committed to privacy.
 
-![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/ios-iphone.jpeg?raw=true)
-
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-2.png?raw=true)
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-3.png?raw=true)
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-4.png?raw=true)
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-5.png?raw=true)
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-6.png?raw=true)
 
 ## Start using DragPDF
 To start using DragPDF in your own project, the first thing you should do is:
