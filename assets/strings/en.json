@@ -38,5 +38,7 @@
   "open_file_error_subtitle": "An unexpected error occurred while opening the file.",
   "report_error_subtitle": " Do you want to report the error?",
   "report_error_button_accept": "YES",
-  "report_error_button_cancel": "CANCEL"
+  "report_error_button_cancel": "CANCEL",
+  "share_file_error_title": "ERROR",
+  "share_file_error_subtitle": "An unexpected error occurred while sharing the file."
 }
