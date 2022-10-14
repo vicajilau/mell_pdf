@@ -182,7 +182,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.0+1"
+    version: "5.2.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -440,7 +440,7 @@ packages:
       name: pdfx
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   permission_handler:
     dependency: transitive
     description:
@@ -538,7 +538,7 @@ packages:
       name: share_plus_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   share_plus_macos:
     dependency: transitive
     description:
