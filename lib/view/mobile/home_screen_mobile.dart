@@ -239,6 +239,9 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                 visible: viewModel.thereAreFilesLoaded(),
                 child: FloatingActionButton(
                   onPressed: () async {
+                    setState(() {
+                      Loading.show();
+                    });
                     try {
                       final file = await viewModel.generatePreviewPdfDocument();
                       setState(() {
@@ -252,6 +255,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                         subtitleLocalized: 'generate_file_error_subtitle',
                         buttonTextLocalized: 'accept',
                       );
+                    } finally {
+                      setState(() {
+                        Loading.hide();
+                      });
                     }
                   },
                   backgroundColor: ColorsApp.kMainColor,
