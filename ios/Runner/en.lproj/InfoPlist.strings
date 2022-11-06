@@ -5,5 +5,6 @@
   Created by Victor Carreras on 19/8/22.
   
 */
+NSLocalNetworkUsageDescription = "Allow Flutter tools on your computer to connect and debug your application. This prompt will not appear on release builds.";
 NSCameraUsageDescription = "Required to be able to scan documents from the camera.";
 NSPhotoLibraryUsageDescription = "Necessary to be able to load files from the image gallery.";

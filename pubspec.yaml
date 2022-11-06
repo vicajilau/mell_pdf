@@ -47,7 +47,7 @@ dependencies:
   flutter_launcher_icons: ^0.10.0
   pdf: ^3.8.3
   pdf_merger: ^0.0.6
-  share_plus: ^4.5.3
+  share_plus: ^6.2.0
   cunning_document_scanner: ^1.1.0
 
 flutter_icons:

@@ -25,8 +25,8 @@ class PDFViewerScreen extends StatelessWidget {
                 IconButton(
                     onPressed: () async {
                       try {
-                        await Share.shareFiles(
-                          [file.getFile().path],
+                        await Share.shareXFiles(
+                          [XFile(file.getFile().path)],
                           text: Localization.of(context)
                               .string('document_generated_with_drag_pdf'),
                           sharePositionOrigin: Rect.fromLTRB(
