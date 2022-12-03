@@ -4,6 +4,7 @@ import 'package:mell_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../common/colors/colors_app.dart';
 import '../helper/dialogs/custom_dialog.dart';
 import '../helper/utils.dart';
 
@@ -22,6 +23,44 @@ class PDFViewerScreen extends StatelessWidget {
         title: Text(file.getName()),
         actions: isFinalFile(file)
             ? [
+                IconButton(
+                  onPressed: () => showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: Text(Localization.of(context)
+                          .string('signature_title_alert')),
+                      content: Text(Localization.of(context)
+                          .string('signature_subtitle_alert')),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(Localization.of(context)
+                              .string('signature_sign_alert')),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.pop(context, 'Scan');
+                            Navigator.pushNamed(
+                                context, "/create_signature_screen",
+                                arguments: file);
+                          },
+                          child: Text(Localization.of(context)
+                              .string('signature_create_alert')),
+                        ),
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancel'),
+                          child: Text(
+                            Localization.of(context).string('cancel'), // Cancel
+                            style: const TextStyle(color: ColorsApp.kMainColor),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  icon: const Icon(Icons.create),
+                ),
                 IconButton(
                     onPressed: () async {
                       try {

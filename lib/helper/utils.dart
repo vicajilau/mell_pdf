@@ -14,6 +14,10 @@ class Utils {
     }
   }
 
+  static bool thereIsSignatureStored() {
+    return false;
+  }
+
   static String printableSizeOfFile(int size) {
     if (size / 1000000000 > 1) {
       // GB

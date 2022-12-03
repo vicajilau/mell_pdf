@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
-import 'enums.dart';
+import 'enums/supported_file_type.dart';
 
 class FileManager {
   final List<FileRead> _filesInMemory = [];

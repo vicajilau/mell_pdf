@@ -49,6 +49,7 @@ dependencies:
   pdf_merger: ^0.0.6
   share_plus: ^6.2.0
   cunning_document_scanner: ^1.1.0
+  signature: ^5.0.0
 
 flutter_icons:
   image_path_android: "assets/icons/android-icon.png"

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:image/image.dart';
 
-import 'enums.dart';
+import 'enums/supported_file_type.dart';
 
 class FileRead {
   File _file;

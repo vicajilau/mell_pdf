@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
 import '../helper/utils.dart';
-import '../model/enums.dart';
+import '../model/enums/supported_file_type.dart';
 
 class FileTypeIcon extends StatelessWidget {
   final FileRead file;

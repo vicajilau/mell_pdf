@@ -74,7 +74,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                             .string('choose_an_option')), // Choose an option
                         content: Text(Localization.of(context).string(
                             'content_home_screen_dialog')), // 'Do you want to load the file(s) from disk or from the document scanner?'
-                        actions: <Widget>[
+                        actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
