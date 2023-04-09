@@ -71,7 +71,7 @@ class FileManager {
       final file = files[i];
       final FileRead fileRead;
       final bytes = await file.readAsBytes();
-      Image? image = decodeNamedImage(bytes, file.name);
+      Image? image = decodeNamedImage(file.name, bytes);
       if (file.name.contains(".heic")) {
         String? jpegPath = await HeicToJpg.convert(file.path);
         final jpegFile = File(jpegPath!);

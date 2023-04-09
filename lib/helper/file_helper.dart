@@ -75,7 +75,7 @@ class FileHelper {
       throw Exception('Cannot rotate the image in the file: $file');
     }
     // Rotate 90 grades the image
-    Image rotatedImage = copyRotate(image, 90);
+    Image rotatedImage = copyRotate(image, angle: 90);
     file.setImage(rotatedImage);
     // Save the image
     List<int> encoded = encodeBySupportedFormat(file, rotatedImage);
@@ -99,6 +99,6 @@ class FileHelper {
 
   Image? decodeBySupportedFormat(FileRead file) {
     return decodeNamedImage(
-        file.getFile().readAsBytesSync(), file.getFile().path);
+        file.getFile().path, file.getFile().readAsBytesSync());
   }
 }
