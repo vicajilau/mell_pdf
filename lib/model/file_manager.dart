@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
 
-import 'enums.dart';
+import 'enums/supported_file_type.dart';
 
 class FileManager {
   final List<FileRead> _filesInMemory = [];
@@ -71,7 +71,7 @@ class FileManager {
       final file = files[i];
       final FileRead fileRead;
       final bytes = await file.readAsBytes();
-      Image? image = decodeNamedImage(bytes, file.name);
+      Image? image = decodeNamedImage(file.name, bytes);
       if (file.name.contains(".heic")) {
         String? jpegPath = await HeicToJpg.convert(file.path);
         final jpegFile = File(jpegPath!);

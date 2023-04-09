@@ -5,5 +5,6 @@
   Created by Victor Carreras on 19/8/22.
   
 */
+NSLocalNetworkUsageDescription = "Permitir que Flutter en su pc se conecte y depuren su aplicación. Este mensaje no aparecerá en el modo release.";
 NSCameraUsageDescription = "Necesario para poder escanear documentos desde la cámara.";
 NSPhotoLibraryUsageDescription = "Necesario para poder cargar ficheros de la galería de imágenes.";

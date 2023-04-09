@@ -14,6 +14,10 @@ class Utils {
     }
   }
 
+  static bool thereIsSignatureStored() {
+    return false;
+  }
+
   static String printableSizeOfFile(int size) {
     if (size / 1000000000 > 1) {
       // GB
@@ -78,7 +82,8 @@ class Utils {
     final imageProvider = Image.file(
       file.getFile(),
     ).image;
-    showImageViewer(context, imageProvider, onViewerDismissed: () {
+    showImageViewer(context, imageProvider, doubleTapZoomable: true,
+        onViewerDismissed: () {
       Utils.printInDebug("Dismissed Image: ${file.getFile().path}");
     });
   }
