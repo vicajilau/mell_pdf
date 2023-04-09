@@ -82,7 +82,8 @@ class Utils {
     final imageProvider = Image.file(
       file.getFile(),
     ).image;
-    showImageViewer(context, imageProvider, onViewerDismissed: () {
+    showImageViewer(context, imageProvider, doubleTapZoomable: true,
+        onViewerDismissed: () {
       Utils.printInDebug("Dismissed Image: ${file.getFile().path}");
     });
   }
