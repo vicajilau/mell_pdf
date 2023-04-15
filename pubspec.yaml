@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   lottie: ^2.3.2
   platform_detail: ^2.1.2
-  file_picker: ^5.2.7
+  file_picker: ^5.2.9
   easy_image_viewer: ^1.2.0
   pdfx: ^2.3.0
   path_provider: ^2.0.14
