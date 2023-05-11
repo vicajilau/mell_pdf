@@ -65,7 +65,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - heic_to_jpg (from `.symlinks/plugins/heic_to_jpg/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - pdf_merger (from `.symlinks/plugins/pdf_merger/ios`)
   - pdfx (from `.symlinks/plugins/pdfx/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
@@ -92,7 +92,7 @@ EXTERNAL SOURCES:
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/ios"
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   pdf_merger:
     :path: ".symlinks/plugins/pdf_merger/ios"
   pdfx:
@@ -111,7 +111,7 @@ SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   heic_to_jpg: cce9d6463ab11852a7393daa61be23f98a951c64
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
-  path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
+  path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
   pdf_merger: 488fa9454fa422922ee8df77c4b6b8dc21639989
   pdfx: 7b876b09de8b7a0bf444a4f82b439ffcff4ee1ec
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
@@ -121,4 +121,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1
