@@ -19,10 +19,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: AppRouter.init().routes,
-      darkTheme: ThemeData.dark(),
-      theme: ThemeData.light().copyWith(
+      darkTheme: ThemeData.dark(useMaterial3: true),
+      theme: ThemeData.light(useMaterial3: true).copyWith(
+        primaryColor: ColorsApp.white,
         appBarTheme: const AppBarTheme(
-          color: ColorsApp.kMainColor,
+            color: ColorsApp.kMainColor, foregroundColor: Colors.white),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          foregroundColor: Colors.white,
         ),
       ),
       localizationsDelegates: const [
