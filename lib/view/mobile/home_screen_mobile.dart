@@ -71,9 +71,11 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
                         title: Text(Localization.of(context)
-                            .string('choose_an_option')), // Choose an option
-                        content: Text(Localization.of(context).string(
-                            'content_home_screen_dialog')), // 'Do you want to load the file(s) from disk or from the document scanner?'
+                            .string('choose_an_option')),
+                        // Choose an option
+                        content: Text(Localization.of(context)
+                            .string('content_home_screen_dialog')),
+                        // 'Do you want to load the file(s) from disk or from the document scanner?'
                         actions: [
                           TextButton(
                             onPressed: () {
@@ -173,11 +175,11 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                           },
                           background: Container(
                             color: ColorsApp.red,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 30),
+                            child: const Padding(
+                              padding: EdgeInsets.only(right: 30),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
-                                children: const [
+                                children: [
                                   Icon(
                                     Icons.delete,
                                     color: ColorsApp.white,
