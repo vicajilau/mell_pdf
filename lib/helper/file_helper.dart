@@ -101,4 +101,9 @@ class FileHelper {
     return decodeNamedImage(
         file.getFile().path, file.getFile().readAsBytesSync());
   }
+
+  String getFormatOfFile(String path) {
+    final parts = path.split(".");
+    return parts.last;
+  }
 }

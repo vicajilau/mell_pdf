@@ -5,7 +5,6 @@ import 'package:image/image.dart';
 import 'package:mell_pdf/helper/pdf_helper.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:file_picker/file_picker.dart';
-import 'package:heic_to_jpg/heic_to_jpg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
@@ -72,15 +71,9 @@ class FileManager {
       final FileRead fileRead;
       final bytes = await file.readAsBytes();
       Image? image = decodeNamedImage(file.name, bytes);
-      if (file.name.contains(".heic")) {
-        String? jpegPath = await HeicToJpg.convert(file.path);
-        final jpegFile = File(jpegPath!);
-        fileRead =
-            FileRead(jpegFile, names[i], image, jpegFile.lengthSync(), "jpg");
-      } else {
-        final size = await file.length();
-        fileRead = FileRead(File(file.path), names[i], image, size, "jpg");
-      }
+      final size = await file.length();
+      final format = FileHelper.singleton.getFormatOfFile(file.path);
+      fileRead = FileRead(File(file.path), names[i], image, size, format);
       final fileSaved = saveFileOnDisk(fileRead, localPath);
       finalFiles.add(fileSaved);
     }

@@ -37,17 +37,16 @@ dependencies:
   cupertino_icons: ^1.0.5
   lottie: ^2.3.2
   platform_detail: ^2.1.2
-  file_picker: ^5.2.9
+  file_picker: ^5.2.10
   easy_image_viewer: ^1.2.0
   pdfx: ^2.3.0
   path_provider: ^2.0.14
   image: ^4.0.15
   image_picker: ^0.8.7+1
-  heic_to_jpg: ^0.2.0
   flutter_launcher_icons: ^0.13.0
   pdf: ^3.10.1
   pdf_merger: ^0.0.6
-  share_plus: ^6.3.1
+  share_plus: ^6.3.4
   cunning_document_scanner: ^1.1.2
   signature: ^5.3.2
 
