@@ -43,7 +43,7 @@ dependencies:
   path_provider: ^2.0.14
   image: ^4.0.15
   image_picker: ^1.0.1
-  flutter_launcher_icons: ^0.13.0
+  flutter_launcher_icons: ^0.13.1
   pdf: ^3.10.1
   pdf_merger: ^0.0.6
   share_plus: ^7.0.2
@@ -56,9 +56,6 @@ flutter_icons:
   android: true
   ios: true
   remove_alpha_ios: true
-  web:
-    generate: true
-    image_path: "assets/icons/ios-icon.png"
   windows:
     generate: true
     image_path: "assets/icons/ios-icon.png"
