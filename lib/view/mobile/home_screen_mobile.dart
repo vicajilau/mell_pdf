@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/components/components.dart';
-import 'package:mell_pdf/view_model/view_models.dart';
 import '../../helper/dialogs/custom_dialog.dart';
 import '../../helper/helpers.dart';
+import '../../view_model/home_view_model.dart';
 
 class HomeScreenMobile extends StatefulWidget {
   const HomeScreenMobile({Key? key}) : super(key: key);

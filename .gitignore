@@ -42,3 +42,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Secure INF
+*.env
+**/firebase_app_id_file.json
+**/google-services.json
+**/GoogleService-Info.plist
