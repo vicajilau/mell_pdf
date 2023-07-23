@@ -106,6 +106,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                         actions: [
                           TextButton(
                             onPressed: () {
+                              Navigator.pop(context);
                               FileDialog.add(
                                   context: context,
                                   loadImageFromGallery: () async =>
