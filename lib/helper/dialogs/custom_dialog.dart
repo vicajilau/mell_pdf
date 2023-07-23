@@ -16,21 +16,31 @@ class CustomDialog {
     final actions = <Widget>[];
     if (isReportable) {
       content += Localization.of(context).string('report_error_subtitle');
-      actions.add(TextButton(
+      actions.add(
+        TextButton(
           onPressed: () {
             Navigator.pop(context);
           },
           child: Text(
-              Localization.of(context).string('report_error_button_accept'))));
-      actions.add(TextButton(
+            Localization.of(context).string('report_error_button_accept'),
+          ),
+        ),
+      );
+      actions.add(
+        TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text(
-              Localization.of(context).string('report_error_button_cancel'))));
+            Localization.of(context).string('report_error_button_cancel'),
+          ),
+        ),
+      );
     } else {
-      actions.add(TextButton(
-        onPressed: () => Navigator.pop(context),
-        child: Text(Localization.of(context).string(buttonTextLocalized)),
-      ));
+      actions.add(
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(Localization.of(context).string(buttonTextLocalized)),
+        ),
+      );
     }
 
     showDialog(

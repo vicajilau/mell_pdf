@@ -1,0 +1,4 @@
+enum LoaderOf {
+  imagesFromGallery,
+  filesFromFileSystem
+}
