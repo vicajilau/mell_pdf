@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/components/components.dart';
-import 'package:mell_pdf/view_model/view_models.dart';
+import 'package:mell_pdf/model/enums/loader_of.dart';
 import '../../helper/dialogs/custom_dialog.dart';
 import '../../helper/helpers.dart';
+import '../../view_model/home_view_model.dart';
 
 class HomeScreenMobile extends StatefulWidget {
   const HomeScreenMobile({Key? key}) : super(key: key);
@@ -54,6 +55,32 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
     }
   }
 
+  Future<void> loadFilesOrImages(LoaderOf from) async {
+    setState(() {
+      Loading.show();
+    });
+    try {
+      switch (from) {
+        case LoaderOf.imagesFromGallery:
+          await viewModel.loadImagesFromStorage();
+        case LoaderOf.filesFromFileSystem:
+          await viewModel.loadFilesFromStorage();
+      }
+    } catch (error) {
+      CustomDialog.showError(
+          context: context,
+          error: error,
+          titleLocalized: 'read_file_error_title',
+          subtitleLocalized: 'read_file_error_subtitle',
+          buttonTextLocalized: 'accept');
+    } finally {
+      setState(() {
+        Loading.hide();
+        Utils.printInDebug(viewModel.getMergeableFilesList());
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -82,40 +109,12 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                               Navigator.pop(context);
                               FileDialog.add(
                                   context: context,
-                                  loadImageFromGallery: () async {
-                                    setState(() {
-                                      Loading.show();
-                                    });
-                                    try {
-                                      await viewModel.loadImagesFromStorage();
-                                    } catch (error) {
-                                      CustomDialog.showError(
-                                          context: context,
-                                          error: error,
-                                          titleLocalized:
-                                              'read_file_error_title',
-                                          subtitleLocalized:
-                                              'read_file_error_subtitle',
-                                          buttonTextLocalized: 'accept');
-                                    } finally {
-                                      setState(() {
-                                        Loading.hide();
-                                        Utils.printInDebug(
-                                            viewModel.getMergeableFilesList());
-                                      });
-                                    }
-                                  },
-                                  loadFileFromFileSystem: () async {
-                                    setState(() {
-                                      Loading.show();
-                                    });
-                                    await viewModel.loadFilesFromStorage();
-                                    setState(() {
-                                      Loading.hide();
-                                      Utils.printInDebug(
-                                          viewModel.getMergeableFilesList());
-                                    });
-                                  });
+                                  loadImageFromGallery: () async =>
+                                      await loadFilesOrImages(
+                                          LoaderOf.imagesFromGallery),
+                                  loadFileFromFileSystem: () async =>
+                                      await loadFilesOrImages(
+                                          LoaderOf.filesFromFileSystem));
                             },
                             child: Text(Localization.of(context)
                                 .string('load')), // LOAD
