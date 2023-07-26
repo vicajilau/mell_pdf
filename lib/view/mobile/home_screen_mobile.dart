@@ -4,6 +4,7 @@ import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/components/components.dart';
 import 'package:mell_pdf/model/enums/loader_of.dart';
+
 import '../../helper/dialogs/custom_dialog.dart';
 import '../../helper/helpers.dart';
 import '../../view_model/home_view_model.dart';
@@ -150,8 +151,15 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
               ),
               body: viewModel.thereAreFilesLoaded()
                   ? ReorderableListView.builder(
+                      proxyDecorator: (child, index, animation) =>
+                          ColorFiltered(
+                              colorFilter: ColorFilter.mode(
+                                  Colors.blueAccent.withOpacity(0.2),
+                                  BlendMode.srcATop),
+                              child: child),
                       itemCount:
                           viewModel.getMergeableFilesList().numberOfFiles(),
+                      padding: const EdgeInsets.all(8),
                       onReorderStart: (int value) =>
                           HapticFeedback.mediumImpact(),
                       itemBuilder: (context, position) {
