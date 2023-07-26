@@ -1,9 +1,8 @@
 import 'package:easy_image_viewer/easy_image_viewer.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:mell_pdf/helper/helpers.dart';
-
-import '../model/models.dart';
+import 'package:mell_pdf/model/models.dart';
 
 class Utils {
   static const nameOfFinalFile = 'Preview Document.pdf';
@@ -61,11 +60,19 @@ class Utils {
     return image?.width ?? 0;
   }
 
+  static bool isFinalFile(FileRead file) =>
+      file.getName() == Utils.nameOfFinalFile;
+
   static void openFileProperly(BuildContext context, FileRead file) {
     switch (file.getExtensionType()) {
       case SupportedFileType.pdf:
         Utils.printInDebug("Opened PDF file: ${file.getFile().path}");
-        Navigator.pushNamed(context, "/pdf_viewer_screen", arguments: file);
+
+        isFinalFile(file)
+            ? Navigator.pushNamed(context, "/preview_document_screen",
+                arguments: file)
+            : Navigator.pushNamed(context, "/pdf_viewer_screen",
+                arguments: file);
         break;
       case SupportedFileType.png:
         _openImage(context, file);

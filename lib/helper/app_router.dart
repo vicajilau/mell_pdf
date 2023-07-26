@@ -22,6 +22,7 @@ class AppRouter {
       "/": (context) => const SplashScreenMobile(),
       "/home": (context) => const HomeScreenMobile(),
       "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
+      "/preview_document_screen": (context) => const PreviewDocumentScreen(),
       "/create_signature_screen": (context) => const CreateSignatureScreen(),
       "/loading": (context) => const LoadingScreen(),
     };
@@ -33,6 +34,7 @@ class AppRouter {
       "/": (context) => const SplashScreenDesktop(),
       "/home": (context) => const HomeScreenDesktop(),
       "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
+      "/preview_document_screen": (context) => const PreviewDocumentScreen(),
       "/create_signature_screen": (context) => const CreateSignatureScreen(),
     };
   }
