@@ -116,7 +116,7 @@ class FileManager {
   Future<FileRead?> scanDocument() async {
     FileRead? fileRead;
     List<String>? paths = await CunningDocumentScanner.getPictures();
-    if (paths != null) {
+    if (paths != null && paths.isNotEmpty) {
       final pdf = pw.Document();
       File file;
       for (String path in paths) {
