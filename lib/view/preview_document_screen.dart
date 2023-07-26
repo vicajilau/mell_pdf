@@ -1,6 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
+import 'package:mell_pdf/helper/local_storage.dart';
 import 'package:mell_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:share_plus/share_plus.dart';
@@ -9,6 +12,69 @@ import '../helper/dialogs/custom_dialog.dart';
 
 class PreviewDocumentScreen extends StatelessWidget {
   const PreviewDocumentScreen({Key? key}) : super(key: key);
+
+  void showSignatureMenu(BuildContext context, FileRead file) {
+    List<String>? intListString =
+        LocalStorage.prefs.getStringList('myUint8ListKey');
+    late Uint8List? myUint8List;
+    if (intListString != null) {
+      List<int> intList = intListString.map((str) => int.parse(str)).toList();
+      myUint8List = Uint8List.fromList(intList);
+    }
+
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(Localization.of(context).string('signature_title_alert')),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(Localization.of(context).string('signature_subtitle_alert')),
+            const SizedBox(height: 24),
+            Container(
+              width: 100,
+              height: 70,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black54,
+                  width: 0.5,
+                ),
+              ),
+              padding: const EdgeInsets.all(4),
+              child: intListString != null
+                  ? Image.memory(myUint8List!)
+                  : const Text('No signature'),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // TODO
+            },
+            child:
+                Text(Localization.of(context).string('signature_sign_alert')),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context, 'Scan');
+              Navigator.pushNamed(context, "/create_signature_screen",
+                  arguments: file);
+            },
+            child:
+                Text(Localization.of(context).string('signature_create_alert')),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+            child: Text(
+              Localization.of(context).string('cancel'), // Cancel
+              style: const TextStyle(color: ColorsApp.kMainColor),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,40 +88,7 @@ class PreviewDocumentScreen extends StatelessWidget {
         title: Text(file.getName()),
         actions: [
           IconButton(
-            onPressed: () => showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: Text(
-                    Localization.of(context).string('signature_title_alert')),
-                content: Text(Localization.of(context)
-                    .string('signature_subtitle_alert')),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context); // TODO
-                    },
-                    child: Text(Localization.of(context)
-                        .string('signature_sign_alert')),
-                  ),
-                  TextButton(
-                    onPressed: () async {
-                      Navigator.pop(context, 'Scan');
-                      Navigator.pushNamed(context, "/create_signature_screen",
-                          arguments: file);
-                    },
-                    child: Text(Localization.of(context)
-                        .string('signature_create_alert')),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                    child: Text(
-                      Localization.of(context).string('cancel'), // Cancel
-                      style: const TextStyle(color: ColorsApp.kMainColor),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            onPressed: () => showSignatureMenu(context, file),
             icon: const Icon(Icons.create),
           ),
           IconButton(

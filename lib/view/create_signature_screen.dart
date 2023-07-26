@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:mell_pdf/helper/local_storage.dart';
 import 'package:signature/signature.dart';
 
 import '../common/localization/localization.dart';
@@ -84,8 +85,21 @@ class _CreateSignatureScreenState extends State<CreateSignatureScreen> {
           icon: const Icon(Icons.arrow_back),
         ),
       ),
-      body: Signature(
-        controller: _controller,
+      body: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black54,
+              width: 1,
+            ),
+          ),
+          child: ClipRRect(
+            child: Signature(
+              controller: _controller,
+              backgroundColor: Colors.transparent,
+            ),
+          ),
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
@@ -95,8 +109,9 @@ class _CreateSignatureScreenState extends State<CreateSignatureScreen> {
             IconButton(
               icon: const Icon(Icons.check),
               color: Colors.blue,
-              onPressed:
-                  _controller.isNotEmpty ? () => exportSignature() : null,
+              onPressed: _controller.isNotEmpty
+                  ? () => exportSignature().then((_) => Navigator.pop(context))
+                  : null,
               tooltip: Localization.of(context)
                   .string('signature_screen_save_tooltip'),
             ),
@@ -151,15 +166,23 @@ class _CreateSignatureScreenState extends State<CreateSignatureScreen> {
 
   Future<Uint8List?> exportSignature() async {
     final exportController = SignatureController(
-      penStrokeWidth: 2,
-      exportBackgroundColor: Colors.white,
+      penStrokeWidth: 3,
+      exportBackgroundColor: Colors.transparent,
       penColor: Colors.black,
       points: _controller.points,
     );
+
     //converting the signature to png bytes
-    final signature = exportController.toPngBytes();
+    final signature = await exportController.toPngBytes();
+    if (signature != null) {
+      List<int> intList = signature.toList();
+      LocalStorage.prefs.setStringList(
+          'myUint8ListKey', intList.map((e) => e.toString()).toList());
+    }
+
     //clean up the memory
     exportController.dispose();
+
     return signature;
   }
 }

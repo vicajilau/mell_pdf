@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,15 +8,17 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
-import 'helper/helpers.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:mell_pdf/helper/local_storage.dart';
+
 import 'firebase_options.dart';
+import 'helper/helpers.dart';
 
 Future<void> initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   await loadSecureInf();
   await loadFirebase();
   await prepareApp();
+  await LocalStorage.configurePrefs();
 }
 
 Future loadSecureInf() async => await dotenv.load(fileName: ".env");
