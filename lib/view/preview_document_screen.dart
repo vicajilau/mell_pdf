@@ -25,12 +25,11 @@ class PreviewDocumentScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(Localization.of(context).string('signature_subtitle_alert')),
-            if (signatures.isNotEmpty) ...[
+            if (signatures.isNotEmpty)
               Text(Localization.of(context)
                   .string('signature_subtitle_alert_options')),
-              const SizedBox(height: 24),
-              SignatureThumbnailWrap(signatures: signatures),
-            ]
+            const SizedBox(height: 24),
+            SignatureThumbnailWrap(signatures: signatures),
           ],
         ),
         actions: [
@@ -41,15 +40,15 @@ class PreviewDocumentScreen extends StatelessWidget {
             child:
                 Text(Localization.of(context).string('signature_sign_alert')),
           ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context, 'Scan');
-              Navigator.pushNamed(context, "/create_signature_screen",
-                  arguments: file);
-            },
-            child:
-                Text(Localization.of(context).string('signature_create_alert')),
-          ),
+          // TextButton(
+          //   onPressed: () async {
+          //     Navigator.pop(context, 'Scan');
+          //     Navigator.pushNamed(context, "/create_signature_screen",
+          //         arguments: file);
+          //   },
+          //   child:
+          //       Text(Localization.of(context).string('signature_create_alert')),
+          // ),
           TextButton(
             onPressed: () => Navigator.pop(context, 'Cancel'),
             child: Text(
