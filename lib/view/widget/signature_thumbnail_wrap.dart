@@ -23,48 +23,47 @@ class _SignatureThumbnailWrapState extends State<SignatureThumbnailWrap> {
     return SizedBox(
       height: widget.signatures.length <= 2
           ? 70
-          : widget.signatures.length <= 4
+          : widget.signatures.length < 4
               ? 150
               : 200,
       child: SingleChildScrollView(
         child: Wrap(
-            runSpacing: 8,
-            spacing: 8,
-            children: List.generate(widget.signatures.length + 1, (index) {
-              if (index == widget.signatures.length) {
-                return Container(
-                    width: 100,
-                    height: 70,
-                    padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: PlatformDetail.isLightMode ? null : Colors.white,
-                      border: Border.all(
-                        color: Colors.black54,
-                        width: 0.5,
-                      ),
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context, 'Scan');
-                        Navigator.pushNamed(
-                            context, "/create_signature_screen");
-                      },
-                      icon: const Icon(
-                        Icons.add_circle,
-                        size: 30,
-                        color: ColorsApp.kMainColor,
-                      ),
-                    ));
-              } else {
-                return SignatureThumbnail(
-                  signature: widget.signatures[index],
-                  isSelected: LocalStorage.prefs.getInt('signature') ==
-                      widget.signatures[index].id,
-                  callback: () => setState(() {}),
-                );
-              }
-            })),
+          runSpacing: 8,
+          spacing: 8,
+          children: [
+            Container(
+                width: 100,
+                height: 70,
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: PlatformDetail.isLightMode ? null : Colors.white,
+                  border: Border.all(
+                    color: Colors.black54,
+                    width: 0.5,
+                  ),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context, 'Scan');
+                    Navigator.pushNamed(context, "/create_signature_screen");
+                  },
+                  icon: const Icon(
+                    Icons.add_circle,
+                    size: 30,
+                    color: ColorsApp.kMainColor,
+                  ),
+                )),
+            ...List.generate(widget.signatures.length, (index) {
+              return SignatureThumbnail(
+                signature: widget.signatures[index],
+                isSelected: LocalStorage.prefs.getInt('signature') ==
+                    widget.signatures[index].id,
+                callback: () => setState(() {}),
+              );
+            })
+          ],
+        ),
       ),
     );
   }

@@ -41,15 +41,15 @@ class PreviewDocumentScreen extends StatelessWidget {
             child:
                 Text(Localization.of(context).string('signature_sign_alert')),
           ),
-          // TextButton(
-          //   onPressed: () async {
-          //     Navigator.pop(context, 'Scan');
-          //     Navigator.pushNamed(context, "/create_signature_screen",
-          //         arguments: file);
-          //   },
-          //   child:
-          //       Text(Localization.of(context).string('signature_create_alert')),
-          // ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context, 'Scan');
+              Navigator.pushNamed(context, "/create_signature_screen",
+                  arguments: file);
+            },
+            child:
+                Text(Localization.of(context).string('signature_create_alert')),
+          ),
           TextButton(
             onPressed: () => Navigator.pop(context, 'Cancel'),
             child: Text(
@@ -82,8 +82,6 @@ class PreviewDocumentScreen extends StatelessWidget {
                 try {
                   await Share.shareXFiles(
                     [XFile(file.getFile().path)],
-                    text: Localization.of(context)
-                        .string('document_generated_with_drag_pdf'),
                     sharePositionOrigin: Rect.fromLTRB(
                         MediaQuery.of(context).size.width - 300,
                         0,
