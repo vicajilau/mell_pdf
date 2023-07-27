@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/helper/local_storage.dart';
+import 'package:mell_pdf/helper/db_storage.dart';
 import 'package:mell_pdf/model/signature_model.dart';
 import 'package:platform_detail/platform_detail.dart';
 import 'package:signature/signature.dart';
@@ -178,7 +178,7 @@ class _CreateSignatureScreenState extends State<CreateSignatureScreen> {
     final signature = await exportController.toPngBytes();
     if (signature != null) {
       final newSignature = SignatureModel()..image = signature.toList();
-      DBStorage.cleanAllAndAddSignature(newSignature);
+      DBStorage.addSignature(newSignature);
     }
 
     //clean up the memory

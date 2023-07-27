@@ -51,6 +51,7 @@ dependencies:
   pdfx: ^2.4.0
   platform_detail: ^3.0.1
   share_plus: ^7.0.2
+  shared_preferences: ^2.2.0
   signature: ^5.3.2
 
 flutter_icons:
@@ -64,11 +65,6 @@ flutter_icons:
     image_path: "assets/icons/ios-icon.png"
 
 dev_dependencies:
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   build_runner: ^2.4.6
   flutter_lints: ^2.0.1
   flutter_test:

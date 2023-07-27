@@ -1,12 +1,11 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
-import 'package:mell_pdf/helper/local_storage.dart';
+import 'package:mell_pdf/helper/db_storage.dart';
 import 'package:mell_pdf/model/models.dart';
+import 'package:mell_pdf/model/signature_model.dart';
+import 'package:mell_pdf/view/widget/signature_thumbnail_wrap.dart';
 import 'package:pdfx/pdfx.dart';
-import 'package:platform_detail/platform_detail.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../helper/dialogs/custom_dialog.dart';
@@ -15,13 +14,7 @@ class PreviewDocumentScreen extends StatelessWidget {
   const PreviewDocumentScreen({Key? key}) : super(key: key);
 
   void showSignatureMenu(BuildContext context, FileRead file) {
-    final signature = DBStorage.getSignature();
-    List<int> image = [];
-    late Uint8List? myUint8List;
-    if (signature != null) {
-      image = signature.image;
-      myUint8List = Uint8List.fromList(image);
-    }
+    final List<SignatureModel> signatures = DBStorage.getSignatures();
 
     showDialog<String>(
       context: context,
@@ -31,28 +24,18 @@ class PreviewDocumentScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(Localization.of(context).string('signature_subtitle_alert')),
-            const SizedBox(height: 24),
-            Container(
-              width: 100,
-              height: 70,
-              decoration: BoxDecoration(
-                color: PlatformDetail.isLightMode ? null : Colors.white,
-                border: Border.all(
-                  color: Colors.black54,
-                  width: 0.5,
-                ),
-              ),
-              padding: const EdgeInsets.all(4),
-              child: image.isNotEmpty
-                  ? Image.memory(myUint8List!)
-                  : const Text('No signature'),
-            ),
+            if (signatures.isNotEmpty) ...[
+              Text(Localization.of(context)
+                  .string('signature_subtitle_alert_options')),
+              const SizedBox(height: 24),
+              SignatureThumbnailWrap(signatures: signatures),
+            ]
           ],
         ),
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // TODO
+              Navigator.pop(context);
             },
             child:
                 Text(Localization.of(context).string('signature_sign_alert')),

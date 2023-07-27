@@ -1,55 +1,9 @@
-import 'package:isar/isar.dart';
-import 'package:mell_pdf/model/signature_model.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class DBStorage {
-  static late Isar _isar;
+class LocalStorage {
+  static late SharedPreferences prefs;
 
-  static Future<void> configureDataBase() async {
-    final dir = await getApplicationDocumentsDirectory();
-    _isar = await Isar.open(
-      [SignatureModelSchema],
-      directory: dir.path,
-    );
-  }
-
-  static void addSignature(SignatureModel signature) {
-    _isar.writeTxnSync(() {
-      _isar.signatureModels.putSync(signature);
-    });
-  }
-
-  static void cleanAllAndAddSignature(SignatureModel signature) {
-    deleteAllSignatures();
-    _isar.writeTxnSync(() {
-      _isar.signatureModels.putSync(signature);
-    });
-  }
-
-  static List<SignatureModel> getSignatures() {
-    List<SignatureModel> signatures = [];
-    _isar.txnSync(() {
-      signatures = _isar.signatureModels.where().findAllSync();
-    });
-    return signatures;
-  }
-
-  static SignatureModel? getSignature() {
-    SignatureModel? signature;
-    _isar.txnSync(() {
-      signature = _isar.signatureModels.where().findFirstSync();
-    });
-    return signature;
-  }
-
-  static void deleteAllSignatures() {
-    final signatures = getSignatures();
-    _isar.writeTxnSync(() {
-      _isar.signatureModels.deleteAllSync(signatures.map((e) => e.id).toList());
-    });
-  }
-
-  static bool deleteSignature(int id) {
-    return _isar.signatureModels.deleteSync(id);
+  static Future<void> configurePrefs() async {
+    prefs = await SharedPreferences.getInstance();
   }
 }
