@@ -9,7 +9,7 @@ class AppRouter {
   late final Map<String, WidgetBuilder> routes;
 
   AppRouter.init() {
-    if (PlatformDetails.isMobile) {
+    if (PlatformDetail.isMobile) {
       routes = getMobileRoutes();
     } else {
       routes = getDesktopRoutes();

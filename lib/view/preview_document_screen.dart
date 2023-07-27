@@ -6,6 +6,7 @@ import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/helper/local_storage.dart';
 import 'package:mell_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
+import 'package:platform_detail/platform_detail.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../helper/dialogs/custom_dialog.dart';
@@ -14,12 +15,12 @@ class PreviewDocumentScreen extends StatelessWidget {
   const PreviewDocumentScreen({Key? key}) : super(key: key);
 
   void showSignatureMenu(BuildContext context, FileRead file) {
-    List<String>? intListString =
-        LocalStorage.prefs.getStringList('myUint8ListKey');
+    final signature = DBStorage.getSignature();
+    List<int> image = [];
     late Uint8List? myUint8List;
-    if (intListString != null) {
-      List<int> intList = intListString.map((str) => int.parse(str)).toList();
-      myUint8List = Uint8List.fromList(intList);
+    if (signature != null) {
+      image = signature.image;
+      myUint8List = Uint8List.fromList(image);
     }
 
     showDialog<String>(
@@ -35,13 +36,14 @@ class PreviewDocumentScreen extends StatelessWidget {
               width: 100,
               height: 70,
               decoration: BoxDecoration(
+                color: PlatformDetail.isLightMode ? null : Colors.white,
                 border: Border.all(
                   color: Colors.black54,
                   width: 0.5,
                 ),
               ),
               padding: const EdgeInsets.all(4),
-              child: intListString != null
+              child: image.isNotEmpty
                   ? Image.memory(myUint8List!)
                   : const Text('No signature'),
             ),

@@ -18,7 +18,7 @@ Future<void> initializeApp() async {
   await loadSecureInf();
   await loadFirebase();
   await prepareApp();
-  await LocalStorage.configurePrefs();
+  await DBStorage.configureDataBase();
 }
 
 Future loadSecureInf() async => await dotenv.load(fileName: ".env");

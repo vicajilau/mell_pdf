@@ -3,6 +3,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/helper/local_storage.dart';
+import 'package:mell_pdf/model/signature_model.dart';
+import 'package:platform_detail/platform_detail.dart';
 import 'package:signature/signature.dart';
 
 import '../common/localization/localization.dart';
@@ -24,7 +26,7 @@ class _CreateSignatureScreenState extends State<CreateSignatureScreen> {
     super.initState();
     _controller = SignatureController(
       penStrokeWidth: 3,
-      penColor: Colors.black,
+      penColor: PlatformDetail.isLightMode ? Colors.black : Colors.white,
       exportPenColor: Colors.black,
       onDrawStart: () => numberOfRedo = 0,
       onDrawEnd: () => log('onDrawEnd'),
@@ -175,9 +177,8 @@ class _CreateSignatureScreenState extends State<CreateSignatureScreen> {
     //converting the signature to png bytes
     final signature = await exportController.toPngBytes();
     if (signature != null) {
-      List<int> intList = signature.toList();
-      LocalStorage.prefs.setStringList(
-          'myUint8ListKey', intList.map((e) => e.toString()).toList());
+      final newSignature = SignatureModel()..image = signature.toList();
+      DBStorage.cleanAllAndAddSignature(newSignature);
     }
 
     //clean up the memory
