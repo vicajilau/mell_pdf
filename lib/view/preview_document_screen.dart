@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
-import 'package:mell_pdf/helper/db_storage.dart';
 import 'package:mell_pdf/model/models.dart';
-import 'package:mell_pdf/model/signature_model.dart';
 import 'package:mell_pdf/view/widget/signature_thumbnail_wrap.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:share_plus/share_plus.dart';
@@ -14,8 +12,6 @@ class PreviewDocumentScreen extends StatelessWidget {
   const PreviewDocumentScreen({Key? key}) : super(key: key);
 
   void showSignatureMenu(BuildContext context, FileRead file) {
-    final List<SignatureModel> signatures = DBStorage.getSignatures();
-
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -25,11 +21,10 @@ class PreviewDocumentScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(Localization.of(context).string('signature_subtitle_alert')),
-            if (signatures.isNotEmpty)
-              Text(Localization.of(context)
-                  .string('signature_subtitle_alert_options')),
+            Text(Localization.of(context)
+                .string('signature_subtitle_alert_options')),
             const SizedBox(height: 24),
-            SignatureThumbnailWrap(signatures: signatures),
+            const SignatureThumbnailWrap(),
           ],
         ),
         actions: [

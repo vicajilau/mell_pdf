@@ -49,7 +49,9 @@ class DBStorage {
     });
   }
 
-  static bool deleteSignature(int id) {
-    return _isar.signatureModels.deleteSync(id);
+  static void deleteSignature(int id) {
+    _isar.writeTxnSync(() {
+      _isar.signatureModels.deleteSync(id);
+    });
   }
 }

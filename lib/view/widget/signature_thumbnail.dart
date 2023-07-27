@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/helper/local_storage.dart';
 import 'package:mell_pdf/model/signature_model.dart';
+import 'package:mell_pdf/view/widget/delete_signature_button.dart';
 import 'package:platform_detail/platform_detail.dart';
 
 class SignatureThumbnail extends StatelessWidget {
@@ -27,23 +28,36 @@ class SignatureThumbnail extends StatelessWidget {
         LocalStorage.prefs.setInt('signature', signature.id);
         callback();
       },
-      child: Container(
-          width: 100,
-          height: 70,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: isSelected
-                ? Colors.blueAccent.withOpacity(0.2)
-                : PlatformDetail.isLightMode
-                    ? null
-                    : Colors.white,
-            border: Border.all(
-              color: Colors.black54,
-              width: 0.5,
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(4),
+            margin: const EdgeInsets.all(8),
+            width: 100,
+            height: 70,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              color: isSelected
+                  ? Colors.blueAccent.withOpacity(0.2)
+                  : PlatformDetail.isLightMode
+                      ? null
+                      : Colors.white,
+              border: Border.all(
+                color: Colors.black54,
+                width: 0.5,
+              ),
             ),
+            child: Image.memory(myUint8List),
           ),
-          padding: const EdgeInsets.all(4),
-          child: Image.memory(myUint8List)),
+          if (isSelected)
+            Positioned(
+              top: 0,
+              right: 0,
+              child:
+                  DeleteSignatureButton(callback: callback, id: signature.id),
+            ),
+        ],
+      ),
     );
   }
 }

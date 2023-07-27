@@ -4,8 +4,10 @@ import 'package:platform_detail/platform_detail.dart';
 
 class CreateSignatureButton extends StatelessWidget {
   const CreateSignatureButton({
+    required this.callback,
     super.key,
   });
+  final Function callback;
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +15,7 @@ class CreateSignatureButton extends StatelessWidget {
         width: 100,
         height: 70,
         padding: const EdgeInsets.all(4),
+        margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
           color: PlatformDetail.isLightMode ? null : Colors.white,
@@ -22,9 +25,9 @@ class CreateSignatureButton extends StatelessWidget {
           ),
         ),
         child: IconButton(
-          onPressed: () {
-            Navigator.pop(context, 'Scan');
-            Navigator.pushNamed(context, "/create_signature_screen");
+          onPressed: () async {
+            await Navigator.pushNamed(context, "/create_signature_screen");
+            callback();
           },
           icon: const Icon(
             Icons.add_circle,
