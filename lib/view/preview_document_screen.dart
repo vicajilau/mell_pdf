@@ -49,7 +49,7 @@ class PreviewDocumentScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () => Navigator.pop(context, 'Cancel'),
                     child: Text(
-                      Localization.of(context).string('cancel'), // Cancel
+                      Localization.of(context).string('cancel'),
                       style: const TextStyle(color: ColorsApp.kMainColor),
                     ),
                   )
@@ -63,8 +63,6 @@ class PreviewDocumentScreen extends StatelessWidget {
                 try {
                   await Share.shareXFiles(
                     [XFile(file.getFile().path)],
-                    text: Localization.of(context)
-                        .string('document_generated_with_drag_pdf'),
                     sharePositionOrigin: Rect.fromLTRB(
                         MediaQuery.of(context).size.width - 300,
                         0,
