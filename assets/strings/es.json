@@ -27,7 +27,6 @@
     "content_home_screen_dialog": "¿Desea cargar los archivos desde el disco o desde el escaner de documentos?",
     "load": "CARGAR",
     "scan": "ESCANEAR",
-    "document_generated_with_drag_pdf": "Documento Generado con DragPDF",
     "size_subtitle": "de tamaño",
     "removed_toast": "Fichero borrado:",
     "generate_file_error_title": "ERROR",
