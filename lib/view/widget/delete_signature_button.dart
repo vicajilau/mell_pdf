@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
+import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/helper/db_storage.dart';
 import 'package:mell_pdf/helper/local_storage.dart';
 import 'package:mell_pdf/helper/notification_service.dart';
@@ -19,12 +20,17 @@ class DeleteSignatureButton extends StatelessWidget {
     return GestureDetector(
       onLongPress: () {
         DBStorage.deleteSignature(id);
-        LocalStorage.removeSelectedSignature();
+        LocalStorage.removeSelectedSignature().then((value) =>
+            NotificationService.showSnackbar(
+                message: Localization.of(context)
+                    .string('signature_delete_snackbar')));
         callback();
       },
       onTap: () {
-        NotificationService.showSnackbarError(
-            'Manten pulsado para eliminar la firma');
+        NotificationService.showSnackbar(
+            message: Localization.of(context)
+                .string('signature_delete_snackbar_error'),
+            isError: true);
       },
       child: Container(
         width: 22,
