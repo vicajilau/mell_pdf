@@ -9,9 +9,14 @@ import 'package:share_plus/share_plus.dart';
 
 import '../helper/dialogs/custom_dialog.dart';
 
-class PreviewDocumentScreen extends StatelessWidget {
-  const PreviewDocumentScreen({Key? key}) : super(key: key);
+class PreviewDocumentScreen extends StatefulWidget {
+  const PreviewDocumentScreen({super.key});
 
+  @override
+  State<PreviewDocumentScreen> createState() => _PreviewDocumentScreenState();
+}
+
+class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
   void showSignatureMenu(BuildContext context, FileRead file) {
     showDialog<String>(
       context: context,
@@ -57,8 +62,12 @@ class PreviewDocumentScreen extends StatelessWidget {
     );
   }
 
-  void signDocument(BuildContext context) {
+  Future<void> signDocument(BuildContext context) async {
     Navigator.pop(context);
+    await Navigator.pushNamed(
+      context,
+      "/painter_signature_screen",
+    );
   }
 
   @override
