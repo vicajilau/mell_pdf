@@ -41,15 +41,6 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
             child:
                 Text(Localization.of(context).string('signature_sign_alert')),
           ),
-          // TextButton(
-          //   onPressed: () async {
-          //     Navigator.pop(context, 'Scan');
-          //     Navigator.pushNamed(context, "/create_signature_screen",
-          //         arguments: file);
-          //   },
-          //   child:
-          //       Text(Localization.of(context).string('signature_create_alert')),
-          // ),
           TextButton(
             onPressed: () => Navigator.pop(context, 'Cancel'),
             child: Text(
@@ -79,7 +70,7 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(file.getName()),
+        title: const Text("DRAG PDF"),
         actions: [
           IconButton(
             onPressed: () => showSignatureMenu(context, file),
