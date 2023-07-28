@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/helper/db_storage.dart';
+import 'package:mell_pdf/helper/local_storage.dart';
 
 class DeleteSignatureButton extends StatelessWidget {
   const DeleteSignatureButton({
@@ -17,6 +18,7 @@ class DeleteSignatureButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         DBStorage.deleteSignature(id);
+        LocalStorage.removeSelectedSignature();
         callback();
       },
       child: Container(

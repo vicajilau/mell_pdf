@@ -25,7 +25,7 @@ class SignatureThumbnail extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        LocalStorage.prefs.setInt('signature', signature.id);
+        LocalStorage.addSelectedSignature(signature.id);
         callback();
       },
       child: Stack(

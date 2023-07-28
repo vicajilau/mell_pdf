@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
+import 'package:mell_pdf/helper/local_storage.dart';
 import 'package:mell_pdf/model/models.dart';
 import 'package:mell_pdf/view/widget/signature_thumbnail_wrap.dart';
 import 'package:pdfx/pdfx.dart';
@@ -29,9 +30,9 @@ class PreviewDocumentScreen extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: () => (LocalStorage.indexFromSelectedSignature() != null)
+                ? signDocument(context)
+                : null,
             child:
                 Text(Localization.of(context).string('signature_sign_alert')),
           ),
@@ -54,6 +55,10 @@ class PreviewDocumentScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void signDocument(BuildContext context) {
+    Navigator.pop(context);
   }
 
   @override
