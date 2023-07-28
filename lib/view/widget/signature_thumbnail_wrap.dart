@@ -34,7 +34,7 @@ class _SignatureThumbnailWrapState extends State<SignatureThumbnailWrap> {
             ...List.generate(signatures.length, (index) {
               return SignatureThumbnail(
                 signature: signatures[index],
-                isSelected: LocalStorage.prefs.getInt('signature') ==
+                isSelected: LocalStorage.indexFromSelectedSignature() ==
                     signatures[index].id,
                 callback: () => setState(() {}),
               );

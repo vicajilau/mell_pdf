@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
+import 'package:mell_pdf/helper/local_storage.dart';
 import 'package:mell_pdf/model/models.dart';
 import 'package:mell_pdf/view/widget/signature_thumbnail_wrap.dart';
 import 'package:pdfx/pdfx.dart';
@@ -8,9 +9,14 @@ import 'package:share_plus/share_plus.dart';
 
 import '../helper/dialogs/custom_dialog.dart';
 
-class PreviewDocumentScreen extends StatelessWidget {
-  const PreviewDocumentScreen({Key? key}) : super(key: key);
+class PreviewDocumentScreen extends StatefulWidget {
+  const PreviewDocumentScreen({super.key});
 
+  @override
+  State<PreviewDocumentScreen> createState() => _PreviewDocumentScreenState();
+}
+
+class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
   void showSignatureMenu(BuildContext context, FileRead file) {
     showDialog<String>(
       context: context,
@@ -29,9 +35,9 @@ class PreviewDocumentScreen extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: () => (LocalStorage.indexFromSelectedSignature() != null)
+                ? signDocument(context)
+                : null,
             child:
                 Text(Localization.of(context).string('signature_sign_alert')),
           ),
@@ -53,6 +59,14 @@ class PreviewDocumentScreen extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  Future<void> signDocument(BuildContext context) async {
+    Navigator.pop(context);
+    await Navigator.pushNamed(
+      context,
+      "/painter_signature_screen",
     );
   }
 
