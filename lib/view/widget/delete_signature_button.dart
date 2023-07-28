@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/helper/db_storage.dart';
+import 'package:mell_pdf/helper/notification_service.dart';
 
 class DeleteSignatureButton extends StatelessWidget {
   const DeleteSignatureButton({
@@ -15,9 +16,13 @@ class DeleteSignatureButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onLongPress: () {
         DBStorage.deleteSignature(id);
         callback();
+      },
+      onTap: () {
+        NotificationService.showSnackbarError(
+            'Manten pulsado para eliminar la firma');
       },
       child: Container(
         width: 22,

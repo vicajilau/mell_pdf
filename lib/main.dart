@@ -10,6 +10,7 @@ import 'package:mell_pdf/common/colors/colors_app.dart';
 import 'package:mell_pdf/common/localization/localization.dart';
 import 'package:mell_pdf/helper/db_storage.dart';
 import 'package:mell_pdf/helper/local_storage.dart';
+import 'package:mell_pdf/helper/notification_service.dart';
 
 import 'firebase_options.dart';
 import 'helper/helpers.dart';
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: NotificationService.messengerKey,
       debugShowCheckedModeBanner: false,
       routes: AppRouter.init().routes,
       darkTheme: ThemeData.dark(useMaterial3: true),
