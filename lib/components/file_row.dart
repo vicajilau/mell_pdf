@@ -26,6 +26,9 @@ class FileRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: ListTile(
         leading: FileTypeIcon(file: file),
         title: Text(file.getName()),

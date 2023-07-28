@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,6 +19,7 @@ Future<void> initializeApp() async {
 }
 
 Future loadSecureInf() async => await dotenv.load(fileName: ".env");
+
 Future loadFirebase() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -30,7 +32,15 @@ Future loadFirebase() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
+  // Force disable Crashlytics collection while doing every day development.
+  if (kDebugMode) {
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
+        false); // Temporarily toggle this to true if you want to test crash reporting in your app.
+    print(
+        "Analytic state: ${FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled}");
+  }
 }
+
 Future prepareApp() async {
   await AppSession.singleton.fileHelper.loadLocalPath();
   AppSession.singleton.fileHelper.emptyLocalDocumentFolder();
