@@ -68,11 +68,12 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
           await viewModel.loadFilesFromStorage();
       }
     } catch (error) {
+      final subtitle = error.toString().contains(HomeViewModel.extensionForbidden) ? "read_file_error_subtitle" : "read_file_error_subtitle";
       CustomDialog.showError(
           context: context,
           error: error,
           titleLocalized: 'read_file_error_title',
-          subtitleLocalized: 'read_file_error_subtitle',
+          subtitleLocalized: subtitle,
           buttonTextLocalized: 'accept');
     } finally {
       setState(() {

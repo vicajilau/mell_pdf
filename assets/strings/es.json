@@ -33,6 +33,7 @@
     "generate_file_error_subtitle": "Ha ocurrido un error inesperado al generar el documento PDF.",
     "read_file_error_title": "ERROR",
     "read_file_error_subtitle": "Ha ocurrido un error inesperado al cargar los ficheros, posiblemente ha denegado los permisos a la aplicación para cargar imágenes o ficheros.",
+    "forbidden_file_error_subtitle": "Ha tratado de cargar un formato de archivo no válido en la aplicación.",
     "open_file_error_title": "ERROR",
     "open_file_error_subtitle": "Ha ocurrido un error inesperado al abrir el fichero.",
     "report_error_subtitle": " ¿Deseas reportar el error?",

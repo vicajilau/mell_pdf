@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
-import 'package:image/image.dart';
-import 'package:mell_pdf/helper/pdf_helper.dart';
-import 'package:pdf/widgets.dart' as pw;
 import 'package:file_picker/file_picker.dart';
+import 'package:image/image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mell_pdf/helper/file_helper.dart';
+import 'package:mell_pdf/helper/pdf_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 import 'enums/supported_file_type.dart';
 
@@ -57,7 +57,7 @@ class FileManager {
   List<FileRead> addMultipleFiles(List<PlatformFile> files, String localPath) {
     for (PlatformFile file in files) {
       final fileRead = FileRead(File(file.path!), _nameOfNextFile(), null,
-          file.size, file.extension ?? "");
+          file.size, file.extension?.toLowerCase() ?? "");
       _addSingleFile(fileRead, localPath);
     }
     return _filesInMemory;
