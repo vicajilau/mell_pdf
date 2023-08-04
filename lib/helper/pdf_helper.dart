@@ -33,7 +33,7 @@ class PDFHelper {
   static Future<FileRead?> createPdfFromWord(
       FileRead wordFile, String outputPath, String nameOutputFile) async {
     final file = wordFile.getFile().copySync(outputPath);
-    return FileRead(file, nameOutputFile, null, file.lengthSync(), 'pdf');
+    return FileRead(file, nameOutputFile, null, file.lengthSync(), '.docx');
   }
 
   static Future<FileRead> mergePdfDocuments(
@@ -46,5 +46,14 @@ class PDFHelper {
       return FileRead(intermediateFile, nameOutputFile, null, size, "pdf");
     }
     throw Exception('Cannot be generated PDF Document');
+  }
+
+  static Future<List<String?>> createImageFromPDF(String singleFile, String outputDirPath) async {
+    CreateImageFromPDFResponse response  = await PdfMerger.createImageFromPDF(path: singleFile, outputDirPath: outputDirPath);
+
+    if(response.status == "success" && response.response != null) {
+      return response.response!;
+    }
+    throw Exception('Cannot be generated Image from PDF Document');
   }
 }

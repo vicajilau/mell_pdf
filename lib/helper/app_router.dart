@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mell_pdf/helper/helpers.dart';
 import 'package:mell_pdf/view/create_signature_screen.dart';
+import 'package:mell_pdf/view/painter_signature_screen.dart';
 import 'package:platform_detail/platform_detail.dart';
 
 import '../view/views.dart';
@@ -24,6 +25,7 @@ class AppRouter {
       "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
       "/preview_document_screen": (context) => const PreviewDocumentScreen(),
       "/create_signature_screen": (context) => const CreateSignatureScreen(),
+      "/painter_signature_screen": (context) => const PainterSignatureScreen(),
       "/loading": (context) => const LoadingScreen(),
     };
   }
@@ -36,6 +38,7 @@ class AppRouter {
       "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
       "/preview_document_screen": (context) => const PreviewDocumentScreen(),
       "/create_signature_screen": (context) => const CreateSignatureScreen(),
+      "/painter_signature_screen": (context) => const PainterSignatureScreen(),
     };
   }
 }

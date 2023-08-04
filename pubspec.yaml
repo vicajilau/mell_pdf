@@ -53,6 +53,11 @@ dependencies:
   share_plus: ^7.0.2
   shared_preferences: ^2.2.0
   signature: ^5.3.2
+  phosphor_flutter: ^2.0.0
+  flutter_painter:
+    git:
+      url: https://github.com/Zazo032/flutter_painter.git
+      ref: master
 
 flutter_icons:
   image_path_android: "assets/icons/android-icon.png"
