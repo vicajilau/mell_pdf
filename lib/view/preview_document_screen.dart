@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mell_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:share_plus/share_plus.dart';
-
 import '../helper/dialogs/custom_dialog.dart';
 
 class PreviewDocumentScreen extends StatefulWidget {
@@ -82,7 +81,7 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
                   );
                 }
               },
-              icon: const Icon(Icons.share))
+              icon: const Icon(Icons.share)),
         ],
       ),
       body: PdfViewPinch(
