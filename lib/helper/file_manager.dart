@@ -9,7 +9,7 @@ import 'package:mell_pdf/helper/pdf_helper.dart';
 import 'package:mell_pdf/model/file_read.dart';
 import 'package:pdf/widgets.dart' as pw;
 
-import 'enums/supported_file_type.dart';
+import '../model/enums/supported_file_type.dart';
 
 class FileManager {
   final List<FileRead> _filesInMemory = [];

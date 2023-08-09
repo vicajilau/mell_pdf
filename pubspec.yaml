@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
   lottie: ^2.3.2
-  platform_detail: ^3.0.1
+  platform_detail: ^3.2.1
   file_picker: ^5.2.10
   easy_image_viewer: ^1.2.0
   pdfx: ^2.4.0
@@ -52,6 +52,7 @@ dependencies:
   firebase_core: ^2.15.0
   firebase_crashlytics: ^3.3.4
   flutter_dotenv: ^5.1.0
+  firebase_analytics: ^10.4.4
 
 flutter_icons:
   image_path_android: "assets/icons/android-icon.png"
