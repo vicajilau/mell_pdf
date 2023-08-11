@@ -68,7 +68,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
           await viewModel.loadFilesFromStorage();
       }
     } catch (error) {
-      final subtitle = error.toString().contains(HomeViewModel.extensionForbidden) ? "read_file_error_subtitle" : "read_file_error_subtitle";
+      final subtitle =
+          error.toString().contains(HomeViewModel.extensionForbidden)
+              ? "read_file_error_subtitle"
+              : "read_file_error_subtitle";
       CustomDialog.showError(
           context: context,
           error: error,
@@ -83,6 +86,25 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
     }
   }
 
+  Future<void> scanImages() async {
+    try {
+      Navigator.pop(context, 'Scan');
+      final file = await viewModel.scanDocument();
+      if (file != null) {
+        setState(() {
+          Utils.printInDebug("Document Scanned: $file");
+        });
+      }
+    } catch (error) {
+      CustomDialog.showError(
+          context: context,
+          error: error,
+          titleLocalized: 'read_file_error_title',
+          subtitleLocalized: 'scan_file_error_subtitle',
+          buttonTextLocalized: 'accept');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -91,9 +113,8 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
           ? const LoadingScreen()
           : Scaffold(
               appBar: AppBar(
-                automaticallyImplyLeading: false, // Remove back button
-                title: Text(
-                    Localization.of(context).string('drag_pdf')), // DRAG PDF
+                automaticallyImplyLeading: false,
+                title: Text(Localization.of(context).string('drag_pdf')),
                 actions: [
                   IconButton(
                     onPressed: () => showDialog<String>(
@@ -122,15 +143,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                                 .string('load')), // LOAD
                           ),
                           TextButton(
-                            onPressed: () async {
-                              Navigator.pop(context, 'Scan');
-                              final file = await viewModel.scanDocument();
-                              if (file != null) {
-                                setState(() {
-                                  Utils.printInDebug("Document Scanned: $file");
-                                });
-                              }
-                            },
+                            onPressed: () async => await scanImages(),
                             child: Text(Localization.of(context)
                                 .string('scan')), // SCAN
                           ),
