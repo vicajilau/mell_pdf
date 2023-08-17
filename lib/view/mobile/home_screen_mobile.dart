@@ -45,6 +45,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         Utils.printInDebug(Localization.of(context)
             .string('the_app_is_minimize')); // The app is minimize
         break;
+      case AppLifecycleState.hidden:
+        Utils.printInDebug(Localization.of(context)
+            .string('the_app_is_hidden')); // The app is hidden
+        break;
       case AppLifecycleState.paused:
         Utils.printInDebug(Localization.of(context).string(
             'the_app_just_went_into_background')); // The app just went into background
@@ -68,17 +72,42 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
           await viewModel.loadFilesFromStorage();
       }
     } catch (error) {
+      final subtitle =
+          error.toString().contains(HomeViewModel.extensionForbidden)
+              ? "forbidden_file_error_subtitle"
+              : "read_file_error_subtitle";
+      if (!context.mounted) return; // check "mounted" property
       CustomDialog.showError(
           context: context,
           error: error,
           titleLocalized: 'read_file_error_title',
-          subtitleLocalized: 'read_file_error_subtitle',
+          subtitleLocalized: subtitle,
           buttonTextLocalized: 'accept');
     } finally {
       setState(() {
         Loading.hide();
         Utils.printInDebug(viewModel.getMergeableFilesList());
       });
+    }
+  }
+
+  Future<void> scanImages() async {
+    try {
+      Navigator.pop(context, 'Scan');
+      final file = await viewModel.scanDocument();
+      if (file != null) {
+        setState(() {
+          Utils.printInDebug("Document Scanned: $file");
+        });
+      }
+    } catch (error) {
+      if (!context.mounted) return; // check "mounted" property
+      CustomDialog.showError(
+          context: context,
+          error: error,
+          titleLocalized: 'read_file_error_title',
+          subtitleLocalized: 'scan_file_error_subtitle',
+          buttonTextLocalized: 'accept');
     }
   }
 
@@ -90,9 +119,8 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
           ? const LoadingScreen()
           : Scaffold(
               appBar: AppBar(
-                automaticallyImplyLeading: false, // Remove back button
-                title: Text(
-                    Localization.of(context).string('drag_pdf')), // DRAG PDF
+                automaticallyImplyLeading: false,
+                title: Text(Localization.of(context).string('drag_pdf')),
                 actions: [
                   IconButton(
                     onPressed: () => showDialog<String>(
@@ -121,15 +149,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                                 .string('load')), // LOAD
                           ),
                           TextButton(
-                            onPressed: () async {
-                              Navigator.pop(context, 'Scan');
-                              final file = await viewModel.scanDocument();
-                              if (file != null) {
-                                setState(() {
-                                  Utils.printInDebug("Document Scanned: $file");
-                                });
-                              }
-                            },
+                            onPressed: () async => await scanImages(),
                             child: Text(Localization.of(context)
                                 .string('scan')), // SCAN
                           ),
@@ -257,6 +277,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                         Utils.openFileProperly(context, file);
                       });
                     } catch (error) {
+                      if (!context.mounted) return; // check "mounted" property
                       CustomDialog.showError(
                         context: context,
                         error: error,
