@@ -19,7 +19,7 @@ class CustomDialog {
       ),
     ];
 
-    showDialog(
+    showAdaptiveDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
