@@ -74,8 +74,9 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
     } catch (error) {
       final subtitle =
           error.toString().contains(HomeViewModel.extensionForbidden)
-              ? "read_file_error_subtitle"
+              ? "forbidden_file_error_subtitle"
               : "read_file_error_subtitle";
+      if (!context.mounted) return; // check "mounted" property
       CustomDialog.showError(
           context: context,
           error: error,
@@ -100,6 +101,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         });
       }
     } catch (error) {
+      if (!context.mounted) return; // check "mounted" property
       CustomDialog.showError(
           context: context,
           error: error,
@@ -275,6 +277,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                         Utils.openFileProperly(context, file);
                       });
                     } catch (error) {
+                      if (!context.mounted) return; // check "mounted" property
                       CustomDialog.showError(
                         context: context,
                         error: error,

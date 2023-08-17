@@ -72,6 +72,7 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
                         MediaQuery.of(context).size.height - 300),
                   ); // Document Generated With Drag PDF
                 } catch (error) {
+                  if (!context.mounted) return; // check "mounted" property
                   CustomDialog.showError(
                     context: context,
                     error: error,
