@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mell_pdf/common/colors/colors_app.dart';
