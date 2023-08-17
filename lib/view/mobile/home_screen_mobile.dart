@@ -45,6 +45,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         Utils.printInDebug(Localization.of(context)
             .string('the_app_is_minimize')); // The app is minimize
         break;
+      case AppLifecycleState.hidden:
+        Utils.printInDebug(Localization.of(context)
+            .string('the_app_is_hidden')); // The app is hidden
+        break;
       case AppLifecycleState.paused:
         Utils.printInDebug(Localization.of(context).string(
             'the_app_just_went_into_background')); // The app just went into background
