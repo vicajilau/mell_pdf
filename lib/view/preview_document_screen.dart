@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/model/models.dart';
+import 'package:drag_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:share_plus/share_plus.dart';
 import '../helper/dialogs/custom_dialog.dart';

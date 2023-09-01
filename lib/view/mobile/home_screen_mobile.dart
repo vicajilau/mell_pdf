@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mell_pdf/common/colors/colors_app.dart';
-import 'package:mell_pdf/common/localization/localization.dart';
-import 'package:mell_pdf/components/components.dart';
-import 'package:mell_pdf/model/enums/loader_of.dart';
+import 'package:drag_pdf/common/colors/colors_app.dart';
+import 'package:drag_pdf/common/localization/localization.dart';
+import 'package:drag_pdf/components/components.dart';
+import 'package:drag_pdf/model/enums/loader_of.dart';
 
 import '../../helper/dialogs/custom_dialog.dart';
 import '../../helper/helpers.dart';

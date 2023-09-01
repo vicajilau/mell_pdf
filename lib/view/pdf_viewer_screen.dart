@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/model/models.dart';
+import 'package:drag_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
 
 class PDFViewerScreen extends StatelessWidget {

@@ -1,4 +1,4 @@
-name: mell_pdf
+name: drag_pdf
 description: Application to create PDF documents by combining images, PDF and document scanner developed with Flutter.
 
 # The following line prevents the package from being accidentally published to

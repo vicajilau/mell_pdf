@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mell_pdf/common/localization/localization.dart';
-import 'package:mell_pdf/helper/helpers.dart';
-import 'package:mell_pdf/model/models.dart';
+import 'package:drag_pdf/common/localization/localization.dart';
+import 'package:drag_pdf/helper/helpers.dart';
+import 'package:drag_pdf/model/models.dart';
 
 class ResizeImageDialog extends StatefulWidget {
   final FileRead file;

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:image/image.dart';
-import 'package:mell_pdf/helper/helpers.dart';
-import 'package:mell_pdf/model/models.dart';
+import 'package:drag_pdf/helper/helpers.dart';
+import 'package:drag_pdf/model/models.dart';
 import 'package:path_provider/path_provider.dart';
 
 class FileHelper {

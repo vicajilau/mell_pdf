@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:mell_pdf/model/enums/log_event.dart';
+import 'package:drag_pdf/model/enums/log_event.dart';
 import 'package:platform_detail/platform_detail.dart';
 
 import '../firebase_options.dart';

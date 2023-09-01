@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mell_pdf/common/localization/localization.dart';
-import 'package:mell_pdf/helper/helpers.dart';
+import 'package:drag_pdf/common/localization/localization.dart';
+import 'package:drag_pdf/helper/helpers.dart';
 
 class RenameFileDialog extends StatefulWidget {
   final String nameFile;
