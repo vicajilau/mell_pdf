@@ -89,7 +89,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - .env
+    #- .env
     - assets/
     - assets/animations/
     - assets/strings/
