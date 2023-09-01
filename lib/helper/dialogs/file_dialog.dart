@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/common/colors/colors_app.dart';
-import 'package:mell_pdf/common/localization/localization.dart';
+import 'package:drag_pdf/common/colors/colors_app.dart';
+import 'package:drag_pdf/common/localization/localization.dart';
 
 class FileDialog {
   static void add(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mell_pdf/common/colors/colors_app.dart';
-import 'package:mell_pdf/common/localization/localization.dart';
-import 'package:mell_pdf/components/components.dart';
-import 'package:mell_pdf/model/enums/loader_of.dart';
+import 'package:drag_pdf/common/colors/colors_app.dart';
+import 'package:drag_pdf/common/localization/localization.dart';
+import 'package:drag_pdf/components/components.dart';
+import 'package:drag_pdf/model/enums/loader_of.dart';
 
 import '../../helper/dialogs/custom_dialog.dart';
 import '../../helper/helpers.dart';
@@ -45,6 +45,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         Utils.printInDebug(Localization.of(context)
             .string('the_app_is_minimize')); // The app is minimize
         break;
+      case AppLifecycleState.hidden:
+        Utils.printInDebug(Localization.of(context)
+            .string('the_app_is_hidden')); // The app is hidden
+        break;
       case AppLifecycleState.paused:
         Utils.printInDebug(Localization.of(context).string(
             'the_app_just_went_into_background')); // The app just went into background
@@ -70,8 +74,9 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
     } catch (error) {
       final subtitle =
           error.toString().contains(HomeViewModel.extensionForbidden)
-              ? "read_file_error_subtitle"
+              ? "forbidden_file_error_subtitle"
               : "read_file_error_subtitle";
+      if (!context.mounted) return; // check "mounted" property
       CustomDialog.showError(
           context: context,
           error: error,
@@ -96,6 +101,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         });
       }
     } catch (error) {
+      if (!context.mounted) return; // check "mounted" property
       CustomDialog.showError(
           context: context,
           error: error,
@@ -271,6 +277,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                         Utils.openFileProperly(context, file);
                       });
                     } catch (error) {
+                      if (!context.mounted) return; // check "mounted" property
                       CustomDialog.showError(
                         context: context,
                         error: error,

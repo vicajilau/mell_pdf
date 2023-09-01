@@ -4,9 +4,9 @@ import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image/image.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mell_pdf/helper/file_helper.dart';
-import 'package:mell_pdf/helper/pdf_helper.dart';
-import 'package:mell_pdf/model/file_read.dart';
+import 'package:drag_pdf/helper/file_helper.dart';
+import 'package:drag_pdf/helper/pdf_helper.dart';
+import 'package:drag_pdf/model/file_read.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 import '../model/enums/supported_file_type.dart';

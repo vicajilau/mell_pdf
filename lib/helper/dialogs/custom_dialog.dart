@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/helper/firebase_helper.dart';
+import 'package:drag_pdf/helper/firebase_helper.dart';
 
 import '../../common/localization/localization.dart';
 import '../utils.dart';
@@ -19,7 +19,7 @@ class CustomDialog {
       ),
     ];
 
-    showDialog(
+    showAdaptiveDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(

@@ -1,8 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mell_pdf/helper/helpers.dart';
-import 'package:mell_pdf/helper/file_manager.dart';
-import 'package:mell_pdf/model/file_read.dart';
+import 'package:drag_pdf/helper/helpers.dart';
+import 'package:drag_pdf/helper/file_manager.dart';
+import 'package:drag_pdf/model/file_read.dart';
 
 class HomeViewModel {
   final FileManager _mfl = AppSession.singleton.mfl;
