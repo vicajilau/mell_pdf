@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create local.properties
-      - run: |
+        run: |
           echo 'flutter.versionName=${{ secrets.FLUTTER_VERSION_NAME }}' > android/local.properties
           echo 'flutter.versionCode=${{ secrets.FLUTTER_VERSION_CODE }}' >> android/local.properties
           echo 'flutter.minSdkVersion=${{ secrets.FLUTTER_MIN_SDK_VERSION }}' >> android/local.properties
