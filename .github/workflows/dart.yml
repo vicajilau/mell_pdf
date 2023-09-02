@@ -1,6 +1,6 @@
 name: CI
 on:
-  pull:
+  push:
     - develop
   pull_request:
     branches:
