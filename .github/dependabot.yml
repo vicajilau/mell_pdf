@@ -11,9 +11,3 @@ updates:
       interval: "weekly"
       time: "09:00"
       timezone: Europe/Madrid
-  - package-ecosystem: "gradle"
-    directory: "/android"
-    schedule:
-      interval: weekly
-      time: "09:00"
-      timezone: Europe/Madrid
