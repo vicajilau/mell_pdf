@@ -12,11 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo 'flutter.versionName=${{ secrets.FLUTTER_VERSION_NAME }}' > android/local.properties
-      - run: echo 'flutter.versionCode=${{ secrets.FLUTTER_VERSION_CODE }}' > android/local.properties
-      - run: echo 'flutter.minSdkVersion=${{ secrets.FLUTTER_MIN_SDK_VERSION }}' > android/local.properties
-      - run: echo 'flutter.compileSdkVersion=${{ secrets.FLUTTER_COMPILE_SDK_VERSION }}' > android/local.properties
-      - run: echo 'flutter.targetSdkVersion=${{ secrets.FLUTTER_TARGET_SDK_VERSION }}' > android/local.properties
+      - name: Create local.properties
+      - run: |
+          echo 'flutter.versionName=${{ secrets.FLUTTER_VERSION_NAME }}' > android/local.properties
+          echo 'flutter.versionCode=${{ secrets.FLUTTER_VERSION_CODE }}' >> android/local.properties
+          echo 'flutter.minSdkVersion=${{ secrets.FLUTTER_MIN_SDK_VERSION }}' >> android/local.properties
+          echo 'flutter.compileSdkVersion=${{ secrets.FLUTTER_COMPILE_SDK_VERSION }}' >> android/local.properties
+          echo 'flutter.targetSdkVersion=${{ secrets.FLUTTER_TARGET_SDK_VERSION }}' >> android/local.properties
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
