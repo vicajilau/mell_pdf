@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Create .env file
+        run: |
+          echo '${{ secrets.FLUTTER_ENV_FILE }}' > .env
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
