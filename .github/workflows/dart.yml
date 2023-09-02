@@ -51,6 +51,15 @@ jobs:
           echo 'flutter.minSdkVersion=${{ secrets.FLUTTER_MIN_SDK_VERSION }}' >> android/local.properties
           echo 'flutter.compileSdkVersion=${{ secrets.FLUTTER_COMPILE_SDK_VERSION }}' >> android/local.properties
           echo 'flutter.targetSdkVersion=${{ secrets.FLUTTER_TARGET_SDK_VERSION }}' >> android/local.properties
+      - name: Create google-services.json on prod
+        run: |
+          echo '${{ secrets.GOOGLE_SERVICE_PROD }}' > android/app/src/release/google-services.json
+      - name: Create google-services.json on prod
+        run: |
+          echo '${{ secrets.GOOGLE_SERVICE_PROD }}' > android/app/google-services.json
+      - name: Create .env file
+        run: |
+          echo '${{ secrets.FLUTTER_ENV_FILE }}' > .env
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
