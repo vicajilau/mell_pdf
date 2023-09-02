@@ -56,9 +56,6 @@ jobs:
           echo 'flutter.targetSdkVersion=${{ secrets.FLUTTER_TARGET_SDK_VERSION }}' >> android/local.properties
       - name: Create google-services.json on prod
         run: |
-          echo '${{ secrets.GOOGLE_SERVICE_PROD }}' > android/app/src/release/google-services.json
-      - name: Create google-services.json on prod
-        run: |
           echo '${{ secrets.GOOGLE_SERVICE_PROD }}' > android/app/google-services.json
       - name: Create .env file
         run: |
