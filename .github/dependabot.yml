@@ -5,7 +5,15 @@
 
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "pub"
+    directory: "/"
     schedule:
       interval: "weekly"
+      time: "09:00"
+      timezone: Europe/Madrid
+  - package-ecosystem: "gradle"
+    directory: "/android"
+    schedule:
+      interval: weekly
+      time: "09:00"
+      timezone: Europe/Madrid
