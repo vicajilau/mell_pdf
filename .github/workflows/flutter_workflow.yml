@@ -1,5 +1,8 @@
 name: Flutter CI
 on:
+  push:
+    - develop
+    - master
   pull_request:
     branches:
       - develop
