@@ -20,6 +20,7 @@ jobs:
           echo '${{ secrets.FLUTTER_ENV_FILE }}' > .env
       - uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: '12'
       - uses: subosito/flutter-action@v2
         with:
