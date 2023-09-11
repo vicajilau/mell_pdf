@@ -18,7 +18,7 @@ jobs:
       - name: Create .env file
         run: |
           echo '${{ secrets.FLUTTER_ENV_FILE }}' > .env
-      - uses: actions/setup-java@v2
+      - uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '12'
