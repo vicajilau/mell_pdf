@@ -15,7 +15,6 @@ class HomeViewModel {
   static const String extensionForbidden = "Extension file forbidden: ";
 
   Future<void> loadFilesFromStorage() async {
-    print("The list of alledExtensions are: $allowedExtensions");
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: true,
       type: FileType.custom,
