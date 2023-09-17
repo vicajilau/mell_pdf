@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:drag_pdf/helper/firebase_helper.dart';
+import 'package:flutter/material.dart';
 
 import '../../common/localization/localization.dart';
 import '../utils.dart';
@@ -32,7 +32,7 @@ class CustomDialog {
 
   static Future<void> reportError(
       Object error, String titleLocalized, String subtitleLocalized) async {
-    Utils.printInDebug(error);
+    Utils.printInDebug("⚠️ERROR ⚠️: $error");
     await FirebaseHelper.shared
         .logErrorInFirebase(error, titleLocalized, subtitleLocalized);
   }

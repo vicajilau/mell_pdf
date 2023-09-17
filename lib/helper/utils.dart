@@ -42,8 +42,8 @@ class Utils {
         return true;
       case SupportedFileType.jpg:
         return true;
-      case SupportedFileType.unknown:
-        return false;
+        case SupportedFileType.jpeg:
+      return true;
     }
   }
 
@@ -80,8 +80,9 @@ class Utils {
       case SupportedFileType.jpg:
         _openImage(context, file);
         break;
-      case SupportedFileType.unknown:
-        throw Exception('An unknown file cannot be opened');
+      case SupportedFileType.jpeg:
+        _openImage(context, file);
+        break;
     }
   }
 
