@@ -33,7 +33,7 @@ jobs:
           echo '${{ secrets.ANDROID_LOCAL_PROPERTIES_FILE }}' > android/local.properties
       - name: Create Google Service file
         run: |
-          echo '${{ secrets.GOOGLE_SERVICE_PROD }}' > android/app/google-service.json
+          echo '${{ secrets.GOOGLE_SERVICE_PROD }}' > android/app/google-services.json
       - uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
