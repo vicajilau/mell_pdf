@@ -16,12 +16,21 @@ jobs:
       - name: Create .env file
         run: |
           echo '${{ secrets.FLUTTER_ENV_FILE }}' > .env
+      - name: Download Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: upload-keystore.jks
+          encodedString: ${{ secrets.KEYSTORE_BASE64 }}
       - name: Create key.properties file
         run: |
-          echo '${{ secrets.FLUTTER_KEY_PROPERTIES_FILE }}' > /android/key.properties
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
       - name: Create local.properties file
         run: |
-          echo '${{ secrets.FLUTTER_LOCAL_PROPERTIES_FILE }}' > /android/local.properties
+          echo '${{ secrets.FLUTTER_LOCAL_PROPERTIES_FILE }}' > android/local.properties
       - uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
