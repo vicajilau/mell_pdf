@@ -1,17 +1,15 @@
-name: Flutter CI
+name: Flutter CD
 on:
   push:
-    branches:
-      - develop
-      - master
   pull_request:
     branches:
-      - develop
       - master
+    tags:
+      - '**'
 
 jobs:
-  flutter_ci:
-    name: Run flutter test and analyze
+  flutter_cd:
+    name: Generate Android Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,6 +29,10 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-      - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter test
+      - name: Start Android Release Build
+        run: flutter build appbundle
+      - name: Upload Android Release
+        uses: actions/upload-artifact@v2
+        with:
+            name: android-release
+            path: build/app/outputs/bundle/release/app-release.aab
