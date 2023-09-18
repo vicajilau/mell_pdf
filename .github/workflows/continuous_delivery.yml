@@ -53,6 +53,6 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_PLAYSTORE_ACCOUNT_KEY }}
           packageName: es.victorcarreras.drag_pdf
-          releaseFiles: app-release.aab
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: alpha
           status: completed
