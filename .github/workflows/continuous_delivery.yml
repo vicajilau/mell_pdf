@@ -1,8 +1,6 @@
 name: Flutter CD
 on:
   pull_request:
-    branches:
-      - master
     tags:
       - '**'
 
