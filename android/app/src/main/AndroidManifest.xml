@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="es.victorcarreras.mell_pdf">
+    package="es.victorcarreras.drag_pdf">
    <application
         android:label="Drag PDF"
         android:name="${applicationName}"
