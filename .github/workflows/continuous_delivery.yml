@@ -1,0 +1,57 @@
+name: Flutter CD
+on:
+  pull_request:
+    branches:
+      - master
+    tags:
+      - '**'
+
+jobs:
+  flutter_cd:
+    name: Generate Android Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create .env file
+        run: |
+          echo '${{ secrets.FLUTTER_ENV_FILE }}' > .env
+      - name: Download Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: upload-keystore.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      - name: Create key.properties file
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+      - name: Create local.properties file
+        run: |
+          echo '${{ secrets.ANDROID_LOCAL_PROPERTIES_FILE }}' > android/local.properties
+      - name: Create Google Service file
+        run: |
+          echo '${{ secrets.GOOGLE_SERVICE_PROD }}' > android/app/google-services.json
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '12'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Start Android Release Build
+        run: flutter build appbundle
+      - name: Upload Release Build to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-release-artifacts
+          path: build/app/outputs/bundle/release/app-release.aab
+      - name: Release Build to internal track
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.ANDROID_PLAYSTORE_ACCOUNT_KEY }}
+          packageName: es.victorcarreras.drag_pdf
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          track: alpha
+          status: completed

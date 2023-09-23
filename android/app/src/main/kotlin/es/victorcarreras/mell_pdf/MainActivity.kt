@@ -1,4 +1,4 @@
-package es.victorcarreras.mell_pdf
+package es.victorcarreras.drag_pdf
 
 import io.flutter.embedding.android.FlutterActivity
 
