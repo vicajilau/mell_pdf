@@ -1,6 +1,6 @@
 name: Flutter CD
 on:
-  pull_request:
+  push:
     tags:
       - '**'
 
