@@ -41,7 +41,7 @@ dependencies:
   easy_image_viewer: ^1.2.0
   pdfx: ^2.4.0
   path_provider: ^2.0.14
-  image: ^4.0.15
+  image: ^4.1.2
   image_picker: ^1.0.1
   flutter_launcher_icons: ^0.13.1
   pdf: ^3.10.1
