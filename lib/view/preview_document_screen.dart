@@ -1,11 +1,8 @@
 import 'package:drag_pdf/model/models.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../common/colors/colors_app.dart';
-import '../common/localization/localization.dart';
 import '../helper/dialogs/custom_dialog.dart';
 
 class PreviewDocumentScreen extends StatefulWidget {
@@ -28,7 +25,7 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
       appBar: AppBar(
         title: const Text("DRAG PDF"),
         actions: [
-          IconButton(
+          /*IconButton(
             onPressed: () => showDialog<String>(
               context: context,
               builder: (BuildContext context) => AlertDialog(
@@ -64,7 +61,7 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
               ),
             ),
             icon: const Icon(Icons.create),
-          ),
+          ),*/
           IconButton(
               onPressed: () async {
                 try {
