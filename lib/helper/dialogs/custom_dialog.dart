@@ -1,5 +1,6 @@
 import 'package:drag_pdf/helper/firebase_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../common/localization/localization.dart';
 import '../utils.dart';
@@ -14,7 +15,7 @@ class CustomDialog {
     reportError(error, titleLocalized, subtitleLocalized);
     final actions = [
       TextButton(
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => context.pop(),
         child: Text(Localization.of(context).string(buttonTextLocalized)),
       ),
     ];

@@ -36,14 +36,14 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
                 actions: [
                   TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      context.pop();
                     },
                     child: Text(Localization.of(context)
                         .string('signature_sign_alert')),
                   ),
                   TextButton(
                     onPressed: () async {
-                      Navigator.pop(context, 'Scan');
+                      context.pop('Scan');
                       context.go(
                           "/home/preview_document_screen/create_signature_screen");
                     },
@@ -51,7 +51,7 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
                         .string('signature_create_alert')),
                   ),
                   TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    onPressed: () => context.pop('Cancel'),
                     child: Text(
                       Localization.of(context).string('cancel'),
                       style: const TextStyle(color: ColorsApp.kMainColor),

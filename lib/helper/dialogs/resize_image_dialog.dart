@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:drag_pdf/common/localization/localization.dart';
 import 'package:drag_pdf/helper/helpers.dart';
 import 'package:drag_pdf/model/models.dart';
+import 'package:go_router/go_router.dart';
 
 class ResizeImageDialog extends StatefulWidget {
   final FileRead file;
@@ -130,7 +131,7 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            Navigator.pop(context);
+            context.pop();
             widget.resizeButtonPressed(getFinalWidth(), getFinalHeight());
           },
           child: Text(
@@ -139,7 +140,7 @@ class _ResizeImageDialogState extends State<ResizeImageDialog> {
         ),
         TextButton(
           onPressed: () {
-            Navigator.pop(context);
+            context.pop();
           },
           child: Text(
             Localization.of(context).string('cancel'), // CANCEL

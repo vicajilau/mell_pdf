@@ -5,6 +5,7 @@ import 'package:drag_pdf/helper/dialogs/custom_dialog.dart';
 import 'package:drag_pdf/helper/dialogs/rename_dialog.dart';
 import 'package:drag_pdf/helper/dialogs/resize_image_dialog.dart';
 import 'package:drag_pdf/model/file_read.dart';
+import 'package:go_router/go_router.dart';
 
 import '../helper/utils.dart';
 
@@ -71,7 +72,7 @@ class FileRow extends StatelessWidget {
     List<Widget> list = [
       ListTile(
         onTap: () {
-          Navigator.pop(context);
+          context.pop();
           Utils.openFileProperly(context, file);
         },
         title: Text(Localization.of(context).string('open_file')),
@@ -79,7 +80,7 @@ class FileRow extends StatelessWidget {
       ),
       ListTile(
         onTap: () {
-          Navigator.pop(context);
+          context.pop();
           _showRenameFileDialog(context, file.getName(), renameButtonPressed);
         },
         title: Text(Localization.of(context).string('rename')),
@@ -90,7 +91,7 @@ class FileRow extends StatelessWidget {
       list.add(
         ListTile(
           onTap: () {
-            Navigator.pop(context);
+            context.pop();
             _showFileSizePickerDialog(context, resizeButtonPressed);
           },
           title: Text(Localization.of(context).string('resize_image')),
@@ -100,7 +101,7 @@ class FileRow extends StatelessWidget {
       list.add(
         ListTile(
           onTap: () {
-            Navigator.pop(context);
+            context.pop();
             rotateButtonPressed.call();
           },
           title: Text(Localization.of(context).string('rotate_image')),
@@ -119,7 +120,7 @@ class FileRow extends StatelessWidget {
       ListTile(
         onTap: () {
           removeButtonPressed.call();
-          Navigator.pop(context);
+          context.pop();
         },
         title: Text(
           Localization.of(context).string('remove'),
