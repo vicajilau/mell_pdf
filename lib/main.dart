@@ -1,15 +1,16 @@
+import 'package:drag_pdf/common/colors/colors_app.dart';
+import 'package:drag_pdf/common/localization/localization.dart';
+import 'package:drag_pdf/helper/firebase_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:mell_pdf/common/colors/colors_app.dart';
-import 'package:mell_pdf/common/localization/localization.dart';
-import 'package:mell_pdf/helper/db_storage.dart';
-import 'package:mell_pdf/helper/local_storage.dart';
-import 'package:mell_pdf/helper/notification_service.dart';
+import 'package:drag_pdf/common/colors/colors_app.dart';
+import 'package:drag_pdf/common/localization/localization.dart';
+import 'package:drag_pdf/helper/db_storage.dart';
+import 'package:drag_pdf/helper/local_storage.dart';
+import 'package:drag_pdf/helper/notification_service.dart';
 
 import 'helper/helpers.dart';
-import 'package:mell_pdf/helper/firebase_helper.dart';
-
 
 Future<void> initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,10 +42,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.shared.getRouter(),
       scaffoldMessengerKey: NotificationService.messengerKey,
       debugShowCheckedModeBanner: false,
-      routes: AppRouter.init().routes,
       darkTheme: ThemeData.dark(useMaterial3: true),
       theme: ThemeData.light(useMaterial3: true).copyWith(
         primaryColor: ColorsApp.white,

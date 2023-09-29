@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/model/file_read.dart';
+import 'package:drag_pdf/model/file_read.dart';
 
 import '../helper/utils.dart';
 import '../model/enums/supported_file_type.dart';

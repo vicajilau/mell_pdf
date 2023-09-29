@@ -1,0 +1,32 @@
+name: Flutter CI
+on:
+  pull_request:
+    branches:
+      - develop
+      - master
+
+jobs:
+  flutter_ci:
+    name: Run flutter test and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create .env file
+        run: |
+          echo '${{ secrets.FLUTTER_ENV_FILE }}' > .env
+      - name: Create key.properties file
+        run: |
+          echo '${{ secrets.ANDROID_KEY_PROPERTIES_FILE }}' > android/key.properties
+      - name: Create local.properties file
+        run: |
+          echo '${{ secrets.ANDROID_LOCAL_PROPERTIES_FILE }}' > android/local.properties
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '12'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test

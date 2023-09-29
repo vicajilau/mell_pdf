@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/common/localization/localization.dart';
-import 'package:mell_pdf/components/file_type_icon.dart';
-import 'package:mell_pdf/helper/dialogs/custom_dialog.dart';
-import 'package:mell_pdf/helper/dialogs/rename_dialog.dart';
-import 'package:mell_pdf/helper/dialogs/resize_image_dialog.dart';
-import 'package:mell_pdf/model/file_read.dart';
+import 'package:drag_pdf/common/localization/localization.dart';
+import 'package:drag_pdf/components/file_type_icon.dart';
+import 'package:drag_pdf/helper/dialogs/custom_dialog.dart';
+import 'package:drag_pdf/helper/dialogs/rename_dialog.dart';
+import 'package:drag_pdf/helper/dialogs/resize_image_dialog.dart';
+import 'package:drag_pdf/model/file_read.dart';
 
 import '../helper/utils.dart';
 

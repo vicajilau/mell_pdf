@@ -1,44 +1,103 @@
-import 'package:flutter/material.dart';
-import 'package:mell_pdf/helper/helpers.dart';
-import 'package:mell_pdf/view/create_signature_screen.dart';
-import 'package:mell_pdf/view/painter_signature_screen.dart';
+import 'package:drag_pdf/helper/helpers.dart';
+import 'package:drag_pdf/model/file_read.dart';
+import 'package:drag_pdf/view/create_signature_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'package:drag_pdf/view/painter_signature_screen.dart';
 import 'package:platform_detail/platform_detail.dart';
 
 import '../view/views.dart';
 
 class AppRouter {
-  late final Map<String, WidgetBuilder> routes;
+  late final GoRouter _routes;
 
-  AppRouter.init() {
+  static AppRouter shared = AppRouter();
+
+  AppRouter() {
     if (PlatformDetail.isMobile) {
-      routes = getMobileRoutes();
+      _routes = _getMobileRoutes();
     } else {
-      routes = getDesktopRoutes();
+      _routes = _getDesktopRoutes();
     }
   }
 
+  GoRouter getRouter() => _routes;
+
   // Mobile Routing
-  Map<String, WidgetBuilder> getMobileRoutes() {
-    return {
-      "/": (context) => const SplashScreenMobile(),
-      "/home": (context) => const HomeScreenMobile(),
-      "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
-      "/preview_document_screen": (context) => const PreviewDocumentScreen(),
-      "/create_signature_screen": (context) => const CreateSignatureScreen(),
-      "/painter_signature_screen": (context) => const PainterSignatureScreen(),
-      "/loading": (context) => const LoadingScreen(),
-    };
+  GoRouter _getMobileRoutes() {
+    return GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const SplashScreenMobile(),
+        ),
+        GoRoute(
+            path: '/home',
+            builder: (context, state) => const HomeScreenMobile(),
+            routes: [
+              GoRoute(
+                  path: 'preview_document_screen',
+                  builder: (context, state) =>
+                      PreviewDocumentScreen(file: state.extra as FileRead),
+                  routes: [
+                    GoRoute(
+                      path: 'create_signature_screen',
+                      builder: (context, state) =>
+                          const CreateSignatureScreen(),
+                    ),
+                    GoRoute(
+                      path: 'painter_signature_screen',
+                      builder: (context, state) =>
+                      const PainterSignatureScreen(),
+                    ),
+                  ]),
+              GoRoute(
+                path: 'pdf_viewer_screen',
+                builder: (context, state) =>
+                    PDFViewerScreen(file: state.extra as FileRead),
+              ),
+            ]),
+        GoRoute(
+          path: '/loading',
+          builder: (context, state) => const LoadingScreen(),
+        ),
+      ],
+    );
   }
 
   // Desktop Routing + WEB
-  Map<String, WidgetBuilder> getDesktopRoutes() {
-    return {
-      "/": (context) => const SplashScreenDesktop(),
-      "/home": (context) => const HomeScreenDesktop(),
-      "/pdf_viewer_screen": (context) => const PDFViewerScreen(),
-      "/preview_document_screen": (context) => const PreviewDocumentScreen(),
-      "/create_signature_screen": (context) => const CreateSignatureScreen(),
-      "/painter_signature_screen": (context) => const PainterSignatureScreen(),
-    };
+  GoRouter _getDesktopRoutes() {
+    return GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const SplashScreenDesktop(),
+        ),
+        GoRoute(
+            path: '/home',
+            builder: (context, state) => const HomeScreenDesktop(),
+            routes: [
+              GoRoute(
+                  path: 'preview_document_screen',
+                  builder: (context, state) =>
+                      PreviewDocumentScreen(file: state.extra as FileRead),
+                  routes: [
+                    GoRoute(
+                      path: 'create_signature_screen',
+                      builder: (context, state) =>
+                          const CreateSignatureScreen(),
+                    )
+                  ]),
+              GoRoute(
+                path: 'pdf_viewer_screen',
+                builder: (context, state) =>
+                    PDFViewerScreen(file: state.extra as FileRead),
+              ),
+            ]),
+        GoRoute(
+          path: '/loading',
+          builder: (context, state) => const LoadingScreen(),
+        ),
+      ],
+    );
   }
 }

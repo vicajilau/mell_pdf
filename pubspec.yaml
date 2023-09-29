@@ -1,10 +1,9 @@
-name: mell_pdf
-description: Application to create PDF documents by combining images, PDF and
-  document scanner developed with Flutter.
+name: drag_pdf
+description: Application to create PDF documents by combining images, PDF and document scanner developed with Flutter.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -16,10 +15,10 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 3.0.0+14
+version: 2.9.1+19
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: '>=3.0.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -28,37 +27,41 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  cunning_document_scanner: ^1.1.2
-  cupertino_icons: ^1.0.5
-  easy_image_viewer: ^1.2.0
-  file_picker: ^5.2.10
-  firebase_core: ^2.15.0
-  firebase_crashlytics: ^3.3.4
-  firebase_analytics: ^10.4.5
   flutter:
     sdk: flutter
-  flutter_dotenv: ^5.1.0
-  flutter_launcher_icons: ^0.13.1
   flutter_localizations:
     sdk: flutter
-  image: ^4.0.15
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.5
+  lottie: ^2.3.2
+  platform_detail: ^3.2.1
+  file_picker: ^5.2.10
+  easy_image_viewer: ^1.2.0
+  pdfx: ^2.4.0
+  path_provider: ^2.0.14
+  image: ^4.1.2
   image_picker: ^1.0.1
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
-  lottie: ^2.3.2
-  path_provider: ^2.0.14
   pdf: ^3.10.1
   pdf_merger: ^0.0.6
-  pdfx: ^2.4.0
-  platform_detail: ^3.0.1
   share_plus: ^7.0.2
   shared_preferences: ^2.2.0
+  cunning_document_scanner: ^1.1.2
   signature: ^5.3.2
   phosphor_flutter: ^2.0.0
   flutter_painter:
     git:
       url: https://github.com/Zazo032/flutter_painter.git
       ref: master
+  firebase_core: ^2.15.0
+  firebase_crashlytics: ^3.3.4
+  flutter_dotenv: ^5.1.0
+  flutter_launcher_icons: ^0.13.1
+  firebase_analytics: ^10.4.4
+  go_router: ^11.1.2
 
 flutter_icons:
   image_path_android: "assets/icons/android-icon.png"
@@ -79,8 +82,10 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
 # The following section is specific to Flutter packages.
 flutter:
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

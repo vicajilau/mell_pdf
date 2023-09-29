@@ -1,13 +1,15 @@
+import 'package:drag_pdf/helper/file_manager.dart';
+import 'package:drag_pdf/helper/helpers.dart';
+import 'package:drag_pdf/model/enums/supported_file_type.dart';
+import 'package:drag_pdf/model/file_read.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mell_pdf/helper/helpers.dart';
-import 'package:mell_pdf/helper/file_manager.dart';
-import 'package:mell_pdf/model/file_read.dart';
 
 class HomeViewModel {
   final FileManager _mfl = AppSession.singleton.mfl;
 
-  final allowedExtensions = ['jpg', 'jpeg', 'pdf', 'png'];
+  final List<String> allowedExtensions =
+      SupportedFileTypeExtension.namesOfSupportedExtension();
 
   String invalidFormat = "";
   static const String extensionForbidden = "Extension file forbidden: ";
