@@ -1,15 +1,18 @@
+import 'package:drag_pdf/common/colors/colors_app.dart';
+import 'package:drag_pdf/common/localization/localization.dart';
+import 'package:drag_pdf/helper/local_storage.dart';
+import 'package:drag_pdf/model/models.dart';
+import 'package:drag_pdf/view/widget/signature_thumbnail_wrap.dart';
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/common/colors/colors_app.dart';
-import 'package:mell_pdf/common/localization/localization.dart';
-import 'package:mell_pdf/helper/local_storage.dart';
-import 'package:mell_pdf/model/models.dart';
-import 'package:mell_pdf/view/widget/signature_thumbnail_wrap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../helper/dialogs/custom_dialog.dart';
 
 class PreviewDocumentScreen extends StatefulWidget {
-  const PreviewDocumentScreen({super.key});
+  const PreviewDocumentScreen({super.key, required this.file});
+  final FileRead file;
 
   @override
   State<PreviewDocumentScreen> createState() => _PreviewDocumentScreenState();
@@ -54,17 +57,13 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
 
   Future<void> signDocument(BuildContext context) async {
     Navigator.pop(context);
-    await Navigator.pushNamed(
-      context,
-      "/painter_signature_screen",
-    );
+    context.go("/home/preview_document_screen/painter_signature_screen");
   }
 
   @override
   Widget build(BuildContext context) {
-    final file = ModalRoute.of(context)!.settings.arguments as FileRead;
     final pdfPinchController = PdfControllerPinch(
-      document: PdfDocument.openFile(file.getFile().path),
+      document: PdfDocument.openFile(widget.file.getFile().path),
     );
 
     return Scaffold(
@@ -72,14 +71,14 @@ class _PreviewDocumentScreenState extends State<PreviewDocumentScreen> {
         title: const Text("DRAG PDF"),
         actions: [
           IconButton(
-            onPressed: () => showSignatureMenu(context, file),
+            onPressed: () => showSignatureMenu(context, widget.file),
             icon: const Icon(Icons.create),
           ),
           IconButton(
               onPressed: () async {
                 try {
                   await Share.shareXFiles(
-                    [XFile(file.getFile().path)],
+                    [XFile(widget.file.getFile().path)],
                     sharePositionOrigin: Rect.fromLTRB(
                         MediaQuery.of(context).size.width - 300,
                         0,

@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/helper/local_storage.dart';
-import 'package:mell_pdf/model/signature_model.dart';
-import 'package:mell_pdf/view/widget/delete_signature_button.dart';
+import 'package:drag_pdf/helper/local_storage.dart';
+import 'package:drag_pdf/model/signature_model.dart';
+import 'package:drag_pdf/view/widget/delete_signature_button.dart';
 import 'package:platform_detail/platform_detail.dart';
 
 class SignatureThumbnail extends StatelessWidget {

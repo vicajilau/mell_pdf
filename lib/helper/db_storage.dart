@@ -1,5 +1,5 @@
 import 'package:isar/isar.dart';
-import 'package:mell_pdf/model/signature_model.dart';
+import 'package:drag_pdf/model/signature_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DBStorage {

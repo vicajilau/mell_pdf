@@ -4,8 +4,6 @@ import 'package:drag_pdf/helper/firebase_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:drag_pdf/common/colors/colors_app.dart';
-import 'package:drag_pdf/common/localization/localization.dart';
 import 'package:drag_pdf/helper/db_storage.dart';
 import 'package:drag_pdf/helper/local_storage.dart';
 import 'package:drag_pdf/helper/notification_service.dart';

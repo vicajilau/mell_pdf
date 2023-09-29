@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:mell_pdf/model/models.dart';
+import 'package:drag_pdf/model/models.dart';
 
 class ImageHelper {
   static Future<void> updateCache(FileRead file) async {
