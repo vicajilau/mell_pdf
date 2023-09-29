@@ -3,11 +3,11 @@ import 'package:drag_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
 
 class PDFViewerScreen extends StatelessWidget {
-  const PDFViewerScreen({Key? key}) : super(key: key);
+  const PDFViewerScreen({Key? key, required this.file}) : super(key: key);
+  final FileRead file;
 
   @override
   Widget build(BuildContext context) {
-    final file = ModalRoute.of(context)!.settings.arguments as FileRead;
     final pdfPinchController = PdfControllerPinch(
       document: PdfDocument.openFile(file.getFile().path),
     );

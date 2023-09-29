@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreenMobile extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SplashScreenMobileState extends State<SplashScreenMobile>
                   ..duration = composition.duration
                   ..repeat();
 
-                setTimer();
+                setTimer(context);
               },
             ),
           ),
@@ -44,10 +45,10 @@ class _SplashScreenMobileState extends State<SplashScreenMobile>
     );
   }
 
-  void setTimer() {
+  void setTimer(BuildContext context) {
     Future.delayed(const Duration(seconds: 4), () {
       _controller.stop();
-      Navigator.pushNamed(context, "/home");
+      context.go("/home");
     });
   }
 }

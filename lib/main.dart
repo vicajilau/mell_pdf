@@ -41,9 +41,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.shared.getRouter(),
       debugShowCheckedModeBanner: false,
-      routes: AppRouter.init().routes,
       darkTheme: ThemeData.dark(useMaterial3: true),
       theme: ThemeData.light(useMaterial3: true).copyWith(
         primaryColor: ColorsApp.white,
