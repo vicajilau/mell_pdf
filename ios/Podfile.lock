@@ -269,7 +269,7 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
   SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
-  share_plus: 599aa54e4ea31d4b4c0e9c911bcc26c55e791028
+  share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
 
 PODFILE CHECKSUM: a706ea1e10ac5b436a60f4412f3bd6eec9721a07
