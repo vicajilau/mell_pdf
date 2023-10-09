@@ -54,7 +54,7 @@ dependencies:
   pdf_merger: ^0.0.6
   pdfx: ^2.4.0
   platform_detail: ^3.3.0
-  share_plus: ^7.1.0
+  share_plus: ^8.0.0
   signature: ^5.4.0
 
 flutter_icons:
