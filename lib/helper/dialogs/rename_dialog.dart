@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:drag_pdf/common/localization/localization.dart';
 import 'package:drag_pdf/helper/helpers.dart';
+import 'package:go_router/go_router.dart';
 
 class RenameFileDialog extends StatefulWidget {
   final String nameFile;
@@ -60,7 +61,7 @@ class _RenameFileDialogState extends State<RenameFileDialog> {
           visible: isAcceptButtonVisible,
           child: TextButton(
             onPressed: () {
-              Navigator.pop(context);
+              context.pop();
               widget.acceptButtonWasPressed(nameController.text);
             },
             child: Text(
@@ -70,7 +71,7 @@ class _RenameFileDialogState extends State<RenameFileDialog> {
         ),
         TextButton(
           onPressed: () {
-            Navigator.pop(context);
+            context.pop();
           },
           child: Text(
             Localization.of(context).string('cancel'),

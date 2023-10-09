@@ -4,6 +4,7 @@ import 'package:drag_pdf/common/colors/colors_app.dart';
 import 'package:drag_pdf/common/localization/localization.dart';
 import 'package:drag_pdf/components/components.dart';
 import 'package:drag_pdf/model/enums/loader_of.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../helper/dialogs/custom_dialog.dart';
 import '../../helper/helpers.dart';
@@ -93,7 +94,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
 
   Future<void> scanImages() async {
     try {
-      Navigator.pop(context, 'Scan');
+      context.pop('Scan');
       final file = await viewModel.scanDocument();
       if (file != null) {
         setState(() {
@@ -135,7 +136,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                         actions: [
                           TextButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              context.pop();
                               FileDialog.add(
                                   context: context,
                                   loadImageFromGallery: () async =>
@@ -154,7 +155,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                                 .string('scan')), // SCAN
                           ),
                           TextButton(
-                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            onPressed: () => context.pop('Cancel'),
                             child: Text(
                               Localization.of(context)
                                   .string('cancel'), // Cancel

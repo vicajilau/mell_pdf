@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:signature/signature.dart';
 
 import '../common/localization/localization.dart';
@@ -61,15 +62,15 @@ class _CreateSignatureScreenState extends State<CreateSignatureScreen> {
                       actions: [
                         TextButton(
                           onPressed: () {
-                            Navigator.pop(context, 'close_alert');
-                            Navigator.pop(context, 'yes');
+                            context.pop('close_alert');
+                            context.pop('yes');
                           },
                           child: Text(Localization.of(context)
                               .string('generic_yes')), // LOAD
                         ),
                         TextButton(
                           onPressed: () async {
-                            Navigator.pop(context, 'no');
+                            context.pop('no');
                           },
                           child: Text(Localization.of(context)
                               .string('generic_no')), // SCAN
@@ -78,7 +79,7 @@ class _CreateSignatureScreenState extends State<CreateSignatureScreen> {
                     );
                   });
             } else {
-              Navigator.pop(context);
+              context.pop();
             }
           },
           icon: const Icon(Icons.arrow_back),
