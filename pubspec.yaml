@@ -54,7 +54,7 @@ dependencies:
   firebase_core: ^2.15.0
   firebase_crashlytics: ^3.3.4
   flutter_dotenv: ^5.1.0
-  firebase_analytics: ^10.4.4
+  firebase_analytics: ^10.5.1
 
 flutter_icons:
   image_path_android: "assets/icons/android-icon.png"
