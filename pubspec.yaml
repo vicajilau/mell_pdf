@@ -52,7 +52,7 @@ dependencies:
       url: https://github.com/vicajilau/cunning_document_scanner
   signature: ^5.3.2
   firebase_core: ^2.15.0
-  firebase_crashlytics: ^3.3.4
+  firebase_crashlytics: ^3.3.7
   flutter_dotenv: ^5.1.0
   firebase_analytics: ^10.4.4
 
