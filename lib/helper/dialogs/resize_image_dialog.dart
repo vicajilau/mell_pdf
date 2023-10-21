@@ -9,8 +9,7 @@ class ResizeImageDialog extends StatefulWidget {
   final FileRead file;
   final Function(int, int) resizeButtonPressed;
   const ResizeImageDialog(
-      {Key? key, required this.file, required this.resizeButtonPressed})
-      : super(key: key);
+      {super.key, required this.file, required this.resizeButtonPressed});
 
   @override
   State<ResizeImageDialog> createState() => _ResizeImageDialogState();

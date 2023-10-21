@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreenDesktop extends StatefulWidget {
-  const SplashScreenDesktop({Key? key}) : super(key: key);
+  const SplashScreenDesktop({super.key});
 
   @override
   State<SplashScreenDesktop> createState() => _SplashScreenDesktopState();

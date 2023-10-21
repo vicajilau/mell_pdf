@@ -6,7 +6,7 @@ import '../model/enums/supported_file_type.dart';
 
 class FileTypeIcon extends StatelessWidget {
   final FileRead file;
-  const FileTypeIcon({Key? key, required this.file}) : super(key: key);
+  const FileTypeIcon({super.key, required this.file});
 
   @override
   Widget build(BuildContext context) {

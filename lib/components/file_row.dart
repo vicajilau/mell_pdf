@@ -16,13 +16,12 @@ class FileRow extends StatelessWidget {
   final Function rotateButtonPressed;
   final Function(int, int) resizeButtonPressed;
   const FileRow(
-      {Key? key,
+      {super.key,
       required this.file,
       required this.renameButtonPressed,
       required this.removeButtonPressed,
       required this.rotateButtonPressed,
-      required this.resizeButtonPressed})
-      : super(key: key);
+      required this.resizeButtonPressed});
 
   @override
   Widget build(BuildContext context) {

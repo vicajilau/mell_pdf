@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:drag_pdf/common/colors/colors_app.dart';
 
 class HomeScreenDesktop extends StatefulWidget {
-  const HomeScreenDesktop({Key? key}) : super(key: key);
+  const HomeScreenDesktop({super.key});
 
   @override
   State<HomeScreenDesktop> createState() => _HomeScreenDesktopState();

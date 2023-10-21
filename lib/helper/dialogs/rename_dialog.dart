@@ -8,8 +8,7 @@ class RenameFileDialog extends StatefulWidget {
   final String nameFile;
   final Function(String) acceptButtonWasPressed;
   const RenameFileDialog(
-      {Key? key, required this.nameFile, required this.acceptButtonWasPressed})
-      : super(key: key);
+      {super.key, required this.nameFile, required this.acceptButtonWasPressed});
 
   @override
   State<RenameFileDialog> createState() => _RenameFileDialogState();
