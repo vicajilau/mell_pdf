@@ -11,7 +11,7 @@ import '../../helper/helpers.dart';
 import '../../view_model/home_view_model.dart';
 
 class HomeScreenMobile extends StatefulWidget {
-  const HomeScreenMobile({Key? key}) : super(key: key);
+  const HomeScreenMobile({super.key});
 
   @override
   State<HomeScreenMobile> createState() => _HomeScreenMobileState();

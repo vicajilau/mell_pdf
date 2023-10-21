@@ -8,7 +8,7 @@ import 'package:signature/signature.dart';
 import '../common/localization/localization.dart';
 
 class CreateSignatureScreen extends StatefulWidget {
-  const CreateSignatureScreen({Key? key}) : super(key: key);
+  const CreateSignatureScreen({super.key});
 
   @override
   State<CreateSignatureScreen> createState() => _CreateSignatureScreenState();

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreenMobile extends StatefulWidget {
-  const SplashScreenMobile({Key? key}) : super(key: key);
+  const SplashScreenMobile({super.key});
 
   @override
   State<SplashScreenMobile> createState() => _SplashScreenMobileState();

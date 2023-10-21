@@ -3,7 +3,7 @@ import 'package:drag_pdf/model/models.dart';
 import 'package:pdfx/pdfx.dart';
 
 class PDFViewerScreen extends StatelessWidget {
-  const PDFViewerScreen({Key? key, required this.file}) : super(key: key);
+  const PDFViewerScreen({super.key, required this.file});
   final FileRead file;
 
   @override
