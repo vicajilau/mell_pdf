@@ -40,7 +40,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   easy_image_viewer: ^1.2.1
   file_picker: ^6.0.0
-  firebase_analytics: ^10.6.1
+  firebase_analytics: ^10.6.2
   firebase_core: ^2.19.0
   firebase_crashlytics: ^3.4.2
   flutter_dotenv: ^5.1.0
