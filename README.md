@@ -6,11 +6,11 @@
 
 Drag PDF is a powerful and open-source mobile application developed with Flutter, designed to simplify the process of creating PDF documents. With intuitive features like image compilation, PDF merging, gallery integration, and an integrated document scanner, Drag PDF empowers users to effortlessly generate PDFs on the go.
 
-![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-2.png?raw=true)
-![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-3.png?raw=true)
-![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-4.png?raw=true)
-![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-5.png?raw=true)
-![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/master/screenshots/Mockup-6.png?raw=true)
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/main/screenshots/Mockup-2.png?raw=true)
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/main/screenshots/Mockup-3.png?raw=true)
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/main/screenshots/Mockup-4.png?raw=true)
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/main/screenshots/Mockup-5.png?raw=true)
+![alt screenshot](https://github.com/vicajilau/Drag-PDF/blob/main/screenshots/Mockup-6.png?raw=true)
 
 
 ## Features
