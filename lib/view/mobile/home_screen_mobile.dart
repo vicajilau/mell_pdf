@@ -114,8 +114,8 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: true,
       child: Loading.isPresented
           ? const LoadingScreen()
           : Scaffold(
