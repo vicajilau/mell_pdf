@@ -1,3 +1,11 @@
+<a>
+  <h1 align="center">
+    <picture>
+      <img alt="Drag PDF Logo" src="https://github.com/vicajilau/Drag-PDF/blob/main/screenshots/logo.png>
+    </picture>
+  </h1>
+</a>
+
 <a href="https://www.buymeacoffee.com/vicajilau" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 # Drag PDF: Create PDF Documents Easy
