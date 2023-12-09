@@ -37,8 +37,8 @@ Drag PDF is a powerful and open-source mobile application developed with Flutter
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-username/DragPDF.git
-cd DragPDF
+git clone https://github.com/vicajilau/Drag-PDF.git
+cd Drag-PDF
 ```
 
 ### Run the Application
