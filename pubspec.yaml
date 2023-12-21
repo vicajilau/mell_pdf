@@ -50,10 +50,14 @@ dependencies:
   path_provider: ^2.1.1
   pdf: ^3.10.6
   pdf_merger: ^0.0.6
-  pdfx: ^2.5.0
+  pdfx:
+    git:
+      url: https://github.com/dorklein/packages.flutter.git
+      ref: main
+      path: packages/pdfx/
   platform_detail: ^3.3.1
   share_plus: ^7.2.1
-  signature: ^5.4.0
+  signature: ^5.4.1
 
 flutter_icons:
   image_path_android: "assets/icons/android-icon.png"
