@@ -43,7 +43,7 @@ dependencies:
   firebase_crashlytics: ^3.4.8
   flutter_dotenv: ^5.1.0
   flutter_launcher_icons: ^0.13.1
-  go_router: ^12.1.3
+  go_router: ^13.0.0
   image: ^4.1.3
   image_picker: ^1.0.5
   lottie: ^2.7.0
