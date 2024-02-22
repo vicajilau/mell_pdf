@@ -57,7 +57,7 @@ flutter run
 ## Where you can Download DragPDF
 
 To start using DragPDF in your own project, the first thing you should do is:
-* Download the DragPDF app file available in: [App Store](https://apps.apple.com/es/app/drag-pdf/id1640647538), [Play Store](https://play.google.com/store/apps/details?id=es.victorcarreras.drag_pdf) and [App Gallery](https://appgallery.huawei.com/app/C107001391)
+* Download the DragPDF app file available in: [App Store](https://apps.apple.com/es/app/drag-pdf/id1640647538), [Play Store](https://play.google.com/store/apps/details?id=es.victorcarreras.drag_pdf) and [App Gallery](https://appgallery.huawei.com/app/C107001391).
 
 
 ## Contributing
