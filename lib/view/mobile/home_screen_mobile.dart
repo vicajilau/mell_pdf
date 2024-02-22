@@ -77,7 +77,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
           error.toString().contains(HomeViewModel.extensionForbidden)
               ? "forbidden_file_error_subtitle"
               : "read_file_error_subtitle";
-      if (!context.mounted) return; // check "mounted" property
+      if (!mounted) return; // check "mounted" property
       CustomDialog.showError(
           context: context,
           error: error,
@@ -102,7 +102,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         });
       }
     } catch (error) {
-      if (!context.mounted) return; // check "mounted" property
+      if (!mounted) return;  // check "mounted" property
       CustomDialog.showError(
           context: context,
           error: error,
