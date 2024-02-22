@@ -74,4 +74,4 @@ Drag PDF is licensed under the [LGPL v3](LICENSE).
 
 ## Privacy
 
-Drag PDF is very committed to the security and  [privacy](PRIVACY). of its users.
+Drag PDF is very committed to the security and [privacy](PRIVACY.md) of its users.
