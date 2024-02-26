@@ -46,7 +46,7 @@ dependencies:
   go_router: ^13.2.0
   image: ^4.1.7
   image_picker: ^1.0.7
-  lottie: ^3.0.0
+  lottie: ^3.1.0
   path_provider: ^2.1.2
   pdf: ^3.10.8
   pdf_merger: ^0.0.6
