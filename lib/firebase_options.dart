@@ -48,30 +48,30 @@ class DefaultFirebaseOptions {
   }
 
   static FirebaseOptions android = FirebaseOptions(
-    apiKey: dotenv.env['androidApiKey']!,
-    appId: dotenv.env['androidAppId']!,
-    messagingSenderId: dotenv.env['androidMessagingSenderId']!,
-    projectId: dotenv.env['androidProjectId']!,
-    storageBucket: dotenv.env['androidStorageBucket']!,
+    apiKey: dotenv.env['ANDROID_API_KEY']!,
+    appId: dotenv.env['ANDROID_APP_ID']!,
+    messagingSenderId: dotenv.env['ANDROID_MESSAGING_SENDER_ID']!,
+    projectId: dotenv.env['ANDROID_PROJECT_ID']!,
+    storageBucket: dotenv.env['ANDROID_STORAGE_BUCKET']!,
   );
 
   static FirebaseOptions ios = FirebaseOptions(
-    apiKey: dotenv.env['iOSApiKey']!,
-    appId: dotenv.env['iOSAppId']!,
-    messagingSenderId: dotenv.env['iOSMessagingSenderId']!,
-    projectId: dotenv.env['iOSProjectId']!,
-    storageBucket: dotenv.env['iOSStorageBucket']!,
-    iosClientId: dotenv.env['iOSIosClientId']!,
-    iosBundleId: dotenv.env['iOSIosBundleId']!,
+    apiKey: dotenv.env['IOS_API_KEY']!,
+    appId: dotenv.env['IOS_APP_ID']!,
+    messagingSenderId: dotenv.env['IOS_MESSAGING_SENDER_ID']!,
+    projectId: dotenv.env['IOS_PROJECT_ID']!,
+    storageBucket: dotenv.env['IOS_STORAGE_BUCKET']!,
+    iosClientId: dotenv.env['IOS_CLIENT_ID']!,
+    iosBundleId: dotenv.env['IOS_BUNDLE_ID']!,
   );
 
   static FirebaseOptions macos = FirebaseOptions(
-    apiKey: dotenv.env['macOSApiKey']!,
-    appId: dotenv.env['macOSAppId']!,
-    messagingSenderId: dotenv.env['macOSMessagingSenderId']!,
-    projectId: dotenv.env['macOSProjectId']!,
-    storageBucket: dotenv.env['macOSStorageBucket']!,
-    iosClientId: dotenv.env['macOSIosClientId']!,
-    iosBundleId: dotenv.env['macOSIosBundleId']!,
+    apiKey: dotenv.env['MACOS_API_KEY']!,
+    appId: dotenv.env['MACOS_APP_ID']!,
+    messagingSenderId: dotenv.env['MACOS_MESSAGING_SENDER_ID']!,
+    projectId: dotenv.env['MACOS_PROJECT_ID']!,
+    storageBucket: dotenv.env['MACOS_STORAGE_BUCKET']!,
+    iosClientId: dotenv.env['MACOS_CLIENT_ID']!,
+    iosBundleId: dotenv.env['MACOS_BUNDLE_ID']!,
   );
 }

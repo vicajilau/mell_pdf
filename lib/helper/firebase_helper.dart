@@ -15,13 +15,14 @@ class FirebaseHelper {
   late final FirebaseCrashlytics _crashlytics;
 
   Future<void> initializeApp([bool enabledInDebugMode = false]) async {
-    if (dotenv.env['enabledCrashlyticsInDebugMode'] != null &&
-        dotenv.env['enabledFirebaseInDebugMode'] != null) {
+    if (dotenv.env['ENABLED_CRASHLYTICS_IN_DEBUG_MODE'] != null &&
+        dotenv.env['ENABLED_FIREBASE_IN_DEBUG_MODE'] != null) {
       final crashDetectorInDebug =
-          dotenv.env['enabledCrashlyticsInDebugMode'] == 'true';
+          dotenv.env['ENABLED_CRASHLYTICS_IN_DEBUG_MODE'] == 'true';
       final analyticsInDebug =
-          dotenv.env['enabledFirebaseInDebugMode'] == 'true';
+          dotenv.env['ENABLED_FIREBASE_IN_DEBUG_MODE'] == 'true';
       await Firebase.initializeApp(
+        name: "Drag PDF",
         options: DefaultFirebaseOptions.currentPlatform,
       );
       _analytics = FirebaseAnalytics.instance;
