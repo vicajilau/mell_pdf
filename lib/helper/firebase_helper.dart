@@ -22,7 +22,7 @@ class FirebaseHelper {
       final analyticsInDebug =
           dotenv.env['ENABLED_FIREBASE_IN_DEBUG_MODE'] == 'true';
       await Firebase.initializeApp(
-        name: "Drag PDF",
+        name: "Drag-PDF",
         options: DefaultFirebaseOptions.currentPlatform,
       );
       _analytics = FirebaseAnalytics.instance;
