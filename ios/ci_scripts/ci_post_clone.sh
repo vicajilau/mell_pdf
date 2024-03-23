@@ -17,8 +17,8 @@ flutter pub get
 HOMEBREW_NO_AUTO_UPDATE=1 # disable homebrew's automatic updates.
 brew install cocoapods
 
-# Install CocoaPods dependencies.
-cd ios && pod install # run `pod install` in the `ios` directory.
+cd .. # exit the ci_scripts folder
+pod install # run `pod install` in the `ios` directory.
 
 flutter build ios
 
