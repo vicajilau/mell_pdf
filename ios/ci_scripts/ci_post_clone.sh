@@ -18,10 +18,10 @@ HOMEBREW_NO_AUTO_UPDATE=1 # disable homebrew's automatic updates.
 brew install cocoapods
 
 PWD=pwd
-echo 'Before moving $PWD'
+echo 'Before moving ${PWD}'
 cd ../.. # exit the ci_scripts to root folder.
 PWD=pwd
-echo 'After moving $PWD'
+echo 'After moving ${PWD}'
 flutter pub get # Install flutter dependencies.
 flutter build ios # build ios project.
 
