@@ -17,10 +17,12 @@ flutter pub get
 HOMEBREW_NO_AUTO_UPDATE=1 # disable homebrew's automatic updates.
 brew install cocoapods
 
-echo 'Before moving $(pwd)'
+PWD=pwd
+echo 'Before moving $PWD'
 cd ../.. # exit the ci_scripts to root folder.
-echo 'After moving $(pwd)'
-flutter pub get # exit the ci_scripts to root folder.
-flutter build ios
+PWD=pwd
+echo 'After moving $PWD'
+flutter pub get # Install flutter dependencies.
+flutter build ios # build ios project.
 
 exit 0
