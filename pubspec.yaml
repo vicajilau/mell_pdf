@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   cunning_document_scanner: ^1.2.1
   easy_image_viewer: ^1.4.1
-  file_picker: ^6.2.1
+  file_picker: ^8.0.0+1
   firebase_analytics: ^10.8.10
   firebase_core: ^2.27.1
   firebase_crashlytics: ^3.4.19
