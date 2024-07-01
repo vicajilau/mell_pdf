@@ -36,11 +36,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   cunning_document_scanner: ^1.2.3
-  easy_image_viewer: ^1.5.0
+  easy_image_viewer: ^1.5.1
   file_picker: ^8.0.3
-  firebase_analytics: ^10.10.7
-  firebase_core: ^2.32.0
-  firebase_crashlytics: ^3.5.7
+  firebase_analytics: ^11.1.0
+  firebase_core: ^3.1.1
+  firebase_crashlytics: ^4.0.2
   flutter_dotenv: ^5.1.0
   flutter_launcher_icons: ^0.13.1
   go_router: ^14.2.0
@@ -48,7 +48,7 @@ dependencies:
   image_picker: ^1.1.2
   lottie: ^3.1.2
   path_provider: ^2.1.3
-  pdf: ^3.10.8
+  pdf: ^3.11.0
   pdf_merger: ^0.0.6
   pdfx: ^2.6.0
   platform_detail: ^3.3.1
