@@ -229,26 +229,26 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_analytics
-      sha256: "2017da2cb0745fa912e13aadfc94e49691796cf6b7ed37edbca2a2388713da11"
+      sha256: "064e5b57b0693305946b7caa6a80ed80a918f46804c247b6cd7ed9cd327df48f"
       url: "https://pub.dev"
     source: hosted
-    version: "11.2.0"
+    version: "11.2.1"
   firebase_analytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_analytics_platform_interface
-      sha256: "4ea00fe31ff74c92c613e082193b55bd21f0653b536dd77cc1ba4cf60771d214"
+      sha256: d094547c9022c404b5ca39b7209607fc80e75e39d38875f050508fa4346b3e74
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.0"
+    version: "4.2.1"
   firebase_analytics_web:
     dependency: transitive
     description:
       name: firebase_analytics_web
-      sha256: e5ce84f0c4e6fb8f8ca673d009445938a61845d8fa6b42c11913d5bbdbedf300
+      sha256: "06dc023b0144c0df630a56b6262cc9e7d6069fe78148853d97614dbefb6ea923"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.9"
+    version: "0.5.9+1"
   firebase_core:
     dependency: "direct main"
     description:
@@ -369,10 +369,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "39dd52168d6c59984454183148dc3a5776960c61083adfc708cc79a7b3ce1ba8"
+      sha256: d380de0355788c5c784fe9f81b43fc833b903991c25ecc4e2a416a67faefa722
       url: "https://pub.dev"
     source: hosted
-    version: "14.2.1"
+    version: "14.2.2"
   http:
     dependency: transitive
     description:
@@ -753,18 +753,18 @@ packages:
     dependency: "direct main"
     description:
       name: share_plus
-      sha256: ef3489a969683c4f3d0239010cc8b7a2a46543a8d139e111c06c558875083544
+      sha256: "59dfd53f497340a0c3a81909b220cfdb9b8973a91055c4e5ab9b9b9ad7c513c0"
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.0"
+    version: "10.0.0"
   share_plus_platform_interface:
     dependency: transitive
     description:
       name: share_plus_platform_interface
-      sha256: "0f9e4418835d1b2c3ae78fdb918251959106cefdbc4dd43526e182f80e82f6d4"
+      sha256: "6ababf341050edff57da8b6990f11f4e99eaba837865e2e6defe16d039619db5"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.0"
+    version: "5.0.0"
   signature:
     dependency: "direct main"
     description:
