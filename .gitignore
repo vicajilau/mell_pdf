@@ -48,3 +48,4 @@ app.*.map.json
 **/firebase_app_id_file.json
 **/app/google-services.json
 **/Runner/GoogleService-Info.plist
+/ios/GoogleService-Info.plist
