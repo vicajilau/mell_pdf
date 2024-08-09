@@ -48,7 +48,7 @@ class _SplashScreenMobileState extends State<SplashScreenMobile>
   void setTimer(BuildContext context) {
     Future.delayed(const Duration(seconds: 4), () {
       _controller.stop();
-      context.go("/home");
+      if (context.mounted) context.go("/home");
     });
   }
 }
