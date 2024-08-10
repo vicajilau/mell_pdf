@@ -6,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:drag_pdf/model/enums/log_event.dart';
 import 'package:platform_detail/platform_detail.dart';
 
-import '../firebase_options.dart';
+import '../default_firebase_options.dart';
 
 class FirebaseHelper {
   static FirebaseHelper shared = FirebaseHelper();

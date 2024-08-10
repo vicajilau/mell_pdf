@@ -1,11 +1,11 @@
 export 'package:drag_pdf/helper/app_router.dart';
 export 'package:drag_pdf/helper/app_session.dart';
 export 'package:drag_pdf/helper/dialogs/file_dialog.dart';
-export 'package:drag_pdf/helper/dialogs/rename_dialog.dart';
+export 'package:drag_pdf/helper/dialogs/rename_file_dialog.dart';
 export 'package:drag_pdf/helper/dialogs/resize_image_dialog.dart';
 export 'package:drag_pdf/helper/file_helper.dart';
 export 'package:drag_pdf/helper/image_helper.dart';
 export 'package:drag_pdf/helper/isolate_helper.dart';
 export 'package:drag_pdf/helper/loading.dart';
-export 'package:drag_pdf/helper/numerical_ranger_formatter.dart';
+export 'package:drag_pdf/helper/numerical_range_formatter.dart';
 export 'package:drag_pdf/helper/utils.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:drag_pdf/common/localization/localization.dart';
 import 'package:drag_pdf/components/file_type_icon.dart';
 import 'package:drag_pdf/helper/dialogs/custom_dialog.dart';
-import 'package:drag_pdf/helper/dialogs/rename_dialog.dart';
+import 'package:drag_pdf/helper/dialogs/rename_file_dialog.dart';
 import 'package:drag_pdf/helper/dialogs/resize_image_dialog.dart';
 import 'package:drag_pdf/model/file_read.dart';
 import 'package:go_router/go_router.dart';
