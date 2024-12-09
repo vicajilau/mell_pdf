@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _flutterfire_internals
-      sha256: "71c01c1998c40b3af1944ad0a5f374b4e6fef7f3d2df487f3970dbeadaeb25a1"
+      sha256: eae3133cbb06de9205899b822e3897fc6a8bc278ad4c944b4ce612689369694b
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.46"
+    version: "1.3.47"
   archive:
     dependency: transitive
     description:
@@ -277,18 +277,18 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_crashlytics
-      sha256: "4e80ef22428dfecf609df8049419c7446c6e1d797d7f307cad3c7ab70e72ddc5"
+      sha256: e235c8452d5622fc271404592388fde179e4b62c50e777ad3c8c3369296104ed
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.5"
+    version: "4.2.0"
   firebase_crashlytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_crashlytics_platform_interface
-      sha256: "1104f428ec5249fff62016985719bb232ca91c4bde0d1a033af9b7d8b7451d70"
+      sha256: "4ddadf44ed0a202f3acad053f12c083877940fa8cc1a9f747ae09e1ef4372160"
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.46"
+    version: "3.7.0"
   fixnum:
     dependency: transitive
     description:
@@ -314,10 +314,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_launcher_icons
-      sha256: "619817c4b65b322b5104b6bb6dfe6cda62d9729bd7ad4303ecc8b4e690a67a77"
+      sha256: "31cd0885738e87c72d6f055564d37fabcdacee743b396b78c7636c169cac64f5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.14.1"
+    version: "0.14.2"
   flutter_lints:
     dependency: "direct dev"
     description:
