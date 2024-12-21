@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:pdf/widgets.dart' as pw;
-import 'package:pdf_merger/pdf_merger.dart';
+import 'package:pdf_combiner/pdf_combiner.dart';
+import 'package:pdf_combiner/responses/merge_multiple_pdf_response.dart';
+import 'package:pdf_combiner/responses/pdf_combiner_status.dart';
 
 import '../model/file_read.dart';
 
@@ -38,9 +40,9 @@ class PDFHelper {
 
   static Future<FileRead> mergePdfDocuments(
       List<String> paths, String outputPath, String nameOutputFile) async {
-    MergeMultiplePDFResponse response = await PdfMerger.mergeMultiplePDF(
-        paths: paths, outputDirPath: outputPath);
-    if (response.status == "success") {
+    MergeMultiplePDFResponse response = await PdfCombiner.mergeMultiplePDFs(
+        inputPaths: paths, outputPath: outputPath);
+    if (response.status == PdfCombinerStatus.success) {
       File intermediateFile = File(response.response!);
       final size = await intermediateFile.length();
       return FileRead(intermediateFile, nameOutputFile, null, size, "pdf");
