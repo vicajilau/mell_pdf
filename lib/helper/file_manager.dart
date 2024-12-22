@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:image/image.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:drag_pdf/helper/file_helper.dart';
 import 'package:drag_pdf/helper/pdf_helper.dart';
 import 'package:drag_pdf/model/file_read.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:image/image.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 import '../model/enums/supported_file_type.dart';
@@ -140,21 +140,29 @@ class FileManager {
     return fileRead;
   }
 
+  /// Generates a preview PDF document by converting and merging files in memory.
+  ///
+  /// - [outputPath]: The directory where the preview PDF will be saved.
+  /// - [nameOutputFile]: The desired name of the output PDF file.
+  ///
+  /// Returns a [FileRead] object representing the merged PDF document.
   Future<FileRead> generatePreviewPdfDocument(
       String outputPath, String nameOutputFile) async {
     List<String> intermediateFiles = [];
     for (FileRead file in _filesInMemory) {
-      final FileRead? intermediate = switch (file.getExtensionType()) {
-        SupportedFileType.pdf => await PDFHelper.createPdfFromOtherPdf(
-              file, '${file.getFile().path}.pdf', '${file.getName()}.pdf'),
-        SupportedFileType.png => await PDFHelper.createPdfFromImage(
-              file, '${file.getFile().path}.pdf', '${file.getName()}.pdf'),
-        SupportedFileType.jpg => await PDFHelper.createPdfFromImage(
-              file, '${file.getFile().path}.pdf', '${file.getName()}.pdf'),
-        SupportedFileType.jpeg => await PDFHelper.createPdfFromImage(
-              file, '${file.getFile().path}.pdf', '${file.getName()}.pdf'),
-      };
-    intermediateFiles.add(intermediate!.getFile().path);
+      final FileRead? intermediate;
+
+      switch (file.getExtensionType()) {
+        case SupportedFileType.pdf:
+          intermediate = await PDFHelper.createPdfFromOtherPdf(
+              file, '${file.getFile().path}.pdf', '${file.getName()}.pdf');
+        case SupportedFileType.png:
+        case SupportedFileType.jpg:
+        case SupportedFileType.jpeg:
+          intermediate = await PDFHelper.createPdfFromImage(
+              file, '${file.getFile().path}.pdf', '${file.getName()}.pdf');
+      }
+      intermediateFiles.add(intermediate!.getFile().path);
     }
     FileRead fileRead = await PDFHelper.mergePdfDocuments(
         intermediateFiles, outputPath, nameOutputFile);

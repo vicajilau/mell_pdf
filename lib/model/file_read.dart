@@ -30,6 +30,9 @@ class FileRead {
     }
   }
 
+  String getFullPath() =>
+      "${getFile().path}.${getExtensionType().name.toLowerCase()}";
+
   String getName() => _name;
 
   void setName(String name) => _name = name;
