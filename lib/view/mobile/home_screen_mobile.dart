@@ -175,7 +175,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
                       proxyDecorator: (child, index, animation) =>
                           ColorFiltered(
                               colorFilter: ColorFilter.mode(
-                                  Colors.blueAccent.withOpacity(0.2),
+                                  Colors.blueAccent.withValues(alpha: 0.2),
                                   BlendMode.srcATop),
                               child: child),
                       itemCount:
