@@ -27,7 +27,7 @@ class AppRouter {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const SplashScreenMobile(),
+          builder: (context, state) => const SplashScreen(),
         ),
         GoRoute(
             path: '/home',
@@ -64,7 +64,7 @@ class AppRouter {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const SplashScreenDesktop(),
+          builder: (context, state) => const SplashScreen(),
         ),
         GoRoute(
             path: '/home',

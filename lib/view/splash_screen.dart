@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-class SplashScreenMobile extends StatefulWidget {
-  const SplashScreenMobile({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashScreenMobile> createState() => _SplashScreenMobileState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenMobileState extends State<SplashScreenMobile>
+class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final AnimationController _controller;
 

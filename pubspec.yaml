@@ -38,7 +38,7 @@ dependencies:
   cunning_document_scanner: ^1.2.3
   easy_image_viewer: ^1.5.1
   file_picker: ^8.1.5
-  firebase_analytics: ^11.3.5
+  firebase_analytics: ^11.3.6
   firebase_core: ^3.8.1
   firebase_crashlytics: ^4.2.0
   flutter_dotenv: ^5.2.1
@@ -46,10 +46,10 @@ dependencies:
   go_router: ^14.6.2
   image: ^4.3.0
   image_picker: ^1.1.2
-  lottie: ^3.2.0
+  lottie: ^3.3.0
   path_provider: ^2.1.5
   pdf: ^3.11.1
-  pdf_merger: ^0.0.6
+  pdf_combiner: ^2.0.0
   pdfx: ^2.6.0
   platform_detail: ^3.3.1
   share_plus: ^10.1.2
