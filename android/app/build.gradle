@@ -44,7 +44,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled = false
+            minifyEnabled false
+            shrinkResources false
             signingConfig = signingConfigs.release
         }
     }
