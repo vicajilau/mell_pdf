@@ -34,14 +34,14 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '12'
+          java-version: '17'
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
       - name: Start Android Release Build
         run: flutter build appbundle
       - name: Upload Release Build to Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-release-artifacts
           path: build/app/outputs/bundle/release/app-release.aab
