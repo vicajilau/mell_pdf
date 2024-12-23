@@ -39,7 +39,7 @@ dependencies:
   easy_image_viewer: ^1.5.1
   file_picker: ^8.1.6
   firebase_analytics: ^11.3.6
-  firebase_core: ^3.8.1
+  firebase_core: ^3.9.0
   firebase_crashlytics: ^4.2.0
   flutter_dotenv: ^5.2.1
   flutter_launcher_icons: ^0.14.2
