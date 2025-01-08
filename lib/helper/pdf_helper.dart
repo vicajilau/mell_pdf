@@ -22,7 +22,7 @@ class PDFHelper {
     // Request PDF creation from the image file using PdfCombiner.
     PdfFromMultipleImageResponse response =
         await PdfCombiner.createPDFFromMultipleImages(
-            inputPaths: [imageFile.getFullPath()],
+            inputPaths: [imageFile.getFile().path],
             outputPath: outputPath,
             needImageCompressor: false);
 
