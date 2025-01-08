@@ -21,8 +21,10 @@ class PDFHelper {
       FileRead imageFile, String outputPath, String nameOutputFile) async {
     // Request PDF creation from the image file using PdfCombiner.
     PdfFromMultipleImageResponse response =
-    await PdfCombiner.createPDFFromMultipleImages(
-        inputPaths: [imageFile.getFullPath()], outputPath: outputPath, needImageCompressor: false);
+        await PdfCombiner.createPDFFromMultipleImages(
+            inputPaths: [imageFile.getFullPath()],
+            outputPath: outputPath,
+            needImageCompressor: false);
 
     // If the operation was successful, return a FileRead instance for the PDF.
     if (response.status == PdfCombinerStatus.success) {
