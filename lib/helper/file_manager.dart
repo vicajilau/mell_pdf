@@ -10,7 +10,21 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 import '../model/enums/supported_file_type.dart';
+extension FileNameExtension on String {
+  /// Elimina la extensión de un nombre de archivo.
+  /// Si no hay extensión, devuelve el string original.
+  String removeExtension() {
+    int lastDotIndex = this.lastIndexOf('.');
 
+    // Si no se encuentra un punto o está al principio (oculto), devuelve el original
+    if (lastDotIndex == -1 || lastDotIndex == 0) {
+      return this;
+    }
+
+    // Devuelve la parte sin la extensión
+    return this.substring(0, lastDotIndex);
+  }
+}
 class FileManager {
   final List<FileRead> _filesInMemory = [];
   final FileHelper fileHelper;
