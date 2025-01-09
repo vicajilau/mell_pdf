@@ -14,7 +14,7 @@ extension FileNameExtension on String {
   /// Elimina la extensión de un nombre de archivo.
   /// Si no hay extensión, devuelve el string original.
   String removeExtension() {
-    int lastDotIndex = this.lastIndexOf('.');
+    int lastDotIndex = lastIndexOf('.');
 
     // Si no se encuentra un punto o está al principio (oculto), devuelve el original
     if (lastDotIndex == -1 || lastDotIndex == 0) {
@@ -22,7 +22,7 @@ extension FileNameExtension on String {
     }
 
     // Devuelve la parte sin la extensión
-    return this.substring(0, lastDotIndex);
+    return substring(0, lastDotIndex);
   }
 }
 class FileManager {
