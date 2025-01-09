@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:drag_pdf/helper/file_manager.dart';
 import 'package:pdf_combiner/pdf_combiner.dart';
 import 'package:pdf_combiner/responses/merge_multiple_pdf_response.dart';
 import 'package:pdf_combiner/responses/pdf_combiner_status.dart';
@@ -30,7 +31,7 @@ class PDFHelper {
     if (response.status == PdfCombinerStatus.success) {
       File intermediateFile = File(response.response!);
       final size = await intermediateFile.length();
-      return FileRead(intermediateFile, nameOutputFile, null, size, "pdf");
+      return FileRead(intermediateFile, nameOutputFile.removeExtension(), null, size, "pdf");
     }
 
     // Throw an exception if PDF creation fails.
@@ -69,7 +70,7 @@ class PDFHelper {
     if (response.status == PdfCombinerStatus.success) {
       File intermediateFile = File(response.response!);
       final size = await intermediateFile.length();
-      return FileRead(intermediateFile, nameOutputFile, null, size, "pdf");
+      return FileRead(intermediateFile, nameOutputFile.removeExtension(), null, size, "pdf");
     }
 
     // Throw an exception if merging fails.

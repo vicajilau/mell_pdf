@@ -17,7 +17,7 @@ class FileHelper {
   }
 
   FileRead saveFileInLocalPath(FileRead file, String localPath) {
-    File newFile = File('$localPath${file.getName()}');
+    File newFile = File('$localPath${file.getName()}.${file.getExtensionName()}');
     newFile.writeAsBytesSync(file.getFile().readAsBytesSync());
     Image? image;
     if (Utils.isImage(file)) {
