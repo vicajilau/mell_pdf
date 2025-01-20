@@ -49,7 +49,7 @@ dependencies:
   lottie: ^3.3.0
   path_provider: ^2.1.5
   pdf: ^3.11.1
-  pdf_combiner: ^2.0.0
+  pdf_combiner: ^2.1.0
   pdfx: ^2.6.0
   platform_detail: ^4.1.0
   share_plus: ^10.1.3
